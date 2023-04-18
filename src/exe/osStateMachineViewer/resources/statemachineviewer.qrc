@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="images">
+    <file>connect.png</file>
+    <file>Open-icon.png</file>
+    <file>Forward.png</file>
+    <file>Next.png</file>
+    <file>Play.png</file>
+    <file>Previous.png</file>
+    <file>Rewind.png</file>
+    <file>Stop.png</file>
+  </qresource>
+</RCC>

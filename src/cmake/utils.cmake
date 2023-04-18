@@ -152,7 +152,7 @@ function(install_qt5_dlls)
 
     # install Qt dlls
     install(FILES ${_qt5_dlls_to_install}
-        DESTINATION ${CMAKE_INSTALL_BINDIR}/${ARG_OUTPUT_DIR}
+        DESTINATION ${ARG_OUTPUT_DIR}
     )
 endfunction()
 
@@ -185,11 +185,11 @@ function(install_qt_plugins)
         string(TOLOWER ${_plugin} _lowerPlugin)
         if (${_lowerPlugin} STREQUAL "platform")
             install(FILES ${_qt_bin_dir}/../plugins/platforms/qwindows${_debugSuffix}.dll
-                DESTINATION ${CMAKE_INSTALL_BINDIR}/${ARG_OUTPUT_DIR}/plugins/platforms
+                DESTINATION ${ARG_OUTPUT_DIR}/plugins/platforms
             )
         elseif (${_lowerPlugin} STREQUAL "imageformats")
             install(DIRECTORY ${_qt_bin_dir}/../plugins/imageformats
-                DESTINATION ${CMAKE_INSTALL_BINDIR}/${ARG_OUTPUT_DIR}/plugins
+                DESTINATION ${ARG_OUTPUT_DIR}/plugins
             )
         else()
             message(FATAL_ERROR "install_qt_plugins: plugin not handled: " ${_plugin})
@@ -208,19 +208,6 @@ function(add_google_test TargetName)
     file(MAKE_DIRECTORY ${_xml_outdir})
     add_test(NAME ${TargetName} COMMAND ${TargetName} --gtest_output=xml:${_xml_outdir}/${_target_name}.xml)
     set_tests_properties(${TargetName} PROPERTIES TIMEOUT 120)
-endfunction()
-
-# Utility function to install a software unit
-# example: install_software_unit(${SOFWARE_UNIT})
-function(install_software_unit)
-    foreach (_sw_unit ${ARGN})
-        set(_dest_dir ${CMAKE_INSTALL_BINDIR}/${_sw_unit})
-        install(TARGETS ${_sw_unit} DESTINATION ${_dest_dir})
-		string(COMPARE EQUAL CMAKE_BUILD_TYPE "Release" Release)
-        if (NOT Release)
-	        install(FILES $<TARGET_PDB_FILE:${_sw_unit}> DESTINATION ${_dest_dir})
-        endif()
-    endforeach()
 endfunction()
 
 # Utility function to add a new configuration file
@@ -259,36 +246,5 @@ function(add_configuration_file)
 	set(conf_files ${conf_files} ${OUTPUT_SETTINGS_DIR}/)
 	list(REMOVE_DUPLICATES conf_files)
 	set_property(GLOBAL PROPERTY ${ARG_TAGNAME}_CONFIGURATION ${conf_files})
-endfunction()
-
-# Utility function to install configuration files for a target
-# example: install_configuration_files(TAGNAME myTag)
-function(install_configuration_files)
-	set(options "")
-	set(oneValueArgs TAGNAME SOFTWARE_UNIT)
-	set(multiValueArgs "")
-	cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
-	
-	##########################################
-	# check mandatory params
-	foreach(arg TAGNAME)
-		if (NOT ARG_${arg})
-			list(APPEND missing_params ${arg})
-		endif()
-	endforeach()
-	
-	if (missing_params)
-		message(FATAL_ERROR "install_configuration_files: missing params => ${missing_params}")
-	endif()
-	##########################################
-
-	get_property(conf_directories GLOBAL PROPERTY ${ARG_TAGNAME}_CONFIGURATION)
-	if (conf_directories)
-		if (ARG_SOFTWARE_UNIT)
-			install(DIRECTORY ${conf_directories} DESTINATION ${CMAKE_INSTALL_BINDIR}/${SOFTWARE_UNIT})
-		else ()
-			install(DIRECTORY ${conf_directories} DESTINATION ${CMAKE_INSTALL_BINDIR})
-		endif ()
-	endif()
 endfunction()
 
