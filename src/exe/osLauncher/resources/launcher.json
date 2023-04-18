@@ -4,13 +4,13 @@
 	"settings": [
 		{
 			"serviceName": "../log/cho.osbase.log.service.exe",
-			"displayConsole": true,
+			"displayConsole": false,
 			"autoRestart": false,
 			"killIfExist": true
 		},
 		{
 			"serviceName": "../webviewer/cho.osbase.webviewer.service.exe",
-			"displayConsole": true,
+			"displayConsole": false,
 			"autoRestart": false,
 			"killIfExist": true
 		}

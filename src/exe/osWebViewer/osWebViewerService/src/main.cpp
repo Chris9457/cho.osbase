@@ -2,7 +2,7 @@
 
 #include "osWebEngine/link.h"
 #include "osApplication/Runner.h"
-#include "osWebViewerImpl/WebVieverServiceImpl.h"
+#include "osWebViewerImpl/WebViewerServiceImpl.h"
 #include "osCoreImpl/CoreImpl.h"
 #include "osDataImpl/osDataImpl.h"
 

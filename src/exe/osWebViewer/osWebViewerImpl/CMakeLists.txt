@@ -21,6 +21,7 @@ target_link_libraries(${WEBVIEWERIMPL}
 						${OSBASE}.application
 					    ${OSBASE}.webengine
 					    ${OS_WEBVIEWER}.api
+						${OSBASE}.log.api
 					 )
 target_include_directories(${WEBVIEWERIMPL} PUBLIC ${INCLUDE_DIR})
 target_compile_definitions(${WEBVIEWERIMPL} PRIVATE SETTING_FILE_NAME="${SETTING_FILE_NAME}")

@@ -1,0 +1,62 @@
+{
+	"input": {
+		"logServiceSettings": {
+			"address": "ws://localhost:8080",
+			"realm": "osbase"
+		}
+	},
+	"columns": {
+		"headers": [
+			{
+				"name": "Date/Time",
+				"field": {
+					"key": "/timestamp"
+				}
+			},
+			{
+				"name": "Process",
+				"field": {
+					"key": "/process/name"
+				}
+			},
+			{
+				"name": "Severity Level",
+				"field": {
+					"key": "/severity",
+					"type": "int"
+				}
+			},
+			{
+				"name": "Content",
+				"field": {
+					"key": "/content"
+				}
+			}
+		],
+		"separator": ";"
+	},
+	"filters": [
+		{
+			"and": [
+				{
+					"field": {
+						"key": "/process/name"
+					},
+					"operand": "eq",
+					"value": "cho.osbase.webviewer.service.exe"
+				},
+				{
+					"field": {
+						"key": "/"
+					},
+					"operand": "containKey",
+					"value": "content"
+				}
+			],
+			"output": {
+				"consoleColor": "red",
+				"fileName": "./webviewer.log"
+			}
+		}
+	]
+}
