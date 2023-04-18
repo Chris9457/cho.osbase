@@ -1,0 +1,18 @@
+{
+	"window": {
+		"displayMode": 0,
+		"title": "osBase WebViewer"
+	},
+	"browser": {
+		"startUrl": "https://www.zimmerbiomet.com",
+		"areDefaultContextMenusEnabled": false,
+		"areDefaultScriptDialogsEnabled": true,
+		"areDevToolsEnabled": false,
+		"areHostObjectsAllowed": false,
+		"isBuiltInErrorPageEnabled": false,
+		"isScriptEnabled": true,
+		"isStatusBarEnabledEnabled": false,
+		"isWebMessageEnabled": false,
+		"isZoomControlEnabled": false
+	}
+}

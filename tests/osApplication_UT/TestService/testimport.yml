@@ -1,0 +1,25 @@
+module:
+  name: "testImport"
+  description: "one import"
+  namespace: "testservice.api.sub"
+
+imports:
+  - name: "testimport2.yml"
+
+domain_objects:
+  - struct: "struct1"
+    description: "desc struct1"
+    fields:
+      - name: "f1"
+        type: "integer"
+      - name: "otherImport"
+        type: "testservice.api.sub2.struct1"
+
+  - enum: "enum1"
+    description: "desc enum1"
+    values:
+      - name: e1
+      - name: e2
+
+  - alias: "Vect2"
+    type: "floating[2]"

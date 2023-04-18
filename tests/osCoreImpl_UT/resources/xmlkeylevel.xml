@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<values>
+	<level1_1>									
+		<keyBool>0</keyBool>
+		<keyInt>32</keyInt>
+	</level1_1>
+	<level1_2>
+		<keyDouble>3.4</keyDouble>
+		<level2_1>			
+			<keyString>test</keyString>
+		</level2_1>		
+	</level1_2>
+	<level1_3_array>
+		<level1_3>
+			<keyString>array1</keyString>
+		</level1_3>
+		<level1_3>
+			<keyString>array2</keyString>
+		</level1_3>
+		<level1_3>
+			<keyString>array3</keyString>
+		</level1_3>
+	</level1_3_array>
+</values>

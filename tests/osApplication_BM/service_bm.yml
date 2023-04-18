@@ -1,0 +1,183 @@
+service:
+  name: "IService_BM"
+  description: "api of the service benchmark"
+  realm: "osbase"
+  namespace: "cho.osbase.application.bm"
+
+domain_objects:
+  - struct: "SimpleStruct"
+    fields:
+      - name: "f1"
+        type: "string"
+      - name: "f2"
+        type: "floating"
+
+  - struct: "ComplexStruct"
+    fields:
+      - name: "f1"
+        type: "integer[]"
+      - name: "f2"
+        type: "SimpleStruct[]"
+      - name: "f3"
+        type: "string"
+
+  - enum: "DataType"
+    values:
+      - name: "noData"
+      - name: "simple"
+      - name: "complex"
+
+  - struct: "AsyncElt"
+    fields:
+      - name: "f1"
+        type: "short floating"
+      - name: "f2"
+        type: "short floating"
+      - name: "f3"
+        type: "short floating"
+      - name: "f4"
+        type: "short floating"
+
+  - alias: "AsyncElts"
+    type: "AsyncElt[]"
+
+  - struct: "AsyncHeader"
+    fields:
+      - name: "f1"
+        type: "integer"
+      - name: "f2"
+        type: "integer"
+
+  - struct: "AsyncStruct"
+    fields:
+      - name: "header"
+        type: "AsyncHeader"
+      - name: "elts"
+        type: "AsyncElts"
+
+  - struct: "VolumeHeader"
+    fields:
+      - name: "width"
+        type: "unsigned short integer"
+      - name: "height"
+        type: "unsigned short integer"
+      - name: "depth"
+        type: "unsigned short integer"
+
+  - alias: "VolumeData"
+    type: "unsigned short integer[]"
+
+  - struct: "Volume"
+    fields:
+      - name: "header"
+        type: "VolumeHeader"
+      - name: "data"
+        type: "VolumeData"
+
+process:
+  - name: "noRetNoArg"
+    uri: "IService_BM.noRetnoArg"
+
+  - name: "noRet1Arg"
+    uri: "IService_BM.noRet1Arg"
+    arguments:
+      - name: "arg1"
+        type: "integer"
+
+  - name: "noRet2Arg"
+    uri: "IService_BM.noRet2Arg"
+    arguments:
+      - name: "arg1"
+        type: "integer"
+      - name: "arg2"
+        type: "floating"
+
+  - name: "noRet4Arg"
+    uri: "IService_BM.noRet4Arg"
+    arguments:
+      - name: "arg1"
+        type: "integer"
+      - name: "arg2"
+        type: "floating"
+      - name: "arg3"
+        type: "string"
+      - name: "arg4"
+        type: "unsigned char"
+
+  - name: "noRet8Arg"
+    uri: "IService_BM.noRet8Arg"
+    arguments:
+      - name: "arg1"
+        type: "integer"
+      - name: "arg2"
+        type: "floating"
+      - name: "arg3"
+        type: "string"
+      - name: "arg4"
+        type: "unsigned char"
+      - name: "arg5"
+        type: "integer"
+      - name: "arg6"
+        type: "floating"
+      - name: "arg7"
+        type: "string"
+      - name: "arg8"
+        type: "unsigned char"
+
+  - name: "noRet1ComplexArg"
+    uri: "IService_BM.noRet1ComplexArg"
+    arguments:
+      - name: "arg1"
+        type: "ComplexStruct"
+        
+  - name: "noRetBigArg"
+    uri: "IService_BM.noRetBigArg"
+    arguments:
+      - name: "arg1"
+        type: "integer[]"
+
+  - name: "retNoArg"
+    type: "integer"
+    uri: "IService_BM.retNoArg"
+        
+  - name: "complexRetNoArg"
+    type: "ComplexStruct"
+    uri: "IService_BM.complexRetNoArg"
+
+  - name: "noRetAsyncArg"
+    uri: "IService_BM.noRetAsyncArg"
+    arguments:
+      - name: "arg1"
+        type: "(async_paged)unsigned char[]"
+
+  - name: "noRetAsyncStruct"
+    uri: "IService_BM.noRetAsyncStruct"
+    arguments:
+      - name: "arg1"
+        type: "(async_paged)AsyncStruct"
+
+  - name: "noRetSyncStruct"
+    uri: "IService_BM.noRetSyncStruct"
+    arguments:
+      - name: "arg1"
+        type: "AsyncStruct"
+
+  - name: "noRetVolume"
+    uri: "IService_BM.noRetVolume"
+    arguments:
+      - name: "volume"
+        type: "(async_paged)Volume"
+
+
+events:
+  - name: "EvtNoData"
+    topic: "IService_BM.EvtNoData"
+    
+  - name: "EvtData"
+    type: "integer"
+    topic: "IService_BM.EvtData"
+    
+  - name: "EvtComplexData"
+    type: "ComplexStruct"
+    topic: "IService_BM.EvtComplexData"
+    

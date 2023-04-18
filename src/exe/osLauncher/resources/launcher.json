@@ -1,0 +1,18 @@
+{
+	"brokerUrl": "127.0.0.1",
+	"brokerPort": 8080,
+	"settings": [
+		{
+			"serviceName": "../log/cho.osbase.log.service.exe",
+			"displayConsole": true,
+			"autoRestart": false,
+			"killIfExist": true
+		},
+		{
+			"serviceName": "../webviewer/cho.osbase.webviewer.service.exe",
+			"displayConsole": true,
+			"autoRestart": false,
+			"killIfExist": true
+		}
+	]
+}

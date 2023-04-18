@@ -1,0 +1,12 @@
+module:
+  name: "TestDomainObjectsImport"
+  namespace: "cho.osbase.application.ut.testdomainobjectsimport"
+
+domain_objects:
+  - alias: "Vectf4"
+    type: "short floating[4]"
+
+  - enum: "EnumForConvert"
+    values:
+      - name: "field1"
+      - name: "field2"

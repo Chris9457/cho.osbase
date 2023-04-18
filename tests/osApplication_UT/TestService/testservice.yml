@@ -1,0 +1,179 @@
+service:
+  name: "ITest"
+  description: "api of the test service"
+  realm: "osbase"
+  namespace: "testservice.api"
+  constants:
+    - name: "testServiceChannelSagitalViewChannel"
+      value: "SagitalViewChannel"
+      description: "channel name for Sagittal view"
+
+imports:
+  - name: "testimport.yml"
+  - name: "testimport2.yml"
+
+domain_objects:
+  - struct: "Position"
+    description: "3D position"
+    fields:
+      - name: "x"
+        type: "floating"
+        description: "x-axe value"
+        value: "0.0"
+      - name: "y"
+        type: "floating"
+        description: "y-axe value of the pixel"
+      - name: "z"
+        type: "floating"
+        description: "z-axe value of the pixel"
+      - name: "label"
+        type: "string"
+        value: "label"
+      - name: "importedStruct"
+        type: "sub.struct1"
+
+  - alias: "Positions"
+    description: "collection of postions"
+    type: Position[]
+
+  - enum: "EPosition"
+    description: "Absolute or relative"
+    values:
+      - name: "Relative"
+        value: "0"
+        description: "Relative position"
+      - name: "Absolute"
+        value: 1
+        description: "Absolute position"
+        
+  - alias: "Vec4"
+    type: "floating[4]"
+
+  - alias: "Mat4"
+    type: "Vec4[4]"
+    
+  - struct: "TestAllBasicTypes"
+    descritpion: "check all the basic types available"
+    fields:
+      - name: "_char"
+        type: "char"
+      - name: "_unsigned_char"
+        type: "unsigned char"
+      - name: "_short_integer"
+        type: "short integer"
+      - name: "_unsigned_short_integer"
+        type: "unsigned short integer"
+      - name: "_integer"
+        type: "integer"
+      - name: "_unsigned_integer"
+        type: "unsigned integer"
+      - name: "_long_integer"
+        type: "long integer"
+      - name: "_unsigned_long_integer"
+        type: "unsigned long integer"
+      - name: "_short_floating"
+        type: "short floating"
+      - name: "_floating"
+        type: "floating"
+      - name: "_string"
+        type: "string"
+      - name: "_boolean"
+        type: "boolean"
+      - name: "_uri"
+        type: "uri"
+
+
+process:
+  - name: "getText"
+    type: "string"
+    const: True
+    uri: "ITestService.getText"
+    description: "return the text"
+    arguments: ~
+    
+  - name: "setText"
+    type: "boolean"
+    description: "assign text"
+    uri: "ITestService.setText"
+    arguments:
+      - name: "text"
+        type: "string"
+        description: "text to assign"
+      - name: "n"
+        type: "integer"
+        description: "check integer"
+      - name: "d"
+        type: "floating"
+        description: "check double"
+        
+  - name: "getPosition"
+    type: "Position"
+    description: "return the position"
+    uri: "ITestService.getPosition"
+
+  - name: "setPosition"
+    description: ~
+    type: ~
+    uri: "ITestService.setPosition"
+    arguments:
+      - name: "position"
+        type: "Position"
+        description: ~
+      - name: "ePos"
+        type: "EPosition"
+
+  - name: "getPositions"
+    type: "Positions"
+    uri: "ITestService.getPositions"
+
+  - name: "setPositions"
+    uri: "ITestService.setPositions"
+    arguments:
+      - name: "positions"
+        type: "Positions"
+        description: ~
+      - name: "ePos"
+        type: "EPosition"
+
+  - name: "getTransfo"
+    type: "Mat4"
+    uri: "ITestService.getTransfo"
+    arguments:
+      - name: "origin"
+        type: "Vec4"
+      - name: "dest"
+        type: "Vec4"
+
+  - name: "invokeCrash"
+    uri: "ITestService.invokeCrash"
+    arguments:
+      - name: "value"
+        type: "sub2.enum1"
+
+  - name: "setPositionsAsync"
+    type: "(async_paged)boolean[]"
+    description: "set the positions asynchroneously"
+    uri: "ITestService.setPositionsAsync"
+    arguments:
+      - name: "buffer"
+        type: "(async)Positions"
+        description: "position async"
+
+  - name: "wait"
+    uri: "ITestService.wait"
+    arguments:
+      - name: "timeoutMs"
+        type: "unsigned long integer"
+
+events:
+  - name: "PositionUpdatedMsg"
+    type: "Position"
+    topic: "ITestService.PositionUpdatedMsg"
+    description: "emit when the position is updated"
+    
+  - name: "TextUpdatedMsg"
+    topic: "ITestService.TextUpdatedMsg"
+    
+  - name: "DummyEvent"
+    topic: "ITestService.DummyEventMsg"
+ 

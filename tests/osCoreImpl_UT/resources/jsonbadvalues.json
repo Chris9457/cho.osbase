@@ -1,0 +1,12 @@
+{
+	"values": {
+		"keyBooll": false,
+		"keyIntl": 32,
+		"keyDoublel": 3.4,
+		"keyStringl": "test",
+		"keyBoolss": [ false, true, false ],
+		"keyIntss": [ 32, 54, 85 ],
+		"keyDoubless": [ 3.4, 53.2, 45.6 ],
+		"keyStringss": [ "test1", "test2", "test3" ]
+	}
+}

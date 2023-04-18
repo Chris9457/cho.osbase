@@ -1,0 +1,13 @@
+{
+	"values": {
+		"keyBool": false,
+		"keyInt": 32,
+		"keyDouble": 3.4,
+		"keyDoubleAsInt": 3,
+		"keyString": "t e s t",
+		"keyBools": [ false, true, false ],
+		"keyInts": [ 32, 54, 85 ],
+		"keyDoubles": [ 3.4, 53.2, 45.6 ],
+		"keyStrings": [ "t e s t1", "t e s t2", "t e s t3" ]
+	}
+}

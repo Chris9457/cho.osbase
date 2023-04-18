@@ -1,0 +1,27 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<values>
+	<keyBool>0</keyBool>
+	<keyInt>32</keyInt>
+	<keyDouble>3.4</keyDouble>
+	<keyString>t e s t</keyString>
+	<keyBools_array>
+		<keyBools>0</keyBools>
+		<keyBools>1</keyBools>
+		<keyBools>0</keyBools>
+	</keyBools_array>
+	<keyInts_array>
+		<keyInts>32</keyInts>
+		<keyInts>54</keyInts>
+		<keyInts>85</keyInts>
+	</keyInts_array>
+	<keyDoubles_array>
+		<keyDoubles>3.4</keyDoubles>
+		<keyDoubles>53.2</keyDoubles>
+		<keyDoubles>45.6</keyDoubles>
+	</keyDoubles_array>
+	<keyStrings_array>
+		<keyStrings>t e s t1</keyStrings>
+		<keyStrings>t e s t2</keyStrings>
+		<keyStrings>t e s t3</keyStrings>
+	</keyStrings_array>
+</values>

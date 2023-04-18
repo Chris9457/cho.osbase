@@ -1,0 +1,185 @@
+service:
+  name: "TestProcess"
+  realm: "osbase"
+  namespace: "cho.osbase.application.ut.process"
+
+imports:
+  - name: "TestDomainObjectsImport.yml"
+
+domain_objects:
+  - alias: "integers"
+    type: "integer[]"
+
+  - struct: "CustomType"
+    fields:
+      - name: "f1"
+        type: "boolean"
+
+  - struct: "TestAllBasicTypes"
+    descritpion: "check all the basic types available"
+    fields:
+      - name: "_char"
+        type: "char"
+      - name: "_unsigned_char"
+        type: "unsigned char"
+      - name: "_short_integer"
+        type: "short integer"
+      - name: "_unsigned_short_integer"
+        type: "unsigned short integer"
+      - name: "_integer"
+        type: "integer"
+      - name: "_unsigned_integer"
+        type: "unsigned integer"
+      - name: "_long_integer"
+        type: "long integer"
+      - name: "_unsigned_long_integer"
+        type: "unsigned long integer"
+      - name: "_short_floating"
+        type: "short floating"
+      - name: "_floating"
+        type: "floating"
+      - name: "_string"
+        type: "string"
+      - name: "_boolean"
+        type: "boolean"
+      - name: "_uri"
+        type: "uri"
+      - name: "importedType"
+        type: "cho.osbase.application.ut.testdomainobjectsimport.Vectf4"
+
+  - struct: "AsyncStruct"
+    fields:
+      - name: "bools"
+        type: "(async)boolean[]"
+      - name: "strings"
+        type: "(async_paged)string[]"
+
+  - struct: "ResultAsync"
+    fields:
+      - name: "bools"
+        type: "boolean[]"
+      - name: "strings"
+        type: "string[]"
+
+process:
+  - name: "noReturnNoArg"
+    uri: "TestProcessService.noReturnNoArg"
+
+  - name: "retCharNoArg"
+    type: "char"
+    uri: "TestProcessService.retCharNoArg"
+
+  - name: "retUnsignedCharNoArg"
+    type: "unsigned char"
+    uri: "TestProcessService.retUnsignedCharNoArg"
+
+  - name: "retShortNoArg"
+    type: "short integer"
+    uri: "TestProcessService.retShortNoArg"
+
+  - name: "retUnsignedShortNoArg"
+    type: "unsigned short integer"
+    uri: "TestProcessService.retUnsignedShortNoArg"
+
+  - name: "retIntNoArg"
+    type: "integer"
+    uri: "TestProcessService.retIntNoArg"
+
+  - name: "retUnsignedIntNoArg"
+    type: "unsigned integer"
+    uri: "TestProcessService.retUnsignedIntNoArg"
+
+  - name: "retLongNoArg"
+    type: "long integer"
+    uri: "TestProcessService.retLongNoArg"
+
+  - name: "retUnsignedLongNoArg"
+    type: "unsigned long integer"
+    uri: "TestProcessService.retUnsignedLongNoArg"
+    
+  - name: "retShortFloatingNoArg"
+    type: "short floating"
+    uri: "TestProcessService.retShortFloatingNoArg"
+    
+  - name: "retFloatingNoArg"
+    type: "floating"
+    uri: "TestProcessService.retFloatingNoArg"
+
+  - name: "retStringNoArg"
+    type: "string"
+    uri: "TestProcessService.retStringNoArg"
+
+  - name: "retBoolNoArg"
+    type: "boolean"
+    uri: "TestProcessService.retBoolNoArg"
+
+  - name: "retUriNoArg"
+    type: "uri"
+    uri: "TestProcessService.retUriNoArg"
+
+  - name: "retCustomTypeNoArg"
+    type: "CustomType"
+    uri: "TestProcessService.retCustomTypeNoArg"
+
+  - name: "retArrayFixNoArg"
+    type: "integer[4]"
+    uri: "TestProcessService.retArrayFixNoArg"
+
+  - name: "retArrayNotFixNoArg"
+    type: "string[]"
+    uri: "TestProcessService.retArrayNotFixNoArg"
+
+  - name: "retAsyncNoArg"
+    type: "(async)string[]"
+    uri: "TestProcessService.retAsyncNoArg"
+
+  - name: "retAsyncPagedNoArg"
+    type: "(async_paged)boolean[]"
+    uri: "TestProcessService.retAsyncPagedNoArg"
+
+  - name: "retArgs"
+    type: "TestAllBasicTypes"
+    uri: "TestProcessService.retArgs"
+    arguments:
+      - name: "_char"
+        type: "char"
+      - name: "_unsigned_char"
+        type: "unsigned char"
+      - name: "_short_integer"
+        type: "short integer"
+      - name: "_unsigned_short_integer"
+        type: "unsigned short integer"
+      - name: "_integer"
+        type: "integer"
+      - name: "_unsigned_integer"
+        type: "unsigned integer"
+      - name: "_long_integer"
+        type: "long integer"
+      - name: "_unsigned_long_integer"
+        type: "unsigned long integer"
+      - name: "_short_floating"
+        type: "short floating"
+      - name: "_floating"
+        type: "floating"
+      - name: "_string"
+        type: "string"
+      - name: "_boolean"
+        type: "boolean"
+      - name: "_uri"
+        type: "uri"
+
+  - name: "retAsyncArg"
+    type: "ResultAsync"
+    uri: "TestProcessService.retAsyncArg"
+    arguments:
+      - name: "asyncValues"
+        type: "AsyncStruct"
+
+  - name: "retNoArgConst"
+    const: True
+    type: "string"
+    uri: "TestProcessService.retNoArgConst"
+
+  - name: "fwdAsyncData"
+    type: "(async)integer[]"
+    uri: "TestProcessService.fwdAsyncData"

@@ -1,0 +1,13 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<values>
+	<level>
+		<keyBool>0</keyBool>
+		<keyInt>32</keyInt>
+	</level>			
+	<level>
+		<keyDouble>3.4</keyDouble>
+		<level2_1>
+			<keyString>test</keyString>
+		</level2_1>
+	</level>
+</values>

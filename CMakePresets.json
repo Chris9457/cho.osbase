@@ -1,0 +1,50 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "base-preset",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/out/${presetName}",
+            "generator": "Ninja",
+            "cmakeExecutable": "$env{CMAKEDIR}/cmake.exe",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/${presetName}/install",
+                "OSBASE_BUILD_TESTING": "ON",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKGROOT}/scripts/buildsystems/vcpkg.cmake",
+            }
+        },
+        {
+            "name": "debug",
+            "inherits": "base-preset",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "release",
+            "inherits": "base-preset",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "ci-release",
+            "configurePreset": "release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "ci-release",
+            "configurePreset": "release",
+            "output": {
+                "outputOnFailure": true,
+                "verbosity": "verbose"
+            },
+            "execution": {
+                "stopOnFailure": true
+            }
+        }
+    ]
+}

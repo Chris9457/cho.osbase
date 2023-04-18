@@ -1,0 +1,25 @@
+{
+	"values":{
+		"level1_1":{									
+			"keyBool":false,
+			"keyInt":32
+		},
+		"level1_2": {
+			"keyDouble": 3.4,
+			"level2_1": {
+				"keyString": "test"
+			}
+		},
+		"level1_3": [
+			{
+				"keyString": "array1"
+			},
+			{
+				"keyString": "array2"
+			},
+			{
+				"keyString": "array3"
+			}
+		]
+	}
+}

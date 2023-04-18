@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+    <Type Name="std::shared_ptr&lt;cho::osbase::statemachine::AbstractState&gt;">
+		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::State&gt;"></AlternativeType>
+		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::StartState&gt;"></AlternativeType>
+		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::EndState&gt;"></AlternativeType>
+		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::HistoryState&gt;"></AlternativeType>
+		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::Transition&gt;"></AlternativeType>
+		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::Event&gt;"></AlternativeType>
+	    <SmartPointer Usage="Minimal">_Ptr</SmartPointer>
+		<DisplayString Condition="_Rep == 0">empty</DisplayString>
+		<DisplayString Condition="_Rep != 0">{*_Ptr}</DisplayString>
+		<Expand>
+			<ExpandedItem>_Ptr</ExpandedItem>
+		</Expand>
+    </Type>
+
+	<Type Name="cho::osbase::statemachine::Transition">
+		<DisplayString Condition="m_pToState._Ptr == 0">internal</DisplayString>
+		<DisplayString Condition="m_pToState._Ptr != 0">=> {*m_pToState._Ptr}</DisplayString>
+		<Expand>
+			<Item Condition="m_pToState._Ptr != 0" Name="to state">*m_pToState._Ptr</Item>
+		</Expand>
+	</Type>
+
+	<Type Name="cho::osbase::statemachine::State">
+		<DisplayString>{m_name}</DisplayString>
+		<Expand>
+			<Item Name="name">m_name</Item>
+			<Item Condition="m_pParent._Ptr == 0" Name="parent">m_pParent</Item>
+			<Item Condition="m_pParent._Ptr != 0" Name="parent">*m_pParent._Ptr</Item>
+			<Item Name="children">m_pChildren,view(simple)</Item>
+			<Item Name="transitions">m_pTransitionMap,view(simple)</Item>
+		</Expand>
+    </Type>
+
+	<Type Name="cho::osbase::statemachine::State::Iterator">
+		<DisplayString Condition="m_rangeIterator.itCurrent == m_rangeIterator.itEnd">end</DisplayString>
+		<DisplayString Condition="m_rangeIterator.itCurrent != m_rangeIterator.itEnd">{m_rangeIterator.itCurrent}</DisplayString>
+		<Expand>
+			<Item Condition="m_rangeIterator.itCurrent != m_rangeIterator.itEnd" Name="state">m_rangeIterator.itCurrent</Item>
+		</Expand>
+	</Type>
+
+	<Type Name="cho::osbase::statemachine::StartState">
+		<AlternativeType Name="cho::osbase::statemachine::EndState"></AlternativeType>
+		<DisplayString>{m_name}</DisplayString>
+		<Expand>
+			<Item Name="name">m_name</Item>
+			<Item Condition="m_pParent._Ptr == 0" Name="parent">m_pParent</Item>
+			<Item Condition="m_pParent._Ptr != 0" Name="parent">*m_pParent._Ptr</Item>
+			<Item Name="transitions">m_pTransitionMap,view(simple)</Item>
+		</Expand>
+	</Type>
+
+	<Type Name="cho::osbase::statemachine::HistoryState">
+		<DisplayString Condition="m_pSavedState._Ptr == 0">saved state: {m_pSavedState}</DisplayString>
+		<DisplayString Condition="m_pSavedState._Ptr != 0">saved state: {*m_pSavedState._Ptr}</DisplayString>
+		<Expand>
+			<Item Condition="m_pSavedState._Ptr == 0" Name="saved state">m_pSavedState</Item>
+			<Item Condition="m_pSavedState._Ptr != 0" Name="saved state">*m_pSavedState._Ptr</Item>
+		</Expand>
+	</Type>
+
+	<Type Name="cho::osbase::statemachine::Event">
+		<DisplayString >{m_name}</DisplayString>
+		<Expand>
+			<Item Name="name">m_name</Item>
+		</Expand>
+	</Type>
+
+</AutoVisualizer>

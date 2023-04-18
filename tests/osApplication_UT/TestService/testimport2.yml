@@ -1,0 +1,19 @@
+module:
+  name: "testImport2"
+  namespace: "testservice.api.sub2"
+
+domain_objects:
+  - struct: "struct1"
+    description: "desc struct1"
+    fields:
+      - name: "f123"
+        type: "integer"
+
+  - enum: "enum1"
+    description: "desc enum1"
+    values:
+      - name: e1
+      - name: e2
+
+  - alias: "Vect2"
+    type: "floating[2]"

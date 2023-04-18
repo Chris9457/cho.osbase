@@ -1,0 +1,7 @@
+add_subdirectory(osCore)
+add_subdirectory(osCoreImpl)
+add_subdirectory(osData)
+add_subdirectory(osDataImpl)
+add_subdirectory(osApplication)
+add_subdirectory(osStateMachine)
+add_subdirectory(osWebEngine)

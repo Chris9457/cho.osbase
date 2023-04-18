@@ -1,0 +1,11 @@
+{
+	"dependencies": [
+		"gtest",
+		"wampcc",
+		"rapidjson",
+		"rapidxml",
+		"websocketpp",
+		"benchmark",
+		"webview2"
+	]
+}

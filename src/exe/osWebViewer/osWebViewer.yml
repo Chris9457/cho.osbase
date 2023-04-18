@@ -1,0 +1,30 @@
+service:
+  name: "IWebViewer"
+  description: "api for the  web viewer service"
+  realm: "osbase"
+  namespace: "cho.osbase.webviewer"
+
+domain_objects:
+  - enum: "ImageFormat"
+    description: "list of the different available format"
+    values:
+      - name: "bmp"
+        description: "bitmap format"
+      - name: "jpeg"
+        description: "jpeg format"
+      - name: "gif"
+        description: "gif format"
+      - name: "tiff"
+        description: "tiff format"
+      - name: "png"
+        description: "png format"
+
+process:
+  - name: "captureWindow"
+    description: "return an image of the window"
+    type: "(async)char[]"
+    uri: "IWebViewer.captureWindow"
+    arguments:
+      - name: "format"
+        type: "ImageFormat"
+        description: "format of the image"

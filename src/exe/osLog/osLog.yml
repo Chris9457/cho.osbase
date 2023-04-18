@@ -1,0 +1,21 @@
+service:
+  name: "ILog"
+  description: "api of the logs"
+  realm: "osbase"
+  namespace: "cho.osbase.log"
+
+process:
+  - name: "getInputLogUri"
+    type: "uri"
+    description: "get the uri of a channel where pushing logs - each call return a new uri"
+    uri: "ILogService.getInputLogUri"
+
+  - name: "getOutputLogUri"
+    type: "uri"
+    description: "get the uri of a channel where logs are forwarded- each call return a new uri"
+    uri: "ILogService.getOutputLogUri"
+
+events:
+  - name: "ServiceReadyMsg"
+    description: "emit when the service is ready"
+    topic: "ILogService.serviceReady"

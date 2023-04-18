@@ -1,0 +1,31 @@
+service:
+  name: "TestEvent"
+  realm: "osbase"
+  namespace: "cho.osbase.application.ut.event"
+
+imports:
+  - name: "TestDomainObjectsImport.yml"
+
+process:
+  - name: "invoke"
+    uri: "TestEventService.invoke"
+    arguments:
+      - name: "noData"
+        type: "boolean"
+
+  - name: "fwdAsyncData"
+    type: "(async)integer[]"
+    uri: "TestEventService.fwdAsyncData"
+
+events:
+  - name: "EvtNoDataMsg"
+    topic: "TestEventService.EvtNoData"
+
+  - name: "EvtDataMsg"
+    type: "integer"
+    topic: "TestEventService.EvtData"
+
+  - name: "EvtDataMsg2"
+    type: "cho.osbase.application.ut.testdomainobjectsimport.Vectf4"
+    topic: "TestEventService.EvtData2"
+    
