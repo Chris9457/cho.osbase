@@ -1,7 +1,7 @@
 // \brief Declaration of the interface IWebEngine
 
 #pragma once
-#include "WebEngineSettings.h"
+#include "WebViewerEngineSettings.h"
 #include "osData/Uri.h"
 #include "osCore/Exception/RuntimeException.h"
 #include <memory>
@@ -16,15 +16,15 @@ namespace cho::osbase::webengine {
         using RuntimeException::RuntimeException;
     };
 
-    class IWebEngine;
-    using IWebEnginePtr = std::shared_ptr<IWebEngine>;
+    class IWebViewerEngine;
+    using IWebViewerEnginePtr = std::shared_ptr<IWebViewerEngine>;
 
     /**
      * \brief Contract for the web engine
      */
-    class IWebEngine {
+    class IWebViewerEngine {
     public:
-        virtual ~IWebEngine() = default;
+        virtual ~IWebViewerEngine() = default;
 
         virtual void run()                          = 0;
         virtual std::shared_future<void> runAsync() = 0;
@@ -44,6 +44,6 @@ namespace cho::osbase::webengine {
         static inline const std::string FORMAT_PNG    = "png";
     };
 
-    IWebEnginePtr makeWebEngine();
-    IWebEnginePtr makeWebEngine(const Settings &settings);
+    IWebViewerEnginePtr makeWebViewerEngine();
+    IWebViewerEnginePtr makeWebViewerEngine(const Settings &settings);
 } // namespace cho::osbase::webengine

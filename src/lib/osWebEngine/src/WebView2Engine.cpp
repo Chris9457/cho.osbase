@@ -1,6 +1,6 @@
 // \brief Declaration of the class EdgeWebEngine
 
-#include "WebView2WebEngine.h"
+#include "WebView2Engine.h"
 #include "FactoryNames.h"
 #include "CaptureWindowManager.h"
 #include "osData/INetwork.h"
@@ -14,8 +14,8 @@
 using namespace Microsoft::WRL;
 
 namespace cho::osbase::webengine {
-    OS_REGISTER_FACTORY_N(IWebEngine, WebView2WebEngine, 0, WEBENGINE_WEBVIEW2)
-    OS_REGISTER_FACTORY_N(IWebEngine, WebView2WebEngine, 1, WEBENGINE_WEBVIEW2, Settings)
+    OS_REGISTER_FACTORY_N(IWebViewerEngine, WebView2Engine, 0, WEBENGINE_WEBVIEW2)
+    OS_REGISTER_FACTORY_N(IWebViewerEngine, WebView2Engine, 1, WEBENGINE_WEBVIEW2, Settings)
 
     namespace {
         constexpr TCHAR windowClassName[] = _T("osBaseWebEngine");
@@ -26,13 +26,13 @@ namespace cho::osbase::webengine {
     /*
      * \class WebView2WebEngine
      */
-    std::recursive_mutex WebView2WebEngine::s_EdgeWebEngineInstanceLock;
-    std::unordered_map<HWND, WebView2WebEngine *> WebView2WebEngine::s_mapHwndEdgeWebEngine;
+    std::recursive_mutex WebView2Engine::s_EdgeWebEngineInstanceLock;
+    std::unordered_map<HWND, WebView2Engine *> WebView2Engine::s_mapHwndEdgeWebEngine;
 
-    WebView2WebEngine::WebView2WebEngine() : WebView2WebEngine(Settings{}) {
+    WebView2Engine::WebView2Engine() : WebView2Engine(Settings{}) {
     }
 
-    WebView2WebEngine::WebView2WebEngine(const Settings &settings)
+    WebView2Engine::WebView2Engine(const Settings &settings)
         : m_settings(settings), m_className(windowClassName + std::to_wstring(instanceCount++)) {
         if (m_settings.browser.startUrl.authority.has_value() && m_settings.browser.startUrl.authority.value().host.isLocal()) {
             auto const pNetwork                                = data::makeNetwork();
@@ -40,7 +40,7 @@ namespace cho::osbase::webengine {
         }
     }
 
-    WebView2WebEngine::~WebView2WebEngine() {
+    WebView2Engine::~WebView2Engine() {
         if (isRunning()) {
             stop();
         }
@@ -49,7 +49,7 @@ namespace cho::osbase::webengine {
     /*
      * \class EdgeWebEngine
      */
-    void WebView2WebEngine::run() {
+    void WebView2Engine::run() {
         if (isRunning()) {
             throw WebEngineException("web engine is already running");
         }
@@ -69,7 +69,7 @@ namespace cho::osbase::webengine {
         unregisterEdgeWebEngine(this);
     }
 
-    std::shared_future<void> WebView2WebEngine::runAsync() {
+    std::shared_future<void> WebView2Engine::runAsync() {
         if (isRunning()) {
             throw WebEngineException("web engine is already running");
         }
@@ -78,11 +78,11 @@ namespace cho::osbase::webengine {
         return m_futRunAsync;
     }
 
-    bool WebView2WebEngine::isRunning() const {
+    bool WebView2Engine::isRunning() const {
         return m_bRunning;
     }
 
-    void WebView2WebEngine::stop() {
+    void WebView2Engine::stop() {
         if (isRunning()) {
             PostMessage(m_hWnd, WM_CLOSE, 0, 0);
         }
@@ -92,7 +92,7 @@ namespace cho::osbase::webengine {
         }
     }
 
-    void WebView2WebEngine::navigate(const data::Uri &uri) {
+    void WebView2Engine::navigate(const data::Uri &uri) {
         if (!isRunning()) {
             throw WebEngineException("navigation forbidden while not running");
         }
@@ -106,15 +106,15 @@ namespace cho::osbase::webengine {
         }
     }
 
-    std::vector<char> WebView2WebEngine::captureWindow(const std::string &imageFormat) const {
+    std::vector<char> WebView2Engine::captureWindow(const std::string &imageFormat) const {
         return TheCaptureWindowManager.captureWindow(m_hWnd, imageFormat);
     }
 
-    Settings WebView2WebEngine::getSettings() const {
+    Settings WebView2Engine::getSettings() const {
         return m_settings;
     }
 
-    void WebView2WebEngine::setSettings(const Settings &settings) {
+    void WebView2Engine::setSettings(const Settings &settings) {
         m_settings = settings;
         if (m_pWebView) {
             wil::com_ptr<ICoreWebView2Settings> pSettings;
@@ -134,13 +134,13 @@ namespace cho::osbase::webengine {
         }
     }
 
-    void WebView2WebEngine::createWindow() {
+    void WebView2Engine::createWindow() {
         static auto const hInstance = ::GetModuleHandle(nullptr);
         WNDCLASSEX wcex{ 0 };
 
         wcex.cbSize        = sizeof(WNDCLASSEX);
         wcex.style         = CS_HREDRAW | CS_VREDRAW;
-        wcex.lpfnWndProc   = &WebView2WebEngine::onWindowMessage;
+        wcex.lpfnWndProc   = &WebView2Engine::onWindowMessage;
         wcex.cbClsExtra    = 0;
         wcex.cbWndExtra    = 0;
         wcex.hInstance     = hInstance;
@@ -176,7 +176,7 @@ namespace cho::osbase::webengine {
         UpdateWindow(m_hWnd);
     }
 
-    void WebView2WebEngine::destroyWindow() {
+    void WebView2Engine::destroyWindow() {
         if (m_hWnd != nullptr && m_hWnd != INVALID_HANDLE_VALUE) {
             ::DestroyWindow(m_hWnd);
             m_hWnd = nullptr;
@@ -184,7 +184,7 @@ namespace cho::osbase::webengine {
         }
     }
 
-    void WebView2WebEngine::createWebView() {
+    void WebView2Engine::createWebView() {
         CreateCoreWebView2EnvironmentWithOptions(nullptr,
             nullptr,
             nullptr,
@@ -220,18 +220,18 @@ namespace cho::osbase::webengine {
             }).Get());
     }
 
-    void WebView2WebEngine::destroyWebView() {
+    void WebView2Engine::destroyWebView() {
         if (m_pWebViewController != nullptr) {
             m_pWebViewController->Close();
             m_pWebView = nullptr;
         }
     }
 
-    HWND WebView2WebEngine::getHWnd() const {
+    HWND WebView2Engine::getHWnd() const {
         return m_hWnd;
     }
 
-    void WebView2WebEngine::resize() {
+    void WebView2Engine::resize() {
         if (m_pWebViewController != nullptr) {
             RECT bounds;
             GetClientRect(m_hWnd, &bounds);
@@ -239,7 +239,7 @@ namespace cho::osbase::webengine {
         }
     }
 
-    LRESULT WebView2WebEngine::onWindowMessage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+    LRESULT WebView2Engine::onWindowMessage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 
         switch (message) {
         case WM_SIZE: {
@@ -264,7 +264,7 @@ namespace cho::osbase::webengine {
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
 
-    void WebView2WebEngine::registerEdgeWebEngine(WebView2WebEngine *pEdgeWebEngine) {
+    void WebView2Engine::registerEdgeWebEngine(WebView2Engine *pEdgeWebEngine) {
         std::lock_guard lock(s_EdgeWebEngineInstanceLock);
         if (pEdgeWebEngine == nullptr) {
             return;
@@ -277,7 +277,7 @@ namespace cho::osbase::webengine {
         s_mapHwndEdgeWebEngine.insert({ pEdgeWebEngine->getHWnd(), pEdgeWebEngine });
     }
 
-    void WebView2WebEngine::unregisterEdgeWebEngine(WebView2WebEngine *pEdgeWebEngine) {
+    void WebView2Engine::unregisterEdgeWebEngine(WebView2Engine *pEdgeWebEngine) {
         std::lock_guard lock(s_EdgeWebEngineInstanceLock);
         if (pEdgeWebEngine == nullptr) {
             return;
@@ -289,7 +289,7 @@ namespace cho::osbase::webengine {
         }
     }
 
-    WebView2WebEngine *WebView2WebEngine::getWebEngine(const HWND hWnd) {
+    WebView2Engine *WebView2Engine::getWebEngine(const HWND hWnd) {
         std::lock_guard lock(s_EdgeWebEngineInstanceLock);
         auto const itHwndEdgeWebEngine = s_mapHwndEdgeWebEngine.find(hWnd);
         if (itHwndEdgeWebEngine != s_mapHwndEdgeWebEngine.cend()) {

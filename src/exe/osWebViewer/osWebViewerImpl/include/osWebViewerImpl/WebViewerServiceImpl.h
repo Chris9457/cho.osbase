@@ -3,7 +3,7 @@
 #pragma once
 #include "osWebViewerSkeleton.h"
 #include "osLog.h"
-#include "osWebEngine/IWebEngine.h"
+#include "osWebEngine/IWebViewerEngine.h"
 #include "osCore/DesignPattern/Singleton.h"
 
 namespace cho::osbase::webviewer {
@@ -31,7 +31,7 @@ namespace cho::osbase::webviewer {
         void onLogServiceConnected(const bool bConnected) const;
 
         data::AsyncData<std::vector<char>> m_asyncImage;
-        webengine::IWebEnginePtr m_pWebEngine;
+        webengine::IWebViewerEnginePtr m_pWebEngine;
         log::ILogServicePtr m_pLogService;
         LogServiceObsreverPtr m_pLogServiceObserver;
     };

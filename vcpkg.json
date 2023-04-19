@@ -6,6 +6,7 @@
 		"rapidxml",
 		"websocketpp",
 		"benchmark",
+		"cpp-httplib",
 		"webview2"
 	]
 }

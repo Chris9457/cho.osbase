@@ -1,4 +1,4 @@
-#include "osWebEngine/IWebEngine.h"
+#include "osWebEngine/IWebViewerEngine.h"
 #include <gtest/gtest.h>
 
 using namespace std::chrono_literals;
@@ -8,15 +8,15 @@ namespace cho::osbase::webengine::ut {
     class IWebEngine_UT : public testing::Test {};
 
     TEST_F(IWebEngine_UT, makeWebEngine) {
-        auto pWebEngine = makeWebEngine();
+        auto pWebEngine = makeWebViewerEngine();
         ASSERT_NE(nullptr, pWebEngine);
 
-        pWebEngine = makeWebEngine(Settings{});
+        pWebEngine = makeWebViewerEngine(Settings{});
         ASSERT_NE(nullptr, pWebEngine);
     }
 
     TEST_F(IWebEngine_UT, run_stop) {
-        auto const pWebEngine = makeWebEngine();
+        auto const pWebEngine = makeWebViewerEngine();
         auto const futRun     = std::async([&pWebEngine]() { pWebEngine->run(); });
 
         ASSERT_EQ(std::future_status::timeout, futRun.wait_for(1s));
@@ -26,7 +26,7 @@ namespace cho::osbase::webengine::ut {
     }
 
     TEST_F(IWebEngine_UT, runAsync_stop) {
-        auto const pWebEngine = makeWebEngine();
+        auto const pWebEngine = makeWebViewerEngine();
         auto const futRun     = pWebEngine->runAsync();
 
         ASSERT_EQ(std::future_status::timeout, futRun.wait_for(1s));
@@ -36,7 +36,7 @@ namespace cho::osbase::webengine::ut {
     }
 
     TEST_F(IWebEngine_UT, isRunning) {
-        auto const pWebEngine = makeWebEngine();
+        auto const pWebEngine = makeWebViewerEngine();
 
         ASSERT_FALSE(pWebEngine->isRunning());
         auto const futRun = pWebEngine->runAsync();
@@ -50,7 +50,7 @@ namespace cho::osbase::webengine::ut {
     }
 
     TEST_F(IWebEngine_UT, captureWindow_known_format) {
-        auto const pWebEngine = makeWebEngine();
+        auto const pWebEngine = makeWebViewerEngine();
         auto const guard      = core::make_scope_exit([&pWebEngine]() { pWebEngine->stop(); });
 
         pWebEngine->runAsync();
@@ -62,7 +62,7 @@ namespace cho::osbase::webengine::ut {
     }
 
     TEST_F(IWebEngine_UT, captureWindow_unknown_format) {
-        auto const pWebEngine = makeWebEngine();
+        auto const pWebEngine = makeWebViewerEngine();
         auto const guard      = core::make_scope_exit([&pWebEngine]() { pWebEngine->stop(); });
 
         pWebEngine->runAsync();
@@ -73,7 +73,7 @@ namespace cho::osbase::webengine::ut {
     }
 
     TEST_F(IWebEngine_UT, DISABLED_navigate) {
-        auto const pWebEngine    = makeWebEngine();
+        auto const pWebEngine    = makeWebViewerEngine();
         const std::string strUrl = "https://wwww.google.fr";
         auto const url           = type_cast<data::Uri>(strUrl);
 

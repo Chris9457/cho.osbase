@@ -27,7 +27,7 @@ namespace cho::osbase::webviewer {
         auto const pStream  = core::makeJsonStream(std::ifstream(SETTING_FILE_NAME));
         auto const settings = pStream->getValue(webengine::Settings{});
 
-        m_pWebEngine = webengine::makeWebEngine(settings);
+        m_pWebEngine = webengine::makeWebViewerEngine(settings);
         m_pWebEngine->runAsync();
     }
 

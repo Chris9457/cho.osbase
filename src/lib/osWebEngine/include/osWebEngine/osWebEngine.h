@@ -1,5 +1,5 @@
 // \brief Main include for the module osWebEngine
 
 #pragma once
-#include "IWebEngine.h"
+#include "IWebViewerEngine.h"
 #include "link.h"

@@ -1,7 +1,7 @@
 // \brief Declaration of the class EdgeWebEngine
 
 #pragma once
-#include "osWebEngine/IWebEngine.h"
+#include "osWebEngine/IWebViewerEngine.h"
 #include <wil/com.h>
 #include <WebView2.h>
 #include <Windows.h>
@@ -12,11 +12,11 @@ namespace cho::osbase::webengine {
     /*
      * \brief Implementation for the Microsoft Edge Web Engine
      */
-    class WebView2WebEngine : public IWebEngine, public std::enable_shared_from_this<IWebEngine> {
+    class WebView2Engine : public IWebViewerEngine, public std::enable_shared_from_this<IWebViewerEngine> {
     public:
-        WebView2WebEngine();
-        WebView2WebEngine(const Settings &settings);
-        ~WebView2WebEngine() override;
+        WebView2Engine();
+        WebView2Engine(const Settings &settings);
+        ~WebView2Engine() override;
 
         void run() override;
         std::shared_future<void> runAsync() override;
@@ -37,9 +37,9 @@ namespace cho::osbase::webengine {
 
         static LRESULT CALLBACK onWindowMessage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-        static void registerEdgeWebEngine(WebView2WebEngine *pEdgeWebEngine);
-        static void unregisterEdgeWebEngine(WebView2WebEngine *pEdgeWebEngine);
-        static WebView2WebEngine *getWebEngine(const HWND hWnd);
+        static void registerEdgeWebEngine(WebView2Engine *pEdgeWebEngine);
+        static void unregisterEdgeWebEngine(WebView2Engine *pEdgeWebEngine);
+        static WebView2Engine *getWebEngine(const HWND hWnd);
 
         Settings m_settings;
         std::shared_future<void> m_futRunAsync;
@@ -51,6 +51,6 @@ namespace cho::osbase::webengine {
         std::wstring m_className;
 
         static std::recursive_mutex s_EdgeWebEngineInstanceLock;
-        static std::unordered_map<HWND, WebView2WebEngine *> s_mapHwndEdgeWebEngine;
+        static std::unordered_map<HWND, WebView2Engine *> s_mapHwndEdgeWebEngine;
     };
 } // namespace cho::osbase::webengine
