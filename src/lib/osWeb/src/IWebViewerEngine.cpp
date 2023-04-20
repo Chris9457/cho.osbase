@@ -1,6 +1,6 @@
 // \brief Declaration of the interface IWebEngine
 
-#include "osWebEngine/IWebViewerEngine.h"
+#include "osWeb/IWebViewerEngine.h"
 #include "FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 

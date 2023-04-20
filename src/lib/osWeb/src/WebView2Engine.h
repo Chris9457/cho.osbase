@@ -1,7 +1,7 @@
 // \brief Declaration of the class EdgeWebEngine
 
 #pragma once
-#include "osWebEngine/IWebViewerEngine.h"
+#include "osWeb/IWebViewerEngine.h"
 #include <wil/com.h>
 #include <WebView2.h>
 #include <Windows.h>

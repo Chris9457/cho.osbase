@@ -1,5 +1,5 @@
 // \brief entry point function
-#include "osWebEngine/osWebEngine.h"
+#include "osWeb/osWebEngine.h"
 #include <gtest/gtest.h>
 
 OS_WEBENGINE_LINK();

@@ -3,6 +3,7 @@
 This project gathers the pure technical (non-domain) generic features used to build domain application
 
 # Needed configuration
+CMake version min 3.21
 Python min version 3.9 - 64 bit
 Qt 5.15.2
 

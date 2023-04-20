@@ -1,6 +1,6 @@
 // \brief WebViewer
 
-#include "osWebEngine/link.h"
+#include "osWeb/link.h"
 #include "osApplication/Runner.h"
 #include "osWebViewerImpl/WebViewerServiceImpl.h"
 #include "osCoreImpl/CoreImpl.h"

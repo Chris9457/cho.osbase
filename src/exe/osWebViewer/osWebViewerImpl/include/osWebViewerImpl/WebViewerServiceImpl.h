@@ -3,7 +3,7 @@
 #pragma once
 #include "osWebViewerSkeleton.h"
 #include "osLog.h"
-#include "osWebEngine/IWebViewerEngine.h"
+#include "osWeb/IWebViewerEngine.h"
 #include "osCore/DesignPattern/Singleton.h"
 
 namespace cho::osbase::webviewer {

@@ -1,7 +1,7 @@
 // \brief Declaration of the class HttpServer
 
 #pragma once
-#include "osWebEngine/IHttpServer.h"
+#include "osWeb/IHttpServer.h"
 
 namespace cho::osbase::web {
 
