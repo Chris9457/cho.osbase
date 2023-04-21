@@ -8,7 +8,7 @@
     {
       "kind": "git",
       "repository": "https://github.com/Chris9457/cho.osbase",
-      "baseline": "b142a79eb778508abd67889b3798e3c03779d77f",
+      "baseline": "4e883d0adca04205bda9cc3156a8cac5468d63eb",
       "packages": ["wampcc"]
     }
   ]
