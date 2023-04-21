@@ -1,0 +1,15 @@
+{
+  "default-registry": {
+    "kind": "git",
+    "repository": "https://github.com/microsoft/vcpkg",
+    "baseline": "95252eadd63118201b0d0df0b4360fa613f0de84"
+  },
+  "registries": [
+    {
+      "kind": "git",
+      "repository": "https://github.com/Chris9457/cho.osbase",
+      "baseline": "bc89b672a60ad6f798f6336a95c978f9b0d1af68",
+      "packages": ["wampcc"]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "default": {
     "wampcc": {
       "baseline": "2022-11-29",
-      "port-version": 5
+      "port-version": 0
     }
   }
 }
