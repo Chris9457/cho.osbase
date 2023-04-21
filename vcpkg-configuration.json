@@ -7,8 +7,8 @@
   "registries": [
     {
       "kind": "git",
-      "repository": "https://github.com/Chris9457/cho.osbase",
-      "baseline": "bc89b672a60ad6f798f6336a95c978f9b0d1af68",
+      "repository": "https://github.com/Chris9457/cho.osbase/vcpkg",
+      "baseline": "48085d8232e7735c8b97a18f895aab9547f16f6e",
       "packages": ["wampcc"]
     }
   ]
