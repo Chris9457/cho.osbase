@@ -54,7 +54,7 @@ namespace cho::osbase::application::ut {
         }
 
         static std::string getBrokerUrl() {
-            return "localhost";
+            return "127.0.0.1";
         }
 
         static constexpr unsigned short getBrokerPort() {

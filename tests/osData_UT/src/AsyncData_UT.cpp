@@ -314,6 +314,7 @@ namespace cho::osbase::data::ut {
         endpoint.waitValue();
         ASSERT_TRUE(endpoint.isValueReceived());
         auto const receivedValueFromCreator = endpoint.get();
+        ASSERT_FALSE(receivedValueFromCreator);
         ASSERT_FALSE(endpoint.isValueReceived());
         ASSERT_FALSE(creator.isValueReceived());
 
@@ -321,6 +322,7 @@ namespace cho::osbase::data::ut {
         creator.waitValue();
         ASSERT_TRUE(creator.isValueReceived());
         auto const valueReceivedFromEndpoint = creator.get();
+        ASSERT_FALSE(valueReceivedFromEndpoint);
         ASSERT_FALSE(creator.isValueReceived());
         ASSERT_FALSE(endpoint.isValueReceived());
     }

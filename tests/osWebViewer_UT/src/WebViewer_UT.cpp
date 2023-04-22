@@ -28,7 +28,7 @@ namespace cho::osbase::webviewer::ut {
     TEST_F(WebViewer_UT, captureWindow) {
 
         for (auto const imageFormat : { ImageFormat::bmp, ImageFormat::gif, ImageFormat::jpeg, ImageFormat::png, ImageFormat::tiff }) {
-            auto const image = getStub()->captureWindow(ImageFormat::jpeg).get();
+            auto const image = getStub()->captureWindow(imageFormat).get();
             ASSERT_FALSE(image.empty());
         }
     }

@@ -75,7 +75,7 @@ namespace cho::osbase::application::ut {
         ASSERT_EQ(30, ret._unsigned_short_integer);
 
         auto constexpr isInt = std::is_same_v<int, std::tuple_element_t<4, args>>;
-        ASSERT_TRUE(isShort);
+        ASSERT_TRUE(isInt);
         ASSERT_EQ(-96, ret._integer);
 
         auto constexpr isUnsignedInt = std::is_same_v<unsigned int, std::tuple_element_t<5, args>>;

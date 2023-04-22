@@ -111,11 +111,11 @@ namespace cho::osbase::data::ut {
             const ByteBuffer buffer = [&bufferSize]() {
                 std::random_device randomDevice;
                 std::default_random_engine randomEngine(randomDevice());
-                const std::uniform_int<unsigned char> uniformDistribution(0, 255);
+                std::uniform_int<unsigned char> uniformDistribution(0, 255);
 
                 ByteBuffer buffer;
                 for (size_t index = 0; index < bufferSize; ++index) {
-                    buffer.push_back(static_cast<std::byte>((uniformDistribution(randomEngine))));
+                    buffer.push_back(static_cast<const std::byte>((uniformDistribution(randomEngine))));
                 }
 
                 return buffer;

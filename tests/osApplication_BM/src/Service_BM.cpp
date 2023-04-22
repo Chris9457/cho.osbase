@@ -251,7 +251,6 @@ namespace cho::osbase::application::bm {
     BENCHMARK_DEFINE_F(Service_RPC_BM, noRetSyncStruct)(benchmark::State &state) {
         for (auto _ : state) {
             auto const &asyncStruct = getAsyncStruct();
-            auto const size         = sizeof(AsyncHeader) + asyncStruct.elts.size() * sizeof(AsyncElt);
             getStub()->noRetSyncStruct(asyncStruct);
         }
     }
