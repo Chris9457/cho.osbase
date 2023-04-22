@@ -17,7 +17,7 @@ namespace cho::osbase::webengine {
      * \brief Settings used for the web engine
      */
     struct BrowserSettings {
-        data::Uri startUrl                  = type_cast<data::Uri>(std::string("https://www.zimmerbiomet.com"));
+        data::Uri startUrl                  = type_cast<data::Uri>(std::string("https://www.google.fr"));
         bool areDefaultContextMenusEnabled  = false;
         bool areDefaultScriptDialogsEnabled = true;
         bool areDevToolsEnabled             = false;
