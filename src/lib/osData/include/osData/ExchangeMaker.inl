@@ -4,7 +4,7 @@
 #include "IFileExchange.h"
 #include "IDataExchange.h"
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
     namespace internal {
         template <class TExchange>
         struct ExchangeMaker;
@@ -29,4 +29,4 @@ namespace cho::osbase::data {
         return internal::ExchangeMaker<TExchange>::make(scheme);
     }
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

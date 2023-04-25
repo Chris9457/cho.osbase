@@ -6,13 +6,13 @@
 #include <string>
 #include <vector>
 
-namespace cho::osbase::launcher {
+namespace NS_OSBASE::launcher {
 
     struct LauncherSettings {
         std::string brokerUrl;
         unsigned short brokerPort = 8080;
         application::ProcessSettings settings;
     };
-} // namespace cho::osbase::launcher
+} // namespace NS_OSBASE::launcher
 
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::launcher::LauncherSettings, brokerUrl, brokerPort, settings)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::launcher::LauncherSettings, brokerUrl, brokerPort, settings)

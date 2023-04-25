@@ -3,12 +3,12 @@
 #pragma once
 #include "osCore/Serialization/KeyStream.h"
 #include "osData/IMessaging.h"
-#ifdef CHO_OSBASE_APPLICATION_SERVICE_TRACE
+#ifdef OSBASE_APPLICATION_SERVICE_TRACE
 #include "osData/Log.h"
 #endif
 #include <sstream>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /*
      * \class ServiceStub::ClientDelegate
@@ -23,7 +23,7 @@ namespace cho::osbase::application {
         }
 
         void onResult(const std::string &json) override {
-#ifdef CHO_OSBASE_APPLICATION_SERVICE_TRACE
+#ifdef OSBASE_APPLICATION_SERVICE_TRACE
             oslog::trace(data::OS_LOG_CHANNEL_APPLICATION) << "Result json : '" << json << "'" << oslog::end();
 #endif
 
@@ -68,7 +68,7 @@ namespace cho::osbase::application {
         }
 
         void onEvent(const std::string &json) override {
-#ifdef CHO_OSBASE_APPLICATION_SERVICE_TRACE
+#ifdef OSBASE_APPLICATION_SERVICE_TRACE
             oslog::trace(data::OS_LOG_CHANNEL_APPLICATION) << "Event json: '" << json << "'" << oslog::end();
 #endif
             auto const pKeyStream = core::makeJsonStream(std::stringstream(json));
@@ -135,7 +135,7 @@ namespace cho::osbase::application {
 
         try {
             timeoutAliveMsg = std::chrono::milliseconds(getAlivePeriod());
-#ifdef CHO_OSBASE_APPLICATION_SERVICE_TRACE
+#ifdef OSBASE_APPLICATION_SERVICE_TRACE
         } catch (const ServiceException &e) {
             oslog::warning() << "ServiceStub::connect: " << e.what() << oslog::end();
             return;
@@ -237,7 +237,7 @@ namespace cho::osbase::application {
         }();
 
         // invoke the call
-#ifdef CHO_OSBASE_APPLICATION_SERVICE_TRACE
+#ifdef OSBASE_APPLICATION_SERVICE_TRACE
         oslog::trace(data::OS_LOG_CHANNEL_APPLICATION) << "Call json : '" << serializedParams << "'" << oslog::end();
 #endif
         auto const pClientDelegate = makeClientDelegate<TRet>();
@@ -360,4 +360,4 @@ namespace cho::osbase::application {
             stopListenAliveMessage();
         }
     }
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 #include <future>
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     /*
      * \class BaseService_UT
@@ -113,4 +113,4 @@ namespace cho::osbase::application::ut {
         size_t m_refCountService = 0;
     };
 
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

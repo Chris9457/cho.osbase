@@ -8,7 +8,7 @@
 namespace testservice::impl {
 
     class TestServiceImpl final : public testservice::api::ITestServiceSkeleton,
-                                  public cho::osbase::core::Singleton<TestServiceImpl> {
+                                  public NS_OSBASE::core::Singleton<TestServiceImpl> {
         friend Singleton<TestServiceImpl>;
 
     public:
@@ -24,8 +24,8 @@ namespace testservice::impl {
         api::Mat4 getTransfo(api::Vec4 origin, api::Vec4 dest) override;
         void invokeCrash(api::sub2::enum1 value) override;
 
-        cho::osbase::data::AsyncPagedData<std::vector<bool>> setPositionsAsync(
-            cho::osbase::data::AsyncData<api::Positions> buffer) override;
+        NS_OSBASE::data::AsyncPagedData<std::vector<bool>> setPositionsAsync(
+            NS_OSBASE::data::AsyncData<api::Positions> buffer) override;
 
         void wait(unsigned long long timeoutMs) override;
 
@@ -46,7 +46,7 @@ namespace testservice::impl {
         void onDataReceived(api::Positions &&positions);
 
         std::vector<api::Position> m_positions;
-        cho::osbase::data::AsyncPagedData<std::vector<bool>> m_booleansProvider;
+        NS_OSBASE::data::AsyncPagedData<std::vector<bool>> m_booleansProvider;
 
         std::mutex m_mutWait;
         bool m_bWaitStarted = false;

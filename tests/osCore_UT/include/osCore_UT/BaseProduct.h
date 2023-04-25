@@ -4,7 +4,7 @@
 #pragma once
 #include <string>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     class BaseProduct {
     public:
@@ -15,4 +15,4 @@ namespace cho::osbase::core {
         virtual std::string getStr() const          = 0;
         virtual void setStr(const std::string &str) = 0;
     };
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

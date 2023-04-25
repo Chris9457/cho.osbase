@@ -3,7 +3,7 @@
 #include "osStateMachine/Transition.h"
 #include "osStateMachine/StateMachineRes.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
     /*
      * \class Transition
      */
@@ -87,4 +87,4 @@ namespace cho::osbase::statemachine {
     void Transition::setDelegate(AbstractState::ITransitionDelegatePtr pDelegate) {
         m_pDelegate = pDelegate;
     }
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

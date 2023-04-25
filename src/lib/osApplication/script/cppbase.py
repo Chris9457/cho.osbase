@@ -23,14 +23,14 @@ class CppBase:
         ApiTypes.floatingType: 'double',
         ApiTypes.stringType: 'std::string',
         ApiTypes.booleanType: 'bool',
-        ApiTypes.uriType: 'cho::osbase::data::Uri'}
+        ApiTypes.uriType: 'NS_OSBASE::data::Uri'}
 
     fixCollectionClass = 'std::array'
     dynamicCollectionClass = 'std::vector'
 
     accessTypes = {
-        ApiAccess.asyncAccess: 'cho::osbase::data::AsyncData',
-        ApiAccess.asyncPagedAccess: 'cho::osbase::data::AsyncPagedData'
+        ApiAccess.asyncAccess: 'NS_OSBASE::data::AsyncData',
+        ApiAccess.asyncPagedAccess: 'NS_OSBASE::data::AsyncPagedData'
     }
 
     def __init__(self, yamlApi, file, apiFile):

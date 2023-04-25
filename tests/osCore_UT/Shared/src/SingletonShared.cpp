@@ -4,10 +4,10 @@
 #include "Shared/SingletonShared.h"
 #include "Static/SingletonStatic.h"
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     void increment() {
         TheMySingleton.increment();
     }
 
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

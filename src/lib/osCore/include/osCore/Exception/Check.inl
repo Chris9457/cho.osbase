@@ -8,9 +8,9 @@ namespace oscheck {
     template <typename TRet, typename TFunc, typename... TArgs>
     TRet throwIfCrashOrReturn(const TFunc &f, TArgs &&...args) {
         if constexpr (std::is_void_v<TRet>) {
-            cho::osbase::core::TheStructuredExceptionHandler.checkStructuredException<void>(f, std::forward<TArgs>(args)...);
+            NS_OSBASE::core::TheStructuredExceptionHandler.checkStructuredException<void>(f, std::forward<TArgs>(args)...);
         } else {
-            return cho::osbase::core::TheStructuredExceptionHandler.checkStructuredException<TRet>(f, std::forward<TArgs>(args)...);
+            return NS_OSBASE::core::TheStructuredExceptionHandler.checkStructuredException<TRet>(f, std::forward<TArgs>(args)...);
         }
     }
 

@@ -2,7 +2,7 @@
 
 #include "RecursiveNamedMutexImpl.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     recursive_named_mutex_impl::recursive_named_mutex_impl(const std::string &name) : m_handle(CreateMutexA(nullptr, false, name.c_str())) {
     }
 
@@ -34,4 +34,4 @@ namespace cho::osbase::core {
         return m_handle;
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

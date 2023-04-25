@@ -3,7 +3,7 @@
 #include "osStateMachine/StartState.h"
 #include "osStateMachine/StateMachineRes.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     /*
      * \class StartState
@@ -19,4 +19,4 @@ namespace cho::osbase::statemachine {
     StartState::StartState(StatePtr pParent, const std::string &name) : AbstractState(pParent, name) {
     }
 
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

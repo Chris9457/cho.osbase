@@ -13,7 +13,7 @@
  * \ingroup PACKAGE_APPLICATION
  */
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /**
      * \addtogroup PACKAGE_SERVICE
@@ -81,6 +81,6 @@ namespace cho::osbase::application {
     };
     /** \} */
 
-} // namespace cho::osbase::application
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::application::NullMsg);
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::application::RuntimeErrorData, strError);
+} // namespace NS_OSBASE::application
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::application::NullMsg);
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::application::RuntimeErrorData, strError);

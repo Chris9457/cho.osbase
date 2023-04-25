@@ -3,7 +3,7 @@
 #include "osCore/Misc/RecursiveNamedMutex.h"
 #include "RecursiveNamedMutexImpl.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     recursive_named_mutex::recursive_named_mutex() : m_pImpl(std::make_shared<recursive_named_mutex_impl>()) {
     }
 
@@ -25,4 +25,4 @@ namespace cho::osbase::core {
     void *recursive_named_mutex::native_handle() const {
         return m_pImpl->native_handle();
     }
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

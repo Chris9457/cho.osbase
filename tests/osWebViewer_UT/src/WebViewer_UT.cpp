@@ -4,7 +4,7 @@
 #include "osWebViewer.h"
 #include <gtest/gtest.h>
 
-namespace cho::osbase::webviewer::ut {
+namespace NS_OSBASE::webviewer::ut {
 
     class WebViewer_UT : public testing::Test {
     protected:
@@ -32,4 +32,4 @@ namespace cho::osbase::webviewer::ut {
             ASSERT_FALSE(image.empty());
         }
     }
-} // namespace cho::osbase::webviewer::ut
+} // namespace NS_OSBASE::webviewer::ut

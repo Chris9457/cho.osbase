@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <DbgHelp.h>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     namespace {
         bool dumpFile(const wchar_t *dumpFileName, void *pExceptionInfo) {
@@ -208,4 +208,4 @@ namespace cho::osbase::core {
         os << std::put_time(&tm, (m_dumpBaseFileName + DUMPFORMAT).c_str());
         return m_miniDumpFolder / os.str();
     }
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

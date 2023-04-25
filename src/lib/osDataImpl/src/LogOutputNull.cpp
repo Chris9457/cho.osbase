@@ -5,7 +5,7 @@
 #include "osCore/DesignPattern/AbstractFactory.h"
 #include <iostream>
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
     OS_REGISTER_FACTORY_N(ILogOutput, LogOutputNull, 0, LOGOUTPUT_NULL_FACTORY_NAME)
 
     /*
@@ -16,4 +16,4 @@ namespace cho::osbase::data::impl {
 
     void LogOutputNull::flush(std::ostream &) {
     }
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

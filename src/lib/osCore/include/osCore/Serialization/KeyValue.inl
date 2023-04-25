@@ -2,7 +2,7 @@
 // \brief Implementation of the class KeyValue
 
 #pragma once
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
 #pragma region UntypedKeyValue
     /*
@@ -267,4 +267,4 @@ namespace cho::osbase::core {
 
 #pragma endregion
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

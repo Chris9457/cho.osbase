@@ -11,7 +11,7 @@ OS_CORE_IMPL_LINK();
 OS_DATA_IMPL_LINK();
 
 using namespace std::chrono_literals;
-namespace nsapp = cho::osbase::application;
+namespace nsapp = NS_OSBASE::application;
 
 int main(int argc, char **argv) {
     // This test is only to check in CI if the application can be launched
@@ -25,8 +25,8 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    auto const pKeyStream       = cho::osbase::core::makeJsonStream(std::move(ifs));
-    auto const launcherSettings = pKeyStream->getValue(cho::osbase::launcher::LauncherSettings{});
+    auto const pKeyStream       = NS_OSBASE::core::makeJsonStream(std::move(ifs));
+    auto const launcherSettings = pKeyStream->getValue(NS_OSBASE::launcher::LauncherSettings{});
 
     std::cout << "******************************************************" << std::endl;
     std::cout << "***                     OSBASE                     ***" << std::endl;

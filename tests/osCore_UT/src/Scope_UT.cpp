@@ -4,7 +4,7 @@
 #include "osCore/Misc/ScopeValue.h"
 #include "gtest/gtest.h"
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
     class ScopeExit_UT : public testing::Test {};
     class ScopeValue_UT : public testing::Test {};
 
@@ -63,4 +63,4 @@ namespace cho::osbase::core::ut {
         }
         ASSERT_EQ(1, value);
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

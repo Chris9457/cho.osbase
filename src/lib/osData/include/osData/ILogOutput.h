@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     class ILogOutput;
     using ILogOutputPtr  = std::shared_ptr<ILogOutput>;
@@ -32,4 +32,4 @@ namespace cho::osbase::data {
     ILogOutputPtr makeLogOutputConsole();
     ILogOutputPtr makeLogOutputDebug();
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

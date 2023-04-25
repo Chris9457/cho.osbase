@@ -1,7 +1,7 @@
 service:
   name: "TestProcess"
   realm: "osbase"
-  namespace: "cho.osbase.application.ut.process"
+  namespace: "@OSBASE@.application.ut.process"
 
 imports:
   - name: "TestDomainObjectsImport.yml"
@@ -45,7 +45,7 @@ domain_objects:
       - name: "_uri"
         type: "uri"
       - name: "importedType"
-        type: "cho.osbase.application.ut.testdomainobjectsimport.Vectf4"
+        type: "@OSBASE@.application.ut.testdomainobjectsimport.Vectf4"
 
   - struct: "AsyncStruct"
     fields:

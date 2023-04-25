@@ -12,7 +12,7 @@
 #include "rapidjson/writer.h"
 #include <fstream>
 
-namespace cho::osbase::core::impl {
+namespace NS_OSBASE::core::impl {
 
     OS_REGISTER_FACTORY_N(StringKeyStream, RapidJsonStream, 0, FACTORY_NAME_JSON_STREAM)
     OS_REGISTER_FACTORY_N(StringKeyStream, RapidJsonStream, 1, FACTORY_NAME_JSON_STREAM, std::string)
@@ -348,4 +348,4 @@ namespace cho::osbase::core::impl {
         m_keys.push_back(std::make_pair(key, -1));
     }
 
-} // namespace cho::osbase::core::impl
+} // namespace NS_OSBASE::core::impl

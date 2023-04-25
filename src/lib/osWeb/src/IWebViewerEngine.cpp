@@ -4,7 +4,7 @@
 #include "FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 
-namespace cho::osbase::webengine {
+namespace NS_OSBASE::webengine {
 
     /*
      * \Maker
@@ -16,4 +16,4 @@ namespace cho::osbase::webengine {
     IWebViewerEnginePtr makeWebViewerEngine(const Settings &settings) {
         return core::TheFactoryManager.createInstance<IWebViewerEngine>(WEBENGINE_WEBVIEW2, settings);
     }
-} // namespace cho::osbase::webengine
+} // namespace NS_OSBASE::webengine

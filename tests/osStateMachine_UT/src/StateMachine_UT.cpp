@@ -9,7 +9,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::statemachine::ut {
+namespace NS_OSBASE::statemachine::ut {
     class StateMachine_UT : public testing::Test {
         class StateMachineDelegate : public StateMachine::ITransitionDelegate {
         public:
@@ -457,4 +457,4 @@ namespace cho::osbase::statemachine::ut {
         ASSERT_EQ(findState(s_s1_start), waitForTransition());
     }
 
-} // namespace cho::osbase::statemachine::ut
+} // namespace NS_OSBASE::statemachine::ut

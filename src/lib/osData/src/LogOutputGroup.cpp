@@ -2,7 +2,7 @@
 
 #include "osData/LogOutputGroup.h"
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /*
      * \class LogOutputGroup
@@ -54,4 +54,4 @@ namespace cho::osbase::data {
     LogOutputGroupPtr makeLogOutputGroup() {
         return LogOutputGroupPtr(new LogOutputGroup());
     }
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

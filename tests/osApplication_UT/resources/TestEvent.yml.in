@@ -1,7 +1,7 @@
 service:
   name: "TestEvent"
   realm: "osbase"
-  namespace: "cho.osbase.application.ut.event"
+  namespace: "@OSBASE@.application.ut.event"
 
 imports:
   - name: "TestDomainObjectsImport.yml"
@@ -26,6 +26,6 @@ events:
     topic: "TestEventService.EvtData"
 
   - name: "EvtDataMsg2"
-    type: "cho.osbase.application.ut.testdomainobjectsimport.Vectf4"
+    type: "@OSBASE@.application.ut.testdomainobjectsimport.Vectf4"
     topic: "TestEventService.EvtData2"
     

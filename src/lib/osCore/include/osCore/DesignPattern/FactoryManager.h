@@ -8,7 +8,7 @@
 #include <map>
 #include <vector>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /** \cond */
     template <typename T>
@@ -56,7 +56,7 @@ namespace cho::osbase::core {
     };
 #define TheFactoryManager FactoryManager::getInstance() //!< Macro used to access to the singleton FactoryManager
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 /** \cond */
 #include "FactoryManager.inl"

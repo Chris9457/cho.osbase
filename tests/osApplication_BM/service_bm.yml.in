@@ -2,7 +2,7 @@ service:
   name: "IService_BM"
   description: "api of the service benchmark"
   realm: "osbase"
-  namespace: "cho.osbase.application.bm"
+  namespace: "@OSBASE@.application.bm"
 
 domain_objects:
   - struct: "SimpleStruct"

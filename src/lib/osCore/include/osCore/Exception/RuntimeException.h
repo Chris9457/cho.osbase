@@ -5,7 +5,7 @@
 
 #include <stdexcept>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief Thrown when an unexpected error occurs (bug but no crash)
@@ -14,4 +14,4 @@ namespace cho::osbase::core {
     class RuntimeException : public std::runtime_error {
         using std::runtime_error::runtime_error;
     };
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

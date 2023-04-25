@@ -2,7 +2,7 @@ service:
   name: "IWebViewer"
   description: "api for the  web viewer service"
   realm: "osbase"
-  namespace: "cho.osbase.webviewer"
+  namespace: "@OSBASE@.webviewer"
 
 domain_objects:
   - enum: "ImageFormat"

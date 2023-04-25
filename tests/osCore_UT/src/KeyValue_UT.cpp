@@ -4,7 +4,7 @@
 #include "osCore_UT/ConstantValue.h"
 #include "gtest/gtest.h"
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     class KeyValue_UT : public testing::Test {};
     template <typename T>
@@ -314,4 +314,4 @@ namespace cho::osbase::core::ut {
             ASSERT_EQ(expectedResult, keyValue.getValue());
         }
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

@@ -4,7 +4,7 @@
 #include "osData/FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
     OS_REGISTER_FACTORY_N(ILogOutput, LogOutputFile, 0, LOGOUTPUT_FILE_FACTORY_NAME, std::filesystem::path)
 
     /*
@@ -27,4 +27,4 @@ namespace cho::osbase::data::impl {
             os << msg << std::endl;
         }
     }
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

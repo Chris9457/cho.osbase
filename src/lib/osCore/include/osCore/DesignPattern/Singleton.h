@@ -62,7 +62,7 @@
  * \ingroup PACKAGE_DESIGNPATTERN
  */
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief Base class for all singletons
@@ -88,7 +88,7 @@ namespace cho::osbase::core {
         static std::recursive_mutex *m_pDummyLock;
     };
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 /** \cond */
 #include "Singleton.inl"

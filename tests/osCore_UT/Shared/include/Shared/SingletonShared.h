@@ -8,7 +8,7 @@
 #define LIB_PUBLISH __declspec(dllimport)
 #endif
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     LIB_PUBLISH void increment();
 

@@ -2,7 +2,7 @@
 
 #include "osStateMachine/StateWalker.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
     /**
      * \class StateWalker<direct>
      */
@@ -30,4 +30,4 @@ namespace cho::osbase::statemachine {
     State::prefix_iterator StateWalker<WalkType::recursive>::end() const {
         return State::prefix_iterator();
     }
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

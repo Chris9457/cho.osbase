@@ -3,7 +3,7 @@
 #include "osApplication/Runner.h"
 #include <iostream>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /*
      * \class Runner::HandshakeDelegate
@@ -90,4 +90,4 @@ namespace cho::osbase::application {
         return getOptions().brokerPort ? *getOptions().brokerPort : 8080;
     }
 
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

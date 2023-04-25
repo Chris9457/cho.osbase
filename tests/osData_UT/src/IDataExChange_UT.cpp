@@ -14,7 +14,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class DataExchange_UT : public testing::Test {
     protected:
@@ -296,14 +296,14 @@ namespace cho::osbase::data::ut {
     }
 
     TEST_F(DataExchange_UT, CallOpenTwiceAndThrow) {
-        ASSERT_THROW(getEndPointOpen()->open(getEndPointCreate()->getUriOfCreator()), cho::osbase::data::DataExchangeException);
+        ASSERT_THROW(getEndPointOpen()->open(getEndPointCreate()->getUriOfCreator()), NS_OSBASE::data::DataExchangeException);
         ASSERT_TRUE(getEndPointOpen()->isWired());
         ASSERT_TRUE(getEndPointCreate()->isWired());
     }
 
     TEST_F(DataExchange_UT, CallCreateTwiceAndThrow) {
         const ByteBuffer buffer = generateBuffer(100);
-        ASSERT_THROW(getEndPointCreate()->create(), cho::osbase::data::DataExchangeException);
+        ASSERT_THROW(getEndPointCreate()->create(), NS_OSBASE::data::DataExchangeException);
         ASSERT_NO_THROW(getEndPointOpen()->push(buffer));
         ASSERT_EQ(buffer, getEndPointCreateData().value());
     }
@@ -345,7 +345,7 @@ namespace cho::osbase::data::ut {
         ASSERT_NO_THROW(getEndPointOpen()->close());
         ASSERT_FALSE(getEndPointCreateConnectionStatus().value());
         ASSERT_FALSE(getEndPointOpenConnectionStatus().value());
-        ASSERT_THROW(getEndPointOpen()->push(buffer), cho::osbase::data::DataExchangeException);
+        ASSERT_THROW(getEndPointOpen()->push(buffer), NS_OSBASE::data::DataExchangeException);
     }
 
     TEST_F(DataExchange_UT, PushOnDestroyedChannelAndThrow) {
@@ -353,7 +353,7 @@ namespace cho::osbase::data::ut {
         ASSERT_NO_THROW(getEndPointCreate()->destroy());
         ASSERT_FALSE(getEndPointCreateConnectionStatus().value());
         ASSERT_FALSE(getEndPointOpenConnectionStatus().value());
-        ASSERT_THROW(getEndPointCreate()->push(buffer), cho::osbase::data::DataExchangeException);
+        ASSERT_THROW(getEndPointCreate()->push(buffer), NS_OSBASE::data::DataExchangeException);
     }
 
     TEST_F(DataExchange_UT, PushBigChunkOnOspenChannel) {
@@ -368,4 +368,4 @@ namespace cho::osbase::data::ut {
         oslog::trace() << "duration for a 500 000 byte chunk sended 20 times " << static_cast<float>(clock() - begin_time) / CLOCKS_PER_SEC
                        << " seconds" << oslog::end();
     }
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

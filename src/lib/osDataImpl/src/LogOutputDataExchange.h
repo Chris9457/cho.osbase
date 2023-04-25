@@ -4,7 +4,7 @@
 #include "osData/IDataExchange.h"
 #include <mutex>
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
 
     /**
      * \brief Realization of the interface ILogOutput
@@ -31,4 +31,4 @@ namespace cho::osbase::data::impl {
         std::recursive_mutex m_mutex;
         bool m_bOpened = false;
     };
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

@@ -23,13 +23,13 @@
 
 /** \cond */
 #define OS_CORE_LINK_KEYSTREAM_XML()                                                                                                       \
-    namespace cho::osbase::core::impl {                                                                                             \
+    namespace NS_OSBASE::core::impl {                                                                                             \
         OS_LINK_FACTORY_N(StringKeyStream, RapidXmlStream, 0);                                                                             \
         OS_LINK_FACTORY_N(StringKeyStream, RapidXmlStream, 1);                                                                             \
     }
 
 #define OS_CORE_LINK_KEYSTREAM_JSON()                                                                                                      \
-    namespace cho::osbase::core::impl {                                                                                             \
+    namespace NS_OSBASE::core::impl {                                                                                             \
         OS_LINK_FACTORY_N(StringKeyStream, RapidJsonStream, 0);                                                                            \
         OS_LINK_FACTORY_N(StringKeyStream, RapidJsonStream, 1);                                                                            \
     }

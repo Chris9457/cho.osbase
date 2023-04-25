@@ -4,9 +4,9 @@
 #include "osData/FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 
-namespace nscore = cho::osbase::core;
+namespace nscore = NS_OSBASE::core;
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     namespace {
         const std::unordered_map<std::string, std::string> mapSchemeFileExchangeFactoryName{ { Uri::schemeFile(),
@@ -22,4 +22,4 @@ namespace cho::osbase::data {
         return nscore::TheFactoryManager.createInstance<IFileExchange>(itSchemeFactoryName->second);
     }
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

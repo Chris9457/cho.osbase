@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <iterator>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class FactoryManager
@@ -62,4 +62,4 @@ namespace cho::osbase::core {
         return factoryNames;
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

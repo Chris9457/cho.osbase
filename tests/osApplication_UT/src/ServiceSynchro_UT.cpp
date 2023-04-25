@@ -6,9 +6,9 @@
 #include <queue>
 
 using namespace std::chrono_literals;
-namespace nscore = cho::osbase::core;
+namespace nscore = NS_OSBASE::core;
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     class ServiceSynchro_UT : public BaseService_UT {
     protected:
@@ -595,4 +595,4 @@ namespace cho::osbase::application::ut {
         }
     }
 
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

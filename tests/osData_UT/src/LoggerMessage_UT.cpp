@@ -3,7 +3,7 @@
 #include "osData/Log.h"
 #include "gtest/gtest.h"
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class LoggerMessage_UT : public testing::Test {};
 
@@ -23,4 +23,4 @@ namespace cho::osbase::data::ut {
         auto const d      = std::chrono::duration_cast<std::chrono::milliseconds>(ts.getTimePoint() - tp);
         ASSERT_EQ(0, d.count());
     }
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

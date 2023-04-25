@@ -6,7 +6,7 @@
 #include <functional>
 #include <vector>
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     class Transition;
     using TransitionPtr  = std::shared_ptr<Transition>;
@@ -56,4 +56,4 @@ namespace cho::osbase::statemachine {
         std::string m_actionName;
         AbstractState::ITransitionDelegateWPtr m_pDelegate;
     };
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

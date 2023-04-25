@@ -4,7 +4,7 @@
 #include "PagedDataExchange.h"
 #include "osCore/Serialization/Serializer.h"
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /*
      * \class AsyncData<T>::DataExchangeDelegate
@@ -526,18 +526,18 @@ namespace cho::osbase::data {
     AsyncPagedData<T> makeAsyncPagedData(const Uri &uri) {
         return internal::_makeAsyncData<T, true>(uri);
     }
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data
 
 template <typename T, bool Paged>
-cho::osbase::data::AsyncData<T, Paged>
-cho::osbase::core::KeySerializer<std::string, cho::osbase::data::AsyncData<T, Paged>, false>::getValue(
+NS_OSBASE::data::AsyncData<T, Paged>
+NS_OSBASE::core::KeySerializer<std::string, NS_OSBASE::data::AsyncData<T, Paged>, false>::getValue(
     KeyStream<std::string> &keyStream, const data::AsyncData<T, Paged> &) {
     auto const uri = KeySerializer<std::string, data::Uri>::getValue(keyStream, data::Uri{});
     return data::AsyncData<T, Paged>(uri);
 }
 
 template <typename T, bool Paged>
-bool cho::osbase::core::KeySerializer<std::string, cho::osbase::data::AsyncData<T, Paged>, false>::setValue(
+bool NS_OSBASE::core::KeySerializer<std::string, NS_OSBASE::data::AsyncData<T, Paged>, false>::setValue(
     KeyStream<std::string> &keyStream, const data::AsyncData<T, Paged> &value) {
     return KeySerializer<std::string, data::Uri>::setValue(keyStream, value.getUriOfCreator());
 }

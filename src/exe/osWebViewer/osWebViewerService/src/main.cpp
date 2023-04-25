@@ -10,7 +10,7 @@ OS_CORE_LINK_KEYSTREAM_JSON()
 OS_DATA_IMPL_LINK();
 OS_WEBENGINE_LINK();
 
-namespace nsosbase    = cho::osbase;
+namespace nsosbase    = NS_OSBASE;
 namespace nscore      = nsosbase::core;
 namespace nsapp       = nsosbase::application;
 namespace nswebviewer = nsosbase::webviewer;

@@ -3,7 +3,7 @@
 #pragma once
 #include "State.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
     /**
      * \addtogroup PACKAGE_OSSTATE
      * \{
@@ -50,4 +50,4 @@ namespace cho::osbase::statemachine {
         StatePtr m_pState;
     };
     /** \} */
-}; // namespace cho::osbase::statemachine
+}; // namespace NS_OSBASE::statemachine

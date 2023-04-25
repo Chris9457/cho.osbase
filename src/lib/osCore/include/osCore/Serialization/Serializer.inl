@@ -3,7 +3,7 @@
 #pragma once
 #include "Serializable.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class Serializer<TValue>
@@ -55,4 +55,4 @@ namespace cho::osbase::core {
         Serializer<TValue>::setValue(os, value.get());
         return os;
     }
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

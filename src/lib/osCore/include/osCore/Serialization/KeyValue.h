@@ -34,7 +34,7 @@
  * \ingroup PACKAGE_SERIALIZATION
  */
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
 #pragma region UntypedKeyValue
     /**
@@ -225,6 +225,6 @@ namespace cho::osbase::core {
 
 #pragma endregion
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "KeyValue.inl"

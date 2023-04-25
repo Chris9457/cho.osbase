@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
     template <typename TCallback, typename... TArgs>
     ITaskPtr TaskQueue::pushTask(TCallback &&callback, TArgs &&...args) {
         using namespace std::chrono_literals;
@@ -64,4 +64,4 @@ namespace cho::osbase::application {
             clock::now(), delay, makeMethodTask(pInstance, std::forward<TMthCallback>(mthCallback), std::forward<TArgs>(args)...), true);
     }
 
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

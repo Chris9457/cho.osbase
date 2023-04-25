@@ -6,7 +6,7 @@
 
 #include <memory>
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /**
      * \addtogroup PACKAGE_OSBASE_EXCHANGE
@@ -49,4 +49,4 @@ namespace cho::osbase::data {
     IDataExchangePtr makeDataExchange(const std::string &scheme = IDataExchange::defaultScheme); //!< create a concrete instance of
                                                                                                  //!< IDataExchange
     /** \} */
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

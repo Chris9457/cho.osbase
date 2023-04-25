@@ -12,7 +12,7 @@
  * \ingroup PACKAGE_OSBASE_IMESSAGING
  */
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /**
      * \addtogroup PACKAGE_OSBASE_IBROKER
@@ -45,4 +45,4 @@ namespace cho::osbase::data {
     IBrokerPtr makeBroker(); //!< create a broker
 
     /** \} */
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

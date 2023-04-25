@@ -5,7 +5,7 @@
 #include "Scope.h"
 #include <functional>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief 	This class represents:
@@ -48,6 +48,6 @@ namespace cho::osbase::core {
     template <class TValue>
     scope_value<TValue> make_scope_value(TValue &refValue, const TValue &newValue) noexcept;
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "ScopeValue.inl"

@@ -2,7 +2,7 @@
 
 #pragma once
 
-namespace cho::osbase::web {
+namespace NS_OSBASE::web {
 
     /**
      * \brief Represents a web server
@@ -11,4 +11,4 @@ namespace cho::osbase::web {
     public:
         virtual ~IHttpServer() = default;
     };
-} // namespace cho::osbase::web
+} // namespace NS_OSBASE::web

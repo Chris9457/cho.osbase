@@ -5,9 +5,9 @@
 #include "osApplication_UT/TestEventServiceImpl.h"
 #include "osApplication_UT/TestProcessServiceImpl.h"
 
-namespace nsdata = cho::osbase::data;
+namespace nsdata = NS_OSBASE::data;
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     class ServiceEvent_UT : public TService_UT<event::TestEventService, TestEventServiceImpl> {
     protected:
@@ -81,4 +81,4 @@ namespace cho::osbase::application::ut {
         ASSERT_EQ(expectedData, data);
     }
 
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

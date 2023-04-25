@@ -4,7 +4,7 @@
 #include "service_bmSkeleton.h"
 #include "osCore/DesignPattern/Singleton.h"
 
-namespace cho::osbase::application::bm {
+namespace NS_OSBASE::application::bm {
 
     class Service_BMImpl : public IService_BMServiceSkeleton, public core::Singleton<Service_BMImpl> {
     public:
@@ -41,4 +41,4 @@ namespace cho::osbase::application::bm {
     };
 
 #define TheService_BMImpl Service_BMImpl::getInstance()
-} // namespace cho::osbase::application::bm
+} // namespace NS_OSBASE::application::bm

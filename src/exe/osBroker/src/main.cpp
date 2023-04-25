@@ -7,7 +7,7 @@
 
 OS_DATA_IMPL_LINK();
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nsdata   = nsosbase::data;
 namespace nsapp    = nsosbase::application;
 

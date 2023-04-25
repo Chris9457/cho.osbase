@@ -3,7 +3,7 @@
 #pragma once
 #include "osData/INetwork.h"
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
 
     /**
      * \brief Concrete implementation of the interface INetwork
@@ -12,4 +12,4 @@ namespace cho::osbase::data::impl {
     public:
         Uri::Host getLocalHost() override;
     };
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

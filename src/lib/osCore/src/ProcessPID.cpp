@@ -4,7 +4,7 @@
 #include "osCore/Interprocess/ProcessPID.h"
 #include <windows.h>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     /*
      * getCurrentPID
      */
@@ -18,4 +18,4 @@ namespace cho::osbase::core {
         return processName;
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

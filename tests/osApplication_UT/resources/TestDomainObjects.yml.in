@@ -1,7 +1,7 @@
 service:
   name: "TestDomainObjects"
   realm: "osbase"
-  namespace: "cho.osbase.application.ut.domain_objects"
+  namespace: "@OSBASE@.application.ut.domain_objects"
 
 imports:
   - name: "TestDomainObjectsImport.yml"
@@ -33,7 +33,7 @@ domain_objects:
       - name: "asyncPagedData"
         type: "(async_paged)string[2]"
       - name: "vectf4"
-        type: "cho.osbase.application.ut.testdomainobjectsimport.Vectf4"
+        type: "@OSBASE@.application.ut.testdomainobjectsimport.Vectf4"
 
   - alias: "TestAliasBasic"
     type: "unsigned short integer"

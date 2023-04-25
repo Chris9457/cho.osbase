@@ -3,9 +3,9 @@
 #include "osData/Log.h"
 #include "gtest/gtest.h"
 
-using namespace cho::osbase::application;
+using namespace NS_OSBASE::application;
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     class Task_UT : public testing::Test {};
 
@@ -162,4 +162,4 @@ namespace cho::osbase::application::ut {
         ASSERT_EQ(0, s_myI);
         ASSERT_EQ("", s_myStr);
     }
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

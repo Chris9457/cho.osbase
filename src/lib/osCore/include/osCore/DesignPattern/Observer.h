@@ -79,7 +79,7 @@
  * \ingroup PACKAGE_DESIGNPATTERN
  */
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     class Observable;
 
@@ -233,6 +233,6 @@ namespace cho::osbase::core {
         mutable std::recursive_mutex m_mutex;
     };
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "Observer.inl"

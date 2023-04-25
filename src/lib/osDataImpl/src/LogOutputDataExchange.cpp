@@ -8,7 +8,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
     OS_REGISTER_FACTORY_N(ILogOutput, LogOutputDataExchange, 0, LOGOUTPUT_DATAEXCHANGE_FACTORY_NAME, Uri)
     OS_REGISTER_FACTORY_N(ILogOutput, LogOutputDataExchange, 1, LOGOUTPUT_DATAEXCHANGE_FACTORY_NAME, IDataExchangePtr)
 
@@ -90,4 +90,4 @@ namespace cho::osbase::data::impl {
         }
     }
 
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

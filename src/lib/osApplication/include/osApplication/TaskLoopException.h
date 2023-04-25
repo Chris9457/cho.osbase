@@ -4,7 +4,7 @@
 #pragma once
 #include "osCore/Exception/RuntimeException.h"
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /**
      * \brief   Generic exception for the class TaskLoop
@@ -18,4 +18,4 @@ namespace cho::osbase::application {
          */
         explicit TaskLoopException(const std::string &context);
     };
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

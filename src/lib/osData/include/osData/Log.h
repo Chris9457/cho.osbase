@@ -73,7 +73,7 @@
         int value = 0;
         std::string strValue;
     };
-    OS_KEY_SERIALIZE_STRUCT(cho::osbase::data::ut::TestObject, value, strValue);
+    OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::data::ut::TestObject, value, strValue);
 
     oslog::info() << "my_object" << TestObject{2, "4"} << oslog::end(); // log contains "object":{"value":2,"strValue":"4"}
     oslog::info() << "my_object" << TestObject{1, "3"} << TestObject{2, "4"} << oslog::end(); // override, log contains
@@ -100,112 +100,112 @@ namespace oslog {
      * \brief used to ends (write) the log
      * \return TheLogger
      */
-    cho::osbase::data::LoggerEnd end();
+    NS_OSBASE::data::LoggerEnd end();
 
     /**
      * \brief used to start the log with the severity "info"
      * \return TheLogger
      */
-    cho::osbase::data::Logger &info();
+    NS_OSBASE::data::Logger &info();
 
     /**
      * \brief used to start the log with the severity "info" and the channel "channelValue"
      * \param channelValue value of the channel
      * \return TheLogger
      */
-    cho::osbase::data::Logger &info(const unsigned long long channelValue);
+    NS_OSBASE::data::Logger &info(const unsigned long long channelValue);
 
     /**
      * \brief used to start the log with the severity "warning"
      * \return TheLogger
      */
-    cho::osbase::data::Logger &warning();
+    NS_OSBASE::data::Logger &warning();
 
     /**
      * \brief used to start the log with the severity "warning" and the channel "channelValue"
      * \param channelValue value of the channel
      * \return TheLogger
      */
-    cho::osbase::data::Logger &warning(const unsigned long long channelValue);
+    NS_OSBASE::data::Logger &warning(const unsigned long long channelValue);
 
     /**
      * \brief used to start the log with the severity "error"
      * \return TheLogger
      */
-    cho::osbase::data::Logger &error();
+    NS_OSBASE::data::Logger &error();
 
     /**
      * \brief used to start the log with the severity "error" and the channel "channelValue"
      * \param channelValue value of the channel
      * \return TheLogger
      */
-    cho::osbase::data::Logger &error(const unsigned long long channelValue);
+    NS_OSBASE::data::Logger &error(const unsigned long long channelValue);
 
     /**
      * \brief used to start the log with the severity "debug"
      * \return TheLogger
      */
-    cho::osbase::data::Logger &debug();
+    NS_OSBASE::data::Logger &debug();
 
     /**
      * \brief used to start the log with the severity "debug" and the channel "channelValue"
      * \param channelValue value of the channel
      * \return TheLogger
      */
-    cho::osbase::data::Logger &debug(const unsigned long long channelValue);
+    NS_OSBASE::data::Logger &debug(const unsigned long long channelValue);
 
     /**
      * \brief used to start the log with the severity "trace"
      * \return TheLogger
      */
-    cho::osbase::data::Logger &trace();
+    NS_OSBASE::data::Logger &trace();
 
     /**
      * \brief used to start the log with the severity "trace" and the channel "channelValue"
      * \param channelValue value of the channel
      * \return TheLogger
      */
-    cho::osbase::data::Logger &trace(const unsigned long long channelValue);
+    NS_OSBASE::data::Logger &trace(const unsigned long long channelValue);
 
     /**
      * \brief add the channel
      * \param channelValue value of the channel
      * \return  TheLogger
      */
-    cho::osbase::data::Logger &channel(const unsigned long long channelValue);
+    NS_OSBASE::data::Logger &channel(const unsigned long long channelValue);
 
     /**
      * \brief add the process info
      * \return TheLogger
      */
-    cho::osbase::data::Logger &process();
+    NS_OSBASE::data::Logger &process();
 
     /** \} */
 
 } // namespace oslog
 
 /** \cond */
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, cho::osbase::data::Logger &);
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, cho::osbase::data::LoggerEnd &&msg);
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, cho::osbase::data::LoggerTimestamp &&msg);
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, std::chrono::system_clock::time_point &&tp);
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, cho::osbase::data::LoggerProcess &&msg);
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, cho::osbase::data::LoggerSeverity &&msg);
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, cho::osbase::data::LoggerChannel &&msg);
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, cho::osbase::data::LoggerContent &&msg);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, NS_OSBASE::data::Logger &);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, NS_OSBASE::data::LoggerEnd &&msg);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, NS_OSBASE::data::LoggerTimestamp &&msg);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, std::chrono::system_clock::time_point &&tp);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, NS_OSBASE::data::LoggerProcess &&msg);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, NS_OSBASE::data::LoggerSeverity &&msg);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, NS_OSBASE::data::LoggerChannel &&msg);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, NS_OSBASE::data::LoggerContent &&msg);
 
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, std::string &&content);
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, const std::string &content);
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, const char content[]);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, std::string &&content);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, const std::string &content);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, const char content[]);
 
 template <typename T>
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, cho::osbase::data::LoggerMessage<T> &&msg);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, NS_OSBASE::data::LoggerMessage<T> &&msg);
 template <typename T>
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, T &&object);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, T &&object);
 template <typename T>
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, const T &object);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, const T &object);
 template <typename T>
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, T &object);
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, T &object);
 /** \endcond */
 
 #include "Log.inl"

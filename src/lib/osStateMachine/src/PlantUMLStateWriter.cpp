@@ -7,7 +7,7 @@
 #include "osCore/DesignPattern/AbstractFactory.h"
 #include <algorithm>
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     OS_REGISTER_FACTORY_N(IStateWriter, PlantUMLStateWriter, 0, STATE_WRITER_PLANTUML);
 
@@ -132,4 +132,4 @@ namespace cho::osbase::statemachine {
             m_buffer << strPadding << fromStateName << PLANTUML_TRANSITION_DOWNARROW << toStateName << transitionText << std::endl;
         }
     }
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

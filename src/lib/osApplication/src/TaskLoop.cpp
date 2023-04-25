@@ -10,7 +10,7 @@ namespace {
     const char *runningError = "loop is already running!";
 }
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
     TaskLoop::~TaskLoop() {
         if (isRunning()) {
             stop();
@@ -77,4 +77,4 @@ namespace cho::osbase::application {
     void TaskLoop::setRuntimeErrorDelegate(IRuntimeErrorDelegatePtr pDelegate) {
         m_pRuntimeErrorDelegate = pDelegate;
     }
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

@@ -2,7 +2,7 @@
 
 #pragma once
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class StructuredExceptionHandler
@@ -18,4 +18,4 @@ namespace cho::osbase::core {
         }
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

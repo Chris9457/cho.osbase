@@ -15,7 +15,7 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
 
     class AbstractStateWidget;
     class StateWidget;
@@ -52,24 +52,24 @@ namespace cho::osbase::statemachineviewer {
         void connectLog(const std::string &host, const unsigned short port);
         Q_INVOKABLE void parseLogLine(QString logLine);
         void parseStateMachineRecord(const std::string &logTimestamp,
-            const cho::osbase::data::LoggerProcess::Info &processInfo,
-            const cho::osbase::statemachine::StateMachineRecord &record);
-        cho::osbase::statemachine::AbstractStatePtr extractStateHierarchy(
-            cho::osbase::statemachine::StatePtr &pRoot, const std::string &fullName);
+            const NS_OSBASE::data::LoggerProcess::Info &processInfo,
+            const NS_OSBASE::statemachine::StateMachineRecord &record);
+        NS_OSBASE::statemachine::AbstractStatePtr extractStateHierarchy(
+            NS_OSBASE::statemachine::StatePtr &pRoot, const std::string &fullName);
 
         void updateToolbar(const KeyTransitionRecord &keyRecord);
 
-        cho::osbase::statemachine::StatePtr getRoot(cho::osbase::statemachine::AbstractStatePtr pState) const;
+        NS_OSBASE::statemachine::StatePtr getRoot(NS_OSBASE::statemachine::AbstractStatePtr pState) const;
         SMRecords::const_iterator getCurrentTransitionRecordsIterator() const;
 
         void reloadStateWidgets() const;
         void updateStateWidgets() const;
-        void updateStateWidget(cho::osbase::statemachine::StatePtr pState) const;
-        void updateStartStateWidget(cho::osbase::statemachine::StartStatePtr pStartState) const;
-        void updateEndStateWidget(cho::osbase::statemachine::EndStatePtr pEndState) const;
-        void updateHistoryStateWidget(cho::osbase::statemachine::HistoryStatePtr pHistoryState) const;
-        void createStateWidget(cho::osbase::statemachine::AbstractStatePtr pAbstractState) const;
-        StateWidget *findStateWidget(cho::osbase::statemachine::StatePtr pState) const;
+        void updateStateWidget(NS_OSBASE::statemachine::StatePtr pState) const;
+        void updateStartStateWidget(NS_OSBASE::statemachine::StartStatePtr pStartState) const;
+        void updateEndStateWidget(NS_OSBASE::statemachine::EndStatePtr pEndState) const;
+        void updateHistoryStateWidget(NS_OSBASE::statemachine::HistoryStatePtr pHistoryState) const;
+        void createStateWidget(NS_OSBASE::statemachine::AbstractStatePtr pAbstractState) const;
+        StateWidget *findStateWidget(NS_OSBASE::statemachine::StatePtr pState) const;
 
         void displayTransitionRecord(const TransitionRecord &transitionRecord) const;
         void activateTransitionStates(const TransitionRecord &transitionRecord) const;
@@ -86,7 +86,7 @@ namespace cho::osbase::statemachineviewer {
         QComboBox *m_pSMComboBox             = nullptr;
         QTreeWidget *m_pTransitionDetailTree = nullptr;
         QDockWidget *m_pTransitionDetailDock = nullptr;
-        cho::osbase::data::IDataExchangePtr m_pLogReceiver;
+        NS_OSBASE::data::IDataExchangePtr m_pLogReceiver;
         LogReceiverDelegatePtr m_pLogReceiverDelegate;
     };
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

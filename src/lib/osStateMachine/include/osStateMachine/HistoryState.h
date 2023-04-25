@@ -3,7 +3,7 @@
 #pragma once
 #include "AbstractState.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     class HistoryState;
     using HistoryStatePtr = std::shared_ptr<HistoryState>;
@@ -26,4 +26,4 @@ namespace cho::osbase::statemachine {
         HistoryState(StatePtr pParent);
         AbstractStateWPtr m_pSavedState;
     };
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

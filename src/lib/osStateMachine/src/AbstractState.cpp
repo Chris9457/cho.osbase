@@ -5,7 +5,7 @@
 #include "osStateMachine/Transition.h"
 #include "osStateMachine/State.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     /*
      * \class AbstractState
@@ -228,9 +228,9 @@ namespace cho::osbase::statemachine {
             pParent->doExitUntilLCAState(pLCAState, value);
         }
     }
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine
 
-std::ostream &operator<<(std::ostream &os, const cho::osbase::statemachine::AbstractState &state) {
+std::ostream &operator<<(std::ostream &os, const NS_OSBASE::statemachine::AbstractState &state) {
     os << state.getName();
     return os;
 }

@@ -11,7 +11,7 @@
  * \{
  */
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /**
      * \brief Options used to initialize a service
@@ -42,22 +42,22 @@ namespace cho::osbase::application {
         std::vector<std::string> m_tokens;
     };
 
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application
 
 /**
  * \brief Conversion ServiceCommandParser ==> ServiceOptions
  */
 template <>
-struct type_converter<cho::osbase::application::ServiceOptions, cho::osbase::application::ServiceCommandParser> {
-    static cho::osbase::application::ServiceOptions convert(
-        const cho::osbase::application::ServiceCommandParser &cmdParser); //!< \private
+struct type_converter<NS_OSBASE::application::ServiceOptions, NS_OSBASE::application::ServiceCommandParser> {
+    static NS_OSBASE::application::ServiceOptions convert(
+        const NS_OSBASE::application::ServiceCommandParser &cmdParser); //!< \private
 };
 
 /**
  * \brief Conversion ServiceOptions ==> string
  */
 template <>
-struct type_converter<std::string, cho::osbase::application::ServiceOptions> {
-    static std::string convert(const cho::osbase::application::ServiceOptions &options); //!< \private
+struct type_converter<std::string, NS_OSBASE::application::ServiceOptions> {
+    static std::string convert(const NS_OSBASE::application::ServiceOptions &options); //!< \private
 };
 /** \} */

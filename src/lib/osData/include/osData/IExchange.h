@@ -16,7 +16,7 @@
  * \ingroup PACKAGE_OSDATA
  */
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /**
      * \addtogroup PACKAGE_OSBASE_EXCHANGE
@@ -75,4 +75,4 @@ namespace cho::osbase::data {
     IExchange::AccessType operator|(const IExchange::AccessType &lhs, const IExchange::AccessType &rhs); //!< overload of the operator |
     /** \} */
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

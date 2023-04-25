@@ -10,7 +10,7 @@
  *
  * \ingroup PACKAGE_OSBASE_IMESSAGING
  */
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /**
      * \brief Exception thrown when unable to connect to the messaging server
@@ -19,4 +19,4 @@ namespace cho::osbase::data {
         using core::LogicException::LogicException;
     };
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

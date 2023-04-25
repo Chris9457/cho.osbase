@@ -3,7 +3,7 @@
 #pragma once
 #include "ILogOutput.h"
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
     /**
      * \addtogroup PACKAGE_OSBASE_LOGS
      * \{
@@ -39,4 +39,4 @@ namespace cho::osbase::data {
     LogOutputGroupPtr makeLogOutputGroup(); //!< build and return a log output group
     /** \} */
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

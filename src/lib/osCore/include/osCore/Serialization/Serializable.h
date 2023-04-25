@@ -7,7 +7,7 @@
 #include <string>
 #include <istream>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     /**
      * \addtogroup PACKAGE_STREAM
      * \{
@@ -56,6 +56,6 @@ namespace cho::osbase::core {
 
     /** \} */
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "Serializable.inl"

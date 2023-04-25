@@ -3,7 +3,7 @@
 #include "osApplication/ServiceCommandParser.h"
 #include <sstream>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     constexpr char *SERVICE_OPTION_BROKERURL        = "-brokerUrl";
     constexpr char *SERVICE_OPTION_BROKERPORT       = "-brokerPort";
@@ -103,9 +103,9 @@ namespace cho::osbase::application {
         return it != m_tokens.cend() && ++it != m_tokens.cend();
     };
 
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application
 
-using namespace cho::osbase::application;
+using namespace NS_OSBASE::application;
 ServiceOptions type_converter<ServiceOptions, ServiceCommandParser>::convert(const ServiceCommandParser &cmdParser) {
     return cmdParser.parse();
 }

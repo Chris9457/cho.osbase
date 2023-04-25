@@ -13,7 +13,7 @@
 
 using namespace Microsoft::WRL;
 
-namespace cho::osbase::webengine {
+namespace NS_OSBASE::webengine {
     OS_REGISTER_FACTORY_N(IWebViewerEngine, WebView2Engine, 0, WEBENGINE_WEBVIEW2)
     OS_REGISTER_FACTORY_N(IWebViewerEngine, WebView2Engine, 1, WEBENGINE_WEBVIEW2, Settings)
 
@@ -298,4 +298,4 @@ namespace cho::osbase::webengine {
 
         return nullptr;
     }
-} // namespace cho::osbase::webengine
+} // namespace NS_OSBASE::webengine

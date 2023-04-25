@@ -5,7 +5,7 @@
 #include "osCore/Exception/RuntimeException.h"
 #include <memory>
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /**
      * \brief Network exception
@@ -27,4 +27,4 @@ namespace cho::osbase::data {
     };
 
     INetworkPtr makeNetwork(); //!< instantiate the concrete network
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

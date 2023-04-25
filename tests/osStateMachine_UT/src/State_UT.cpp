@@ -6,7 +6,7 @@
 
 #include "osStateMachine/AbstractState.h"
 
-namespace cho::osbase::statemachine::ut {
+namespace NS_OSBASE::statemachine::ut {
 
     class State_UT : public testing::Test {
     protected:
@@ -683,4 +683,4 @@ namespace cho::osbase::statemachine::ut {
         ASSERT_EQ(findState(s_s3_1), std::any_cast<StatePtr>(transitions[2].entities[0]));
     }
 
-} // namespace cho::osbase::statemachine::ut
+} // namespace NS_OSBASE::statemachine::ut

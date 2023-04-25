@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <unordered_map>
 
-namespace cho::osbase::logviewer {
+namespace NS_OSBASE::logviewer {
     enum class ConsoleColor : unsigned short {
         Black       = 0,
         Darkblue    = FOREGROUND_BLUE,
@@ -66,4 +66,4 @@ namespace cho::osbase::logviewer {
         { "containkey", Operands::containKey },
         { "inkey", Operands::inKey },
     };
-} // namespace cho::osbase::logviewer
+} // namespace NS_OSBASE::logviewer

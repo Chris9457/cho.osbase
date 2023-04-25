@@ -10,13 +10,13 @@
 #include <mutex>
 #include <thread>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
     class TaskLoop;
     using TaskLoopPtr = std::shared_ptr<TaskLoop>; //!< Alias on shared pointers on TaskLoop
 
     /**
      * \brief This class implement a loop over tasks
-     * \copydetails cho::osbase::application::TaskQueue
+     * \copydetails NS_OSBASE::application::TaskQueue
      *
      * \remark
      * This class can be used to perform a loop on the current thread of its creation via the method run() or in a new thread via
@@ -139,6 +139,6 @@ namespace cho::osbase::application {
         IRuntimeErrorDelegateWPtr m_pRuntimeErrorDelegate;
         std::atomic<std::thread::id> m_thId = std::this_thread::get_id();
     };
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application
 
 #include "TaskLoop.inl"

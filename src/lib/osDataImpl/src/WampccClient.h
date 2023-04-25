@@ -7,7 +7,7 @@
 #include <mutex>
 #include <unordered_map>
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
     class MessagingWampcc : public IMessaging {
     public:
         MessagingWampcc();
@@ -65,4 +65,4 @@ namespace cho::osbase::data::impl {
         bool m_bStopRetryConnection = false;
         States m_state              = States::Idle;
     };
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

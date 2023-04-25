@@ -5,7 +5,7 @@
 
 #include "osCore/DesignPattern/Observer.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class Observable
@@ -60,4 +60,4 @@ namespace cho::osbase::core {
      */
     Observable::AbstractObserverContainer::~AbstractObserverContainer() = default;
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

@@ -7,7 +7,7 @@
 #include <ostream>
 
 #ifndef NSCORE
-#define OS_NSCORE ::cho::osbase::core
+#define OS_NSCORE ::NS_OSBASE::core
 #endif
 
 /**

@@ -7,7 +7,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class LogOutputGroup_UT : public testing::Test {};
 
@@ -94,4 +94,4 @@ namespace cho::osbase::data::ut {
             ASSERT_NE(pLogOutputs.cend(), pLogOutputs.find(pLogOutput));
         }
     }
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

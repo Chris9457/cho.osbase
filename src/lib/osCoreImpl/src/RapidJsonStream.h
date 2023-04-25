@@ -7,7 +7,7 @@
 #include <set>
 #include <stack>
 
-namespace cho::osbase::core::impl {
+namespace NS_OSBASE::core::impl {
 
     /**
      * \brief 	This class represents:
@@ -63,4 +63,4 @@ namespace cho::osbase::core::impl {
         std::set<std::string> m_stringKeepAlive;
     };
 
-} // namespace cho::osbase::core::impl
+} // namespace NS_OSBASE::core::impl

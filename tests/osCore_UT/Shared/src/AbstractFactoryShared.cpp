@@ -4,7 +4,7 @@
 #include "Shared/AbstractFactoryShared.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
     OS_REGISTER_FACTORY(BaseProduct, ConcreteProductShared, "Class ConcreteProduct Shared", int);
 
     ConcreteProductShared::ConcreteProductShared(int i) : m_i(i) {
@@ -24,4 +24,4 @@ namespace cho::osbase::core::ut {
     void ConcreteProductShared::setStr(const std::string &str) {
         m_str = str;
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

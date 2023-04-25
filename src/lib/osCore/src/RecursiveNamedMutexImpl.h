@@ -6,7 +6,7 @@
 #include <Windows.h>
 #include <string>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     class recursive_named_mutex_impl {
     public:
@@ -25,4 +25,4 @@ namespace cho::osbase::core {
 
         HANDLE m_handle = nullptr;
     };
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

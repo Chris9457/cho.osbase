@@ -5,7 +5,7 @@
 #include "osCore/Serialization/FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     std::vector<std::string> getKeyStreamFamilies() {
         return TheFactoryManager.getFactoryNames<KeyStream<std::string>>();
     }
@@ -59,4 +59,4 @@ namespace cho::osbase::core {
         return os << reinterpret_cast<const char *>(keyStream.getBuffer().data());
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

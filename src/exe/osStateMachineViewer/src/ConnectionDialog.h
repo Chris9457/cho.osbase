@@ -9,7 +9,7 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
 
     /**
      * \brief Connection to the log service
@@ -32,4 +32,4 @@ namespace cho::osbase::statemachineviewer {
         QString m_hostName;
         unsigned short m_port;
     };
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

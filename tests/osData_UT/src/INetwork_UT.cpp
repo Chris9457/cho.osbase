@@ -3,7 +3,7 @@
 #include "osData/INetwork.h"
 #include "gtest/gtest.h"
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class INetwork_UT : public testing::Test {
     protected:
@@ -25,4 +25,4 @@ namespace cho::osbase::data::ut {
         ASSERT_NE(static_cast<std::string>(localHost), "127.0.0.1");
     }
 
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

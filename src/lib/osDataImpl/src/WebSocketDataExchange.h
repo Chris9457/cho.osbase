@@ -8,7 +8,7 @@
 #include <memory>
 #include <shared_mutex>
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
 
     /*
      *  \\! DataTypes alias declaration
@@ -75,4 +75,4 @@ namespace cho::osbase::data::impl {
         Uri m_serverUri;
     };
 
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

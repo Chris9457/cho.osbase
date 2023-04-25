@@ -7,7 +7,7 @@
 
 #define TASK_ASSERT_VALUE "All arguments must be passed by value"
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     namespace internal {
 
@@ -155,4 +155,4 @@ namespace cho::osbase::application {
             }
         });
     }
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

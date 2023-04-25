@@ -18,5 +18,5 @@ target_link_libraries(${LOGSERVICE} PRIVATE
 target_include_directories(${LOGSERVICE} PRIVATE ${INCLUDE_DIR})
 
 install(TARGETS ${LOGSERVICE} DESTINATION log)
-install(FILES $<TARGET_RUNTIME_DLLS:${LOGSERVICE}> DESTINATION log)
 install(DIRECTORY $<TARGET_FILE_DIR:${OS_LOG}.impl>/resources DESTINATION log)
+install_deps(TARGET ${LOGSERVICE} DESTINATION log)

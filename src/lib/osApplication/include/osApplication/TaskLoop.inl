@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
     template <typename TCallback, typename... TArgs>
     ITaskPtr TaskLoop::push(TCallback &&callback, TArgs &&...args) {
         return m_taskScheduler.pushTask(std::forward<TCallback>(callback), std::forward<TArgs>(args)...);
@@ -48,4 +48,4 @@ namespace cho::osbase::application {
             delay, pInstance, std::forward<TMthCallback>(mthCallback), std::forward<TArgs>(args)...);
     }
 
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

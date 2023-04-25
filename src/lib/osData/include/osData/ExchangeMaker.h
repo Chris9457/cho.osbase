@@ -2,7 +2,7 @@
 
 #pragma once
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
     template <class TExchange>
     std::shared_ptr<TExchange> makeExchange(const std::string &scheme = TExchange::defaultScheme);
 }

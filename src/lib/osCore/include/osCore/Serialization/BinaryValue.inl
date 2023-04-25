@@ -3,7 +3,7 @@
 #pragma once
 #include <utility>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     /*
      * \class BinaryValue
      */
@@ -54,4 +54,4 @@ namespace cho::osbase::core {
     auto makeBinaryValue(TValue &&value) {
         return BinaryValue<TValue>(std::forward<TValue>(value));
     }
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

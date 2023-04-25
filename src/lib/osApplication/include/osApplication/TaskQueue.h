@@ -8,7 +8,7 @@
 #include <list>
 #include <mutex>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /**
      * \brief 	This class represents a task queue:
@@ -138,6 +138,6 @@ namespace cho::osbase::application {
         time_point m_lastTimeStamp = std::chrono::time_point<clock>::min();
     };
 
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application
 
 #include "TaskQueue.inl"

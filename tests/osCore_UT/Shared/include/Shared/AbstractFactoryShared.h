@@ -4,7 +4,7 @@
 
 #include "osCore_UT/BaseProduct.h"
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
     class ConcreteProductShared : public BaseProduct {
     public:
         ConcreteProductShared(int i);
@@ -19,4 +19,4 @@ namespace cho::osbase::core::ut {
         int m_i = 0;
         std::string m_str;
     };
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

@@ -8,7 +8,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class LogOutputDataExhange_UT : public testing::Test {
         class DataExchangeDelegate : public IDataExchange::IDelegate {
@@ -135,4 +135,4 @@ namespace cho::osbase::data::ut {
         ASSERT_EQ(flushedMsg, msg);
     }
 
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

@@ -4,12 +4,12 @@
 #include "osStateMachine/AbstractState.h"
 #include <QLabel>
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     class StateTitle : public QLabel {
         Q_OBJECT
 
     public:
-        StateTitle(cho::osbase::statemachine::AbstractStatePtr pState);
+        StateTitle(NS_OSBASE::statemachine::AbstractStatePtr pState);
 
         void setColor(const QColor &color);
 
@@ -17,4 +17,4 @@ namespace cho::osbase::statemachineviewer {
         void paintEvent(QPaintEvent *event) override;
         QColor m_color;
     };
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

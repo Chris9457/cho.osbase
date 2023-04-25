@@ -26,3 +26,4 @@ target_compile_options(${DATA_IMPL}
 		$<$<PLATFORM_ID:Windows>:/D_WIN32_WINNT=0x0601>
 		$<$<PLATFORM_ID:Windows>:/D_WINSOCK_DEPRECATED_NO_WARNINGS>
 		)
+

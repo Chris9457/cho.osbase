@@ -2,7 +2,7 @@
 
 #include "osApplication_UT/TestProcessServiceImpl.h"
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     /*
      * \class TestProcessImpl
@@ -61,7 +61,7 @@ namespace cho::osbase::application::ut {
         return true;
     }
 
-    cho::osbase::data::Uri TestProcessImpl::retUriNoArg() {
+    NS_OSBASE::data::Uri TestProcessImpl::retUriNoArg() {
         return type_cast<data::Uri>(std::string("ws://localhost:50210"));
     }
 
@@ -77,11 +77,11 @@ namespace cho::osbase::application::ut {
         return { "titi", "toto" };
     }
 
-    cho::osbase::data::AsyncData<std::vector<std::string>> TestProcessImpl::retAsyncNoArg() {
+    NS_OSBASE::data::AsyncData<std::vector<std::string>> TestProcessImpl::retAsyncNoArg() {
         return m_asyncStrings;
     }
 
-    cho::osbase::data::AsyncPagedData<std::vector<bool>> TestProcessImpl::retAsyncPagedNoArg() {
+    NS_OSBASE::data::AsyncPagedData<std::vector<bool>> TestProcessImpl::retAsyncPagedNoArg() {
         return m_asyncBools;
     }
 
@@ -97,7 +97,7 @@ namespace cho::osbase::application::ut {
         double _floating,
         std::string _string,
         bool _boolean,
-        cho::osbase::data::Uri _uri) {
+        NS_OSBASE::data::Uri _uri) {
         return { _char,
             _unsigned_char,
             _short_integer,
@@ -125,7 +125,7 @@ namespace cho::osbase::application::ut {
         return "test";
     }
 
-    cho::osbase::data::AsyncData<std::vector<int>> TestProcessImpl::fwdAsyncData() {
+    NS_OSBASE::data::AsyncData<std::vector<int>> TestProcessImpl::fwdAsyncData() {
         return m_asyncFwdData;
     }
 
@@ -148,4 +148,4 @@ namespace cho::osbase::application::ut {
         m_asyncStrings.reset();
         m_asyncBools.reset();
     }
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

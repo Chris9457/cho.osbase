@@ -4,7 +4,7 @@
 #include "osLog.h"
 #include "osData/Uri.h"
 
-namespace cho::osbase::logviewer {
+namespace NS_OSBASE::logviewer {
     struct LogServiceSetting {
         data::Uri address;
         std::string realm;
@@ -66,23 +66,23 @@ namespace cho::osbase::logviewer {
         Columns columns;
         std::optional<Filters> filters;
     };
-} // namespace cho::osbase::logviewer
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::logviewer::LogServiceSetting, address, realm)
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::logviewer::Field, key, type)
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::logviewer::ColumnHeader, name, field)
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::logviewer::Columns, headers, separator)
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::logviewer::Operation, field, operand, value)
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::logviewer::Input, fileName, logServiceSettings)
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::logviewer::Output, consoleColor, fileName)
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::logviewer::Filter, operation, and, or, output)
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::logviewer::Settings, input, columns, filters)
+} // namespace NS_OSBASE::logviewer
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::logviewer::LogServiceSetting, address, realm)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::logviewer::Field, key, type)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::logviewer::ColumnHeader, name, field)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::logviewer::Columns, headers, separator)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::logviewer::Operation, field, operand, value)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::logviewer::Input, fileName, logServiceSettings)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::logviewer::Output, consoleColor, fileName)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::logviewer::Filter, operation, and, or, output)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::logviewer::Settings, input, columns, filters)
 
 template <>
-struct std::less<cho::osbase::logviewer::Filter> {
-    bool operator()(const cho::osbase::logviewer::Filter &lhs, const cho::osbase::logviewer::Filter &rhs) const;
+struct std::less<NS_OSBASE::logviewer::Filter> {
+    bool operator()(const NS_OSBASE::logviewer::Filter &lhs, const NS_OSBASE::logviewer::Filter &rhs) const;
 };
 
-namespace cho::osbase::logviewer {
+namespace NS_OSBASE::logviewer {
 
     /**
      * \brief base class for stream writers
@@ -136,4 +136,4 @@ namespace cho::osbase::logviewer {
         mutable std::mutex m_mutLog;
         std::vector<std::pair<Filter, StreamWriterPtr>> m_streamWriters;
     };
-} // namespace cho::osbase::logviewer
+} // namespace NS_OSBASE::logviewer

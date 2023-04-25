@@ -20,7 +20,7 @@
  * \ingroup PACKAGE_SERIALIZATION
  */
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief 	This enum represents:
@@ -91,4 +91,4 @@ namespace cho::osbase::core {
     BasicType operator|(const BasicType lhs, const BasicType rhs); //!< overload of the bitwise OR operator
     BasicType operator&(const BasicType lhs, const BasicType rhs); //!< overload of the bitwise AND operator
     /** \}*/
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

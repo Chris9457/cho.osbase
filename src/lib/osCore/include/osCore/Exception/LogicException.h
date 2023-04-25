@@ -5,7 +5,7 @@
 
 #include <stdexcept>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief Thrown when an expected error occurs
@@ -14,4 +14,4 @@ namespace cho::osbase::core {
     class LogicException : public std::logic_error {
         using std::logic_error::logic_error;
     };
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

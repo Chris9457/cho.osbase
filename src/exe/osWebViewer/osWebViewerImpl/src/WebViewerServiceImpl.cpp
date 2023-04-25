@@ -7,7 +7,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::webviewer {
+namespace NS_OSBASE::webviewer {
 
     /*
      * \class WebViewerServiceImpl::LogServiceObserver
@@ -66,4 +66,4 @@ namespace cho::osbase::webviewer {
         }
     }
 
-} // namespace cho::osbase::webviewer
+} // namespace NS_OSBASE::webviewer

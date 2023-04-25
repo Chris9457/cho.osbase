@@ -3,13 +3,13 @@
 	"brokerPort": 8080,
 	"settings": [
 		{
-			"serviceName": "../log/cho.osbase.log.service.exe",
+			"serviceName": "../log/@OSBASE@.log.service.exe",
 			"displayConsole": false,
 			"autoRestart": false,
 			"killIfExist": true
 		},
 		{
-			"serviceName": "../webviewer/cho.osbase.webviewer.service.exe",
+			"serviceName": "../webviewer/@OSBASE@.webviewer.service.exe",
 			"displayConsole": false,
 			"autoRestart": false,
 			"killIfExist": true

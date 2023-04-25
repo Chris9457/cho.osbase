@@ -5,7 +5,7 @@
 #include <chrono>
 #include <set>
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     using time_point = std::chrono::system_clock::time_point;
 
     struct ActionRecord {
@@ -20,9 +20,9 @@ namespace cho::osbase::statemachineviewer {
         std::string evtName;
         std::string failure;
         std::string guardName;
-        cho::osbase::statemachine::AbstractStatePtr pCurrentState;
-        cho::osbase::statemachine::AbstractStatePtr pFromState;
-        cho::osbase::statemachine::AbstractStatePtr pToState;
+        NS_OSBASE::statemachine::AbstractStatePtr pCurrentState;
+        NS_OSBASE::statemachine::AbstractStatePtr pFromState;
+        NS_OSBASE::statemachine::AbstractStatePtr pToState;
         ActionRecords actionRecords;
     };
     using TransitionRecords = std::vector<TransitionRecord>;
@@ -31,10 +31,10 @@ namespace cho::osbase::statemachineviewer {
         std::wstring processName;
         std::string smName;
         unsigned long long smId;
-        cho::osbase::statemachine::StatePtr pRoot;
+        NS_OSBASE::statemachine::StatePtr pRoot;
 
         bool operator<(const KeyTransitionRecord &other) const;
     };
 
     using SMRecords = std::map<KeyTransitionRecord, TransitionRecords>;
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

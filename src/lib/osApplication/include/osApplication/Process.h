@@ -5,7 +5,7 @@
 #include "osApplication/ServiceCommandParser.h"
 #include <memory>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     class ProcessImpl;
     using ProcessImplPtr = std::shared_ptr<ProcessImpl>;
@@ -22,4 +22,4 @@ namespace cho::osbase::application {
 
         ProcessImplPtr m_pImpl;
     };
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

@@ -3,7 +3,7 @@
 #include "HttpServer.h"
 #include "httplib.h"
 
-namespace cho::osbase::web {
+namespace NS_OSBASE::web {
 
     /*
      * \class HttpServer
@@ -11,4 +11,4 @@ namespace cho::osbase::web {
     HttpServer::HttpServer() {
         httplib::Server svr;
     }
-} // namespace cho::osbase::web
+} // namespace NS_OSBASE::web

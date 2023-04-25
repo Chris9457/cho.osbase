@@ -4,7 +4,7 @@
 #include "osData/IDataExchange.h"
 #include <random>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     namespace {
         constexpr size_t s_uuidLength = 64;
@@ -178,4 +178,4 @@ namespace cho::osbase::application {
 
     void ServiceHandshake::onFailure(std::string &&) {
     }
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

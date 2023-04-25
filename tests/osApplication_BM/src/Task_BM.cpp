@@ -1,7 +1,7 @@
 #include "benchmark/benchmark.h"
 #include "osApplication/Task.h"
 
-using namespace cho::osbase::application;
+using namespace NS_OSBASE::application;
 
 namespace {
 

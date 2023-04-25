@@ -7,7 +7,7 @@
 #include "osCore/DesignPattern/Singleton.h"
 #include "osCore/Serialization/CoreKeySerializer.h"
 
-namespace cho::osbase::log {
+namespace NS_OSBASE::log {
 
     /**
      * \brief Settings of the service log
@@ -43,5 +43,5 @@ namespace cho::osbase::log {
         LogSettings m_settings;
     };
 #define TheLogServiceImpl LogServiceImpl::getInstance()
-} // namespace cho::osbase::log
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::log::LogSettings, outputFolder);
+} // namespace NS_OSBASE::log
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::log::LogSettings, outputFolder);

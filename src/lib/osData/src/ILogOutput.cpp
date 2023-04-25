@@ -4,9 +4,9 @@
 #include "osData/FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 
-namespace nscore = cho::osbase::core;
+namespace nscore = NS_OSBASE::core;
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
     ILogOutputPtr makeLogOutputNull() {
         return nscore::TheFactoryManager.createInstance<ILogOutput>(LOGOUTPUT_NULL_FACTORY_NAME);
     }
@@ -31,4 +31,4 @@ namespace cho::osbase::data {
         return nscore::TheFactoryManager.createInstance<ILogOutput>(LOGOUTPUT_DEBUG_FACTORY_NAME);
     }
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

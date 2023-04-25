@@ -6,7 +6,7 @@
 #include "osData/AsyncData.h"
 #include "osData/IBroker.h"
 
-namespace cho::osbase::application::bm {
+namespace NS_OSBASE::application::bm {
     class Server : public core::Singleton<Server> {
         friend core::Singleton<Server>;
 
@@ -26,4 +26,4 @@ namespace cho::osbase::application::bm {
         data::AsyncPagedData<AsyncStruct> m_asyncStruct;
     };
 #define TheServer Server::getInstance()
-} // namespace cho::osbase::application::bm
+} // namespace NS_OSBASE::application::bm

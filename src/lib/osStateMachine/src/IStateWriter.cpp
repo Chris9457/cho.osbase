@@ -4,7 +4,7 @@
 #include "FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     /*
      * makers
@@ -17,4 +17,4 @@ namespace cho::osbase::statemachine {
         stateWriter.flush(os);
         return os;
     }
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

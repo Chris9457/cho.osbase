@@ -7,7 +7,7 @@
 #include <memory>
 #include <future>
 
-namespace cho::osbase::webengine {
+namespace NS_OSBASE::webengine {
 
     /**
      * \brief Exception thrown by web engines
@@ -46,4 +46,4 @@ namespace cho::osbase::webengine {
 
     IWebViewerEnginePtr makeWebViewerEngine();
     IWebViewerEnginePtr makeWebViewerEngine(const Settings &settings);
-} // namespace cho::osbase::webengine
+} // namespace NS_OSBASE::webengine

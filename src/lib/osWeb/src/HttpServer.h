@@ -3,7 +3,7 @@
 #pragma once
 #include "osWeb/IHttpServer.h"
 
-namespace cho::osbase::web {
+namespace NS_OSBASE::web {
 
     /**
      *\brief Implementation of the interface IWebServer
@@ -12,4 +12,4 @@ namespace cho::osbase::web {
     public:
         HttpServer();
     };
-} // namespace cho::osbase::web
+} // namespace NS_OSBASE::web

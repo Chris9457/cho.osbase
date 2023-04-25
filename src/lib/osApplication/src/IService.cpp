@@ -1,7 +1,7 @@
 // \brief Base interface of services
 
 #include "osApplication/IService.h"
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
     /*
      * \struct ServiceConnectionMsg
      */
@@ -11,4 +11,4 @@ namespace cho::osbase::application {
     bool ServiceConnectionMsg::isConnected() const {
         return m_bConnected;
     }
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

@@ -5,7 +5,7 @@
 #include "osData/FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /**
      * maker
@@ -13,4 +13,4 @@ namespace cho::osbase::data {
     INetworkPtr makeNetwork() {
         return core::TheFactoryManager.createInstance<INetwork>(NETWORK_FACTORY_NAME);
     }
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

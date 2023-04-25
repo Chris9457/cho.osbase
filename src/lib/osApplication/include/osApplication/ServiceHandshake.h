@@ -4,7 +4,7 @@
 #include "osData/IDataExchange.h"
 #include <future>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     class ServiceHandshake;
     using ServiceHandshakePtr = std::shared_ptr<ServiceHandshake>; //!< alias for shared pointer on ServiceHandshake
@@ -66,4 +66,4 @@ namespace cho::osbase::application {
         std::condition_variable m_cvConnected;
         std::condition_variable m_cvDisconnected;
     };
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

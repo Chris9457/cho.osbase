@@ -23,7 +23,7 @@ class CppImplCore(CppBase):
         serviceName = name + 'Service'
         skeletonName = serviceName + 'Skeleton'
         baseService = serviceName
-        baseClass = 'cho::osbase::application::ServiceImpl<' + baseService + '>'
+        baseClass = 'NS_OSBASE::application::ServiceImpl<' + baseService + '>'
         if not self.namespace is None:
             baseService = self.namespace + '::' + baseService
 

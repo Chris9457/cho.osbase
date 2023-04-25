@@ -7,7 +7,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class LogOutputDebug_UT : public testing::Test {};
 
@@ -15,4 +15,4 @@ namespace cho::osbase::data::ut {
         auto const pLog = makeLogOutputDebug();
         ASSERT_NE(nullptr, pLog);
     }
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

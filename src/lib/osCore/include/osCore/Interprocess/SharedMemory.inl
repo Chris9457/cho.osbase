@@ -1,7 +1,7 @@
 ﻿// \file  SharedMemory.inl
 // \brief Implementation of the class SharedMemory
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class SharedMemory
@@ -22,4 +22,4 @@ namespace cho::osbase::core {
         setBuffer(&value);
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

@@ -2,7 +2,7 @@
 
 #include "TestServiceImpl/TestServiceImpl.h"
 
-namespace nsdata = cho::osbase::data;
+namespace nsdata = NS_OSBASE::data;
 
 namespace testservice::impl {
 
@@ -67,8 +67,8 @@ namespace testservice::impl {
         *(int *)0 = 0;
     }
 
-    cho::osbase::data::AsyncPagedData<std::vector<bool>> TestServiceImpl::setPositionsAsync(
-        cho::osbase::data::AsyncData<api::Positions> buffer) {
+    NS_OSBASE::data::AsyncPagedData<std::vector<bool>> TestServiceImpl::setPositionsAsync(
+        NS_OSBASE::data::AsyncData<api::Positions> buffer) {
         setPositions(buffer.get(), api::EPosition::Absolute);
 
         return m_booleansProvider;

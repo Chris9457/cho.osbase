@@ -3,7 +3,7 @@
 #include "osData/Uri.h"
 #include "gtest/gtest.h"
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class Uri_UT : public testing::Test {};
 
@@ -278,4 +278,4 @@ namespace cho::osbase::data::ut {
         ASSERT_EQ("127.0.0.1", Uri::Host("127.0.0.1"));
         ASSERT_EQ("192.168.0.1", Uri::Host("192.168.0.1"));
     }
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

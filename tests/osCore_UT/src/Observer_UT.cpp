@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 #include <future>
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     class Observer_UT : public testing::Test {};
 
@@ -418,4 +418,4 @@ namespace cho::osbase::core::ut {
         ASSERT_NE(std::future_status::timeout, fut2.wait_for(1s));
         ASSERT_EQ(2, myObserver.getCount());
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

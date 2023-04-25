@@ -2,7 +2,7 @@
 
 #include "osApplication_UT/TestEventServiceImpl.h"
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     void TestEventServiceImpl::invoke(bool noData) {
         if (noData) {
@@ -12,7 +12,7 @@ namespace cho::osbase::application::ut {
         }
     }
 
-    cho::osbase::data::AsyncData<std::vector<int>> TestEventServiceImpl::fwdAsyncData() {
+    NS_OSBASE::data::AsyncData<std::vector<int>> TestEventServiceImpl::fwdAsyncData() {
         return m_pTestProcessService->fwdAsyncData();
     }
 
@@ -26,4 +26,4 @@ namespace cho::osbase::application::ut {
 
     TestEventServiceImpl::TestEventServiceImpl() : m_pTestProcessService(process::makeStub(getTaskLoop())) {
     }
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

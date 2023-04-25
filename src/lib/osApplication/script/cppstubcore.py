@@ -21,7 +21,7 @@ class CppStubCore(CppBase):
     def __getBaseClassName(self, withNamespace):
         serviceName = self.yamlApi[tags.serviceTag][tags.nameTag] + 'Service'
         if withNamespace:
-            return 'cho::osbase::application::ServiceStub<' + serviceName + '>'
+            return 'NS_OSBASE::application::ServiceStub<' + serviceName + '>'
 
         return 'ServiceStub<' + serviceName + '>'
 
@@ -88,7 +88,7 @@ class CppStubCore(CppBase):
         self.file.write('    public:\n')
         self.file.write('        ' +
                         stubClassName +
-                        '(cho::osbase::application::TaskLoopPtr pTaskLoop) : ' + self.__getBaseClassName(False)
+                        '(NS_OSBASE::application::TaskLoopPtr pTaskLoop) : ' + self.__getBaseClassName(False)
                         + '(' + '"' + serviceName + '"' + ', pTaskLoop) {}\n\n')
 
         if tags.processTag in self.yamlApi and not self.yamlApi[tags.processTag] is None:
@@ -112,7 +112,7 @@ class CppStubCore(CppBase):
         serviceName = self.yamlApi[tags.serviceTag][tags.nameTag] + 'Service'
         stubClassName = serviceName + 'Stub'
         self.file.write(
-            '    ' + serviceName + 'Ptr makeStub(cho::osbase::application::TaskLoopPtr pTaskLoop) {\n')
+            '    ' + serviceName + 'Ptr makeStub(NS_OSBASE::application::TaskLoopPtr pTaskLoop) {\n')
         self.file.write('        return std::make_shared<' + stubClassName + '>(pTaskLoop);\n')
         self.file.write('    }\n')
 

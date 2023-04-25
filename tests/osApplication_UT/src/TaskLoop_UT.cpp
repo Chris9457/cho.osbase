@@ -4,9 +4,9 @@
 #include "gtest/gtest.h"
 #include <filesystem>
 
-using namespace cho::osbase::application;
+using namespace NS_OSBASE::application;
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     class TaskLoop_UT : public testing::Test {
     protected:
@@ -289,4 +289,4 @@ namespace cho::osbase::application::ut {
         // Check no infinite loop
         ASSERT_EQ(delayStop / delayRep / 2, S::m_retInt);
     }
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

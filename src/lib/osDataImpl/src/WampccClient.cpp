@@ -24,7 +24,7 @@ using namespace wampcc;
 
 #define LOG_INFO(X) LOGIMPL(X, wampcc::logger::eInfo)
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
     OS_REGISTER_FACTORY_N(IMessaging, MessagingWampcc, 0, MESSAGINGWAMPCC_FACTORY_NAME);
 
     namespace {
@@ -410,4 +410,4 @@ namespace cho::osbase::data::impl {
         return m_state == States::Idle;
     }
 
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

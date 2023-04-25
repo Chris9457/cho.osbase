@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
     struct ProcessSetting {
         std::string serviceName;
         bool displayConsole            = false;
@@ -14,6 +14,6 @@ namespace cho::osbase::application {
         unsigned int endProcessTimeout = 100; //!< time to wait in milliseconds after calling endProcess
     };
     using ProcessSettings = std::vector<ProcessSetting>;
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application
 OS_KEY_SERIALIZE_STRUCT(
-    cho::osbase::application::ProcessSetting, serviceName, displayConsole, autoRestart, killIfExist, endProcessTimeout)
+    NS_OSBASE::application::ProcessSetting, serviceName, displayConsole, autoRestart, killIfExist, endProcessTimeout)

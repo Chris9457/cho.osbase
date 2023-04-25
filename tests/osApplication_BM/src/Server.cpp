@@ -3,7 +3,7 @@
 #include "Server.h"
 #include "Service_BMImpl.h"
 
-namespace cho::osbase::application::bm {
+namespace NS_OSBASE::application::bm {
 
     void Server::connect() {
         m_pBroker = data::makeBroker();
@@ -41,4 +41,4 @@ namespace cho::osbase::application::bm {
     data::AsyncPagedData<AsyncStruct> &Server::getAsyncStruct() {
         return m_asyncStruct;
     }
-} // namespace cho::osbase::application::bm
+} // namespace NS_OSBASE::application::bm

@@ -2,7 +2,7 @@
 
 #include "Service_BMImpl.h"
 
-namespace cho::osbase::application::bm {
+namespace NS_OSBASE::application::bm {
     void Service_BMImpl::noRetNoArg() {
     }
 
@@ -117,7 +117,7 @@ namespace cho::osbase::application::bm {
         m_asyncArg.get([this](std::vector<unsigned char> &&value) { callBackAsyncBuffer(std::move(value)); });
     }
 
-    void Service_BMImpl::noRetAsyncStruct(cho::osbase::data::AsyncPagedData<AsyncStruct> arg1) {
+    void Service_BMImpl::noRetAsyncStruct(NS_OSBASE::data::AsyncPagedData<AsyncStruct> arg1) {
         if (m_asyncStruct.isValid()) {
             return;
         }
@@ -159,4 +159,4 @@ namespace cho::osbase::application::bm {
         m_promiseReceivedData.set_value();
     }
 
-} // namespace cho::osbase::application::bm
+} // namespace NS_OSBASE::application::bm

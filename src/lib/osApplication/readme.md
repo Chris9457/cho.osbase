@@ -67,7 +67,7 @@
 | floating                  | Numeric floating type (8 bytes)                               | number            | double                        |
 | string                    | String type (set of character) - ex: "toto"                   | string            | std::string                   |
 | boolean                   | Boolean type (true or false)                                  | boolean           | bool                          |
-| uri                       | Uri type (special string that represent a value URI)          | string            | cho::osbase::data::Uri        | 
+| uri                       | Uri type (special string that represent a value URI)          | string            | osbase::data::Uri        | 
 
 
 ## Grammatical definition
@@ -98,7 +98,7 @@ Contains the global information of the service. When this section is present, th
     service:
         name: "ITest"
         description: "api of the test service"
-        realm: "cho.shared"
+        realm: "osbase"
         namespace: "testservice.api"
         constants:
             - name: "testServiceChannelSagitalViewChannel"

@@ -5,11 +5,11 @@
 #include "osCore/Misc/Scope.h"
 #include <QtWidgets>
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nscore   = nsosbase::core;
 namespace nssm     = nsosbase::statemachine;
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     HistoryStateWidget::HistoryStateWidget(nssm::HistoryStatePtr pHistoryState) : AbstractStateWidget(pHistoryState) {
         setMinimumSize(HISTORYSTATEWIDGET_EDGE, HISTORYSTATEWIDGET_EDGE);
         setMaximumSize(HISTORYSTATEWIDGET_EDGE, HISTORYSTATEWIDGET_EDGE);
@@ -33,4 +33,4 @@ namespace cho::osbase::statemachineviewer {
         painter.drawEllipse(rect);
         painter.drawText(rect + QMargins(0, 0, 1, 1), Qt::AlignCenter, HISTORYSTATEWIDGET_LABEL);
     }
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

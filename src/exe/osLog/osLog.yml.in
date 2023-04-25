@@ -2,7 +2,7 @@ service:
   name: "ILog"
   description: "api of the logs"
   realm: "osbase"
-  namespace: "cho.osbase.log"
+  namespace: "@OSBASE@.log"
 
 process:
   - name: "getInputLogUri"

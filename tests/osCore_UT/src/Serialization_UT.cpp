@@ -5,15 +5,15 @@
 #include <sstream>
 #include "gtest/gtest.h"
 
-OS_SERIALIZE_STRUCT(cho::osbase::core::ut::TestStruct, st, i, d, v)
-OS_SERIALIZE_STRUCT(cho::osbase::core::ut::ComplexTestStruct, d, t, e, s)
+OS_SERIALIZE_STRUCT(NS_OSBASE::core::ut::TestStruct, st, i, d, v)
+OS_SERIALIZE_STRUCT(NS_OSBASE::core::ut::ComplexTestStruct, d, t, e, s)
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
     struct TestNoField {};
-} // namespace cho::osbase::core::ut
-OS_SERIALIZE_STRUCT(cho::osbase::core::ut::TestNoField)
+} // namespace NS_OSBASE::core::ut
+OS_SERIALIZE_STRUCT(NS_OSBASE::core::ut::TestNoField)
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     template <typename>
     class Serialization_UT : public testing::Test {};
@@ -45,4 +45,4 @@ namespace cho::osbase::core::ut {
 
         ASSERT_EQ(in, out);
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

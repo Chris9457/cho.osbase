@@ -6,7 +6,7 @@
 #include <functional>
 #include <any>
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     class StartState;
     using StartStatePtr = std::shared_ptr<StartState>;
@@ -114,4 +114,4 @@ namespace cho::osbase::statemachine {
         std::string m_exitActionName;
     };
 
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

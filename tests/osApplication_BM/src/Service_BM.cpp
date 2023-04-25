@@ -6,7 +6,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::application::bm {
+namespace NS_OSBASE::application::bm {
 
     class Service_RPC_BM : public benchmark::Fixture {
     public:
@@ -184,7 +184,7 @@ namespace cho::osbase::application::bm {
                 TheService_BMImpl.noRet1ComplexArg(complexStruct);
             }
         }
-    } // namespace cho::osbase::application::bm
+    } // namespace NS_OSBASE::application::bm
     BENCHMARK_REGISTER_F(Service_RPC_BM, noRetComplexArg)->Arg(0)->Arg(1)->Unit(benchmark::kMicrosecond);
 
     BENCHMARK_DEFINE_F(Service_RPC_BM, retNoArg)(benchmark::State &state) {
@@ -195,7 +195,7 @@ namespace cho::osbase::application::bm {
                 TheService_BMImpl.retNoArg();
             }
         }
-    } // namespace cho::osbase::application::bm
+    } // namespace NS_OSBASE::application::bm
     BENCHMARK_REGISTER_F(Service_RPC_BM, retNoArg)->Arg(0)->Arg(1)->Unit(benchmark::kMicrosecond);
 
     BENCHMARK_DEFINE_F(Service_RPC_BM, retComplexArg)(benchmark::State &state) {
@@ -229,7 +229,7 @@ namespace cho::osbase::application::bm {
                 TheService_BMImpl.noRet1ComplexArg(complexStruct);
             }
         }
-    } // namespace cho::osbase::application::bm
+    } // namespace NS_OSBASE::application::bm
     BENCHMARK_REGISTER_F(Service_RPC_BM, retComplexArg)->Arg(0)->Arg(1)->Unit(benchmark::kMicrosecond);
 
     BENCHMARK_DEFINE_F(Service_RPC_BM, noRetBigArg)(benchmark::State &state) {
@@ -242,7 +242,7 @@ namespace cho::osbase::application::bm {
                 TheService_BMImpl.noRetBigArg(v);
             }
         }
-    } // namespace cho::osbase::application::bm
+    } // namespace NS_OSBASE::application::bm
     BENCHMARK_REGISTER_F(Service_RPC_BM, noRetBigArg)
         ->RangeMultiplier(2)
         ->Ranges({ { 8, 8 << 15 }, { 0, 1 } })
@@ -301,4 +301,4 @@ namespace cho::osbase::application::bm {
     }
     BENCHMARK_REGISTER_F(Service_PubSub_BM, checkEvent)->ArgsProduct({ { 2, 4, 8, 16, 32 }, { 0, 1, 2 } })->Unit(benchmark::kMicrosecond);
 
-} // namespace cho::osbase::application::bm
+} // namespace NS_OSBASE::application::bm

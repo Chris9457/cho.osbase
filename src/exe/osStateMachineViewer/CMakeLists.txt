@@ -30,4 +30,4 @@ install(TARGETS ${STATEMACHINEVIEWER} DESTINATION statemachineviewer)
 install_qt5_dlls(DLL_FILES Qt5Core Qt5Gui Qt5Widgets
 					OUTPUT_DIR statemachineviewer)
 install_qt_plugins(PLUGINS platform imageformats OUTPUT_DIR statemachineviewer)
-install(FILES $<TARGET_RUNTIME_DLLS:${STATEMACHINEVIEWER}> DESTINATION statemachineviewer)
+install_deps(TARGET ${STATEMACHINEVIEWER} DESTINATION statemachineviewer)

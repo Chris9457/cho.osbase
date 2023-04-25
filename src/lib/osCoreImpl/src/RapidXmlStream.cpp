@@ -15,7 +15,7 @@
 #include "osCore/Serialization/Converters.h"
 #include <regex>
 
-namespace cho::osbase::core::impl {
+namespace NS_OSBASE::core::impl {
 
     OS_REGISTER_FACTORY_N(StringKeyStream, RapidXmlStream, 0, FACTORY_NAME_XML_STREAM)
     OS_REGISTER_FACTORY_N(StringKeyStream, RapidXmlStream, 1, FACTORY_NAME_XML_STREAM, std::string)
@@ -277,6 +277,6 @@ namespace cho::osbase::core::impl {
         return nodeName.substr(nodeName.rfind(SUFFIX_ARRAY_TAG)) == SUFFIX_ARRAY_TAG;
     }
 
-} // namespace cho::osbase::core::impl
+} // namespace NS_OSBASE::core::impl
 
 #pragma warning(pop)

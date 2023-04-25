@@ -1,7 +1,7 @@
 // \file  Singleton.inl
 // \brief Implementation of the class Singleton
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     /*
      *  \class Singleton<T>
      */
@@ -71,4 +71,4 @@ namespace cho::osbase::core {
         }
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

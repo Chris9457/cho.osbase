@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     class recursive_named_mutex_impl;
     using recursive_named_mutex_impl_ptr = std::shared_ptr<recursive_named_mutex_impl>;
@@ -28,4 +28,4 @@ namespace cho::osbase::core {
     private:
         recursive_named_mutex_impl_ptr m_pImpl;
     };
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

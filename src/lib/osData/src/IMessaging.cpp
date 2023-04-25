@@ -4,9 +4,9 @@
 #include "osData/FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 
-namespace nscore = cho::osbase::core;
+namespace nscore = NS_OSBASE::core;
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /*
      * \class IMessaging::MessagingConnectionMsg
@@ -32,4 +32,4 @@ namespace cho::osbase::data {
         return nscore::TheFactoryManager.createInstance<IMessaging>(MESSAGINGWAMPCC_FACTORY_NAME);
     }
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

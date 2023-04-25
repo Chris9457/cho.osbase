@@ -5,7 +5,7 @@
 #include "FactoryManager.h"
 #include "osCore/Misc/NonCopyable.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief	This class is a RAII implementation of the auto unregistering
@@ -36,7 +36,7 @@ namespace cho::osbase::core {
         GenericAbstractFactoryWeakPtr<void> m_pFactory;
     };
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 /** \cond */
 #include "RegisterFactoryGuard.inl"

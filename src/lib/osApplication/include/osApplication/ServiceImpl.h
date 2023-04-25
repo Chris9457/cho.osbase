@@ -3,7 +3,7 @@
 #pragma once
 #include "ServiceBase.h"
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /**
      * \brief Base implementation of the "impl" of the service
@@ -82,6 +82,6 @@ namespace cho::osbase::application {
         mutable std::mutex m_mutexAlive;
         mutable size_t m_refCall = 0;
     };
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application
 
 #include "ServiceImpl.inl"

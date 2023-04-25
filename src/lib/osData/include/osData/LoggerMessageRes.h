@@ -2,7 +2,7 @@
 
 #pragma once
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     // Tags
     constexpr char LOGGER_TIMESTAMP_FORMAT[] = "%Y-%m-%d %H:%M:%S"; // format: "YYYY-mm-dd HH:MM:SS." - milliseconds are append after
@@ -19,4 +19,4 @@ namespace cho::osbase::data {
 
     constexpr auto OS_LOG_OSBASE_CHANNELS = OS_LOG_CHANNEL_DATA | OS_LOG_CHANNEL_APPLICATION;
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

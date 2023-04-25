@@ -3,7 +3,7 @@
 
 #include "osCore/DesignPattern/RegisterFactoryGuard.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class RegisterFactoryGuard
@@ -25,4 +25,4 @@ namespace cho::osbase::core {
         return true;
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

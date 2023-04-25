@@ -7,7 +7,7 @@
 #include "HistoryState.h"
 #include "Transition.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     class State;
     using StatePtr = std::shared_ptr<State>;
@@ -30,4 +30,4 @@ namespace cho::osbase::statemachine {
     IStateWriterPtr makePlantUMLStateWriter(); //!< instanciate a PlantUML writer
 
     std::ostream &operator<<(std::ostream &os, const IStateWriter &stateWriter); //!< stream operator for the state writer
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

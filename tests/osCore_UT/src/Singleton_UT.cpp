@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 #include <thread>
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     class Singleton_UT : public testing::Test {};
 
@@ -48,4 +48,4 @@ namespace cho::osbase::core::ut {
         th2.join();
         ASSERT_EQ(1, TheTemporizedSingleton.getCount());
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

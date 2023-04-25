@@ -4,7 +4,7 @@
 #pragma once
 #include "osCore/DesignPattern/Singleton.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     class MySingleton : public Singleton<MySingleton> {
         friend Singleton<MySingleton>;
@@ -20,4 +20,4 @@ namespace cho::osbase::core {
         int m_count = 0;
     };
 #define TheMySingleton MySingleton::getInstance()
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

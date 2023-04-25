@@ -4,7 +4,7 @@
 #pragma once
 #include <regex>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     // float
     template <typename TKey>
@@ -209,4 +209,4 @@ namespace cho::osbase::core {
         return keyStream.setValue(static_cast<const int>(value));
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

@@ -4,7 +4,7 @@
 #include "osStateMachine/State.h"
 #include "osStateMachine/StateMachineRes.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     /*
      * \class HistoryState
@@ -31,4 +31,4 @@ namespace cho::osbase::statemachine {
     HistoryState::HistoryState(StatePtr pParent) : AbstractState(pParent, HISTORY_STATE_NAME) {
     }
 
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

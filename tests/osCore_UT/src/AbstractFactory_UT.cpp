@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 #include <memory>
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     class AbstractFactory_UT : public testing::Test {};
 
@@ -39,7 +39,7 @@ namespace cho::osbase::core::ut {
     OS_REGISTER_FACTORY(BaseProduct, ConcreteProduct1, "Class ConcreteProduct1", std::string);
 
     TEST_F(AbstractFactory_UT, createWithCtors) {
-        namespace nscore = cho::osbase::core;
+        namespace nscore = NS_OSBASE::core;
 
         auto const factoryNames = nscore::TheFactoryManager.getFactoryNames<nscore::BaseProduct>();
         const bool bConcreteProductFound =
@@ -88,7 +88,7 @@ namespace cho::osbase::core::ut {
     OS_REGISTER_FACTORY(BaseProduct, ConcreteProduct2, "Class ConcreteProduct2");
 
     TEST_F(AbstractFactory_UT, createWithSingleton) {
-        namespace nscore = cho::osbase::core;
+        namespace nscore = NS_OSBASE::core;
 
         auto const factoryNames = nscore::TheFactoryManager.getFactoryNames<nscore::BaseProduct>();
         const bool bConcreteProductFound =
@@ -111,7 +111,7 @@ namespace cho::osbase::core::ut {
     }
 
     TEST_F(AbstractFactory_UT, createInSharedLib) {
-        namespace nscore = cho::osbase::core;
+        namespace nscore = NS_OSBASE::core;
 
         auto const factoryNames = nscore::TheFactoryManager.getFactoryNames<nscore::BaseProduct>();
         const bool bConcreteProductFound =
@@ -128,7 +128,7 @@ namespace cho::osbase::core::ut {
     OS_LINK_FACTORY_N(BaseProduct, ConcreteProductStatic, 0);
 
     TEST_F(AbstractFactory_UT, createInStaticLib) {
-        namespace nscore = cho::osbase::core;
+        namespace nscore = NS_OSBASE::core;
 
         auto const factoryNames = nscore::TheFactoryManager.getFactoryNames<nscore::BaseProduct>();
         const bool bConcreteProductFound =
@@ -142,4 +142,4 @@ namespace cho::osbase::core::ut {
         ASSERT_EQ(11, pConcreteProductStaticLinked->getInt());
         ASSERT_TRUE(pConcreteProductStaticLinked->getStr().empty());
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

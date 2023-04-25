@@ -4,7 +4,7 @@
 #include "osData/Uri.h"
 #include "osCore/Serialization/CoreKeySerializer.h"
 
-namespace cho::osbase::webengine {
+namespace NS_OSBASE::webengine {
 
     enum class DisplayMode { Windowed, FullScreen };
 
@@ -33,9 +33,9 @@ namespace cho::osbase::webengine {
         WindowSettings window;
         BrowserSettings browser;
     };
-} // namespace cho::osbase::webengine
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::webengine::WindowSettings, displayMode, title);
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::webengine::BrowserSettings,
+} // namespace NS_OSBASE::webengine
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::webengine::WindowSettings, displayMode, title);
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::webengine::BrowserSettings,
     startUrl,
     areDefaultContextMenusEnabled,
     areDefaultScriptDialogsEnabled,
@@ -46,4 +46,4 @@ OS_KEY_SERIALIZE_STRUCT(cho::osbase::webengine::BrowserSettings,
     isStatusBarEnabledEnabled,
     isWebMessageEnabled,
     isZoomControlEnabled);
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::webengine::Settings, window, browser);
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::webengine::Settings, window, browser);

@@ -5,11 +5,11 @@
 #include "osData/Log.h"
 #include <fstream>
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nscore   = nsosbase::core;
 namespace nsdata   = nsosbase::data;
 
-namespace cho::osbase::log {
+namespace NS_OSBASE::log {
 
     /*
      * \class LogServiceImpl::DataExchangeDelegate
@@ -87,4 +87,4 @@ namespace cho::osbase::log {
         nsdata::TheLogger.injectLog(std::string(logStream));
     }
 
-} // namespace cho::osbase::log
+} // namespace NS_OSBASE::log

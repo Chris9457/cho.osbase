@@ -3,9 +3,9 @@
 #pragma once
 #include "osCore/Exception/RuntimeException.h"
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
     class ServiceException : public core::RuntimeException {
     public:
         using core::RuntimeException::RuntimeException;
     };
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

@@ -43,7 +43,7 @@
 						"key": "/process/name"
 					},
 					"operand": "eq",
-					"value": "cho.osbase.webviewer.service.exe"
+					"value": "@OSBASE@.webviewer.service.exe"
 				},
 				{
 					"field": {

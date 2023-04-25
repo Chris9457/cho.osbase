@@ -6,7 +6,7 @@
 #include <future>
 #include <wampcc/wampcc.h>
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
     OS_REGISTER_FACTORY_N(IBroker, WampccBroker, 0, WAMPCCBROCKER_FACTORY_NAME);
 
     void WampccBroker::startWampcc(unsigned short port) {
@@ -35,4 +35,4 @@ namespace cho::osbase::data::impl {
         m_thread.join();
     }
 
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

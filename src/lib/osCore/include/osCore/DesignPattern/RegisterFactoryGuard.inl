@@ -1,7 +1,7 @@
 ﻿// \file  RegisterFactoryGuard.inl
 // \brief Implementation of the class RegisterFactoryGuard
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class RegisterFactoryGuard
@@ -21,4 +21,4 @@ namespace cho::osbase::core {
         return RegisterFactoryGuard::create<TBase, TConcrete, TArgs...>(std::string(concreteName));
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

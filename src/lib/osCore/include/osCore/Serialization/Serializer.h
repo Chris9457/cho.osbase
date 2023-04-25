@@ -14,7 +14,7 @@
  * \ingroup PACKAGE_SERIALIZATION
  */
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     /**
      * \addtogroup PACKAGE_STREAM
      * \{
@@ -43,6 +43,6 @@ namespace cho::osbase::core {
     std::ostream &operator<<(std::ostream &os, const BinaryValue<TValue> &value); //!< stream "serialize" operator
     /** \} */
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "Serializer.inl"

@@ -3,7 +3,7 @@
 
 #include "Static/SingletonStatic.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     MySingleton::~MySingleton() {
     }
 
@@ -15,4 +15,4 @@ namespace cho::osbase::core {
         ++m_count;
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

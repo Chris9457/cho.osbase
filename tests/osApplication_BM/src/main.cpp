@@ -6,7 +6,7 @@
 OS_CORE_IMPL_LINK()
 OS_DATA_IMPL_LINK()
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nscore   = nsosbase::core;
 namespace nsappbm  = nsosbase::application::bm;
 

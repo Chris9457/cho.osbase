@@ -5,7 +5,7 @@
 #include <string>
 #include <chrono>
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
     /**
      * \addtogroup PACKAGE_OSBASE_LOGS
      * \{
@@ -115,5 +115,5 @@ namespace cho::osbase::data {
     using LoggerMessage = core::KeyValue<std::string, T>; //!< alias for generic messages for logs
     /** \} */
 
-} // namespace cho::osbase::data
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::data::LoggerProcess::Info, name, pid, threadId);
+} // namespace NS_OSBASE::data
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::data::LoggerProcess::Info, name, pid, threadId);

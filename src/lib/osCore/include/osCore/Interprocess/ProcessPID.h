@@ -4,7 +4,7 @@
 #pragma once
 #include <string>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief Return the identifier of th process running the application
@@ -15,4 +15,4 @@ namespace cho::osbase::core {
 
     std::string getCurrentProcessName(); //!< Return the current process name
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

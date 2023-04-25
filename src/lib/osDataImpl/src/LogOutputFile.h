@@ -5,7 +5,7 @@
 #include <filesystem>
 #include <fstream>
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
 
     /**
      * \brief Realization of the interface ILogOutput
@@ -20,4 +20,4 @@ namespace cho::osbase::data::impl {
         std::ofstream m_ostream;
         std::vector<std::string> m_noFileBuffer;
     };
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

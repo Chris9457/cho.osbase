@@ -5,7 +5,7 @@
 #include "osCore_UT/ConstantValue.h"
 #include "gtest/gtest.h"
 
-using namespace cho::osbase;
+using namespace NS_OSBASE;
 
 struct CustomType {
     int field1;
@@ -30,7 +30,7 @@ std::ostream &operator<<(std::ostream &os, const CustomType &c) {
               << "field4: " << type_cast<std::string>(c.field4);
 }
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     template <>
     struct ConstantValue<CustomType, 0> {
@@ -220,6 +220,6 @@ namespace cho::osbase::core::ut {
             ASSERT_EQ(otherCustomData, myCustomData);
         }
     }
-} // namespace cho::osbase::core::ut
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::core::ut::MySubCustomData, strField);
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::core::ut::MyCustomData, intField, subCustomDataField);
+} // namespace NS_OSBASE::core::ut
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::core::ut::MySubCustomData, strField);
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::core::ut::MyCustomData, intField, subCustomDataField);

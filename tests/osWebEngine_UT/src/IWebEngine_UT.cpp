@@ -3,7 +3,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::webengine::ut {
+namespace NS_OSBASE::webengine::ut {
 
     class IWebEngine_UT : public testing::Test {};
 
@@ -86,4 +86,4 @@ namespace cho::osbase::webengine::ut {
         pWebEngine->stop();
         ASSERT_EQ(std::future_status::ready, futRun.wait_for(1s));
     }
-} // namespace cho::osbase::webengine::ut
+} // namespace NS_OSBASE::webengine::ut

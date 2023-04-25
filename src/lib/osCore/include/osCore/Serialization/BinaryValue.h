@@ -2,7 +2,7 @@
 
 #pragma once
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \addtogroup PACKAGE_STREAM
@@ -37,6 +37,6 @@ namespace cho::osbase::core {
     template <typename TValue>
     auto makeBinaryValue(TValue &&value); //!< create a binary value by move
     /** \} */
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "BinaryValue.inl"

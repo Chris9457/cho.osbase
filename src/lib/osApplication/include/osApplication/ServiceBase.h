@@ -6,7 +6,7 @@
 #include "osData/IMessaging.h"
 #include <type_traits>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /**
      * \brief Common implementation of the ServiceStub and ServiceImpl classes
@@ -60,6 +60,6 @@ namespace cho::osbase::application {
         std::string m_url;
         unsigned short m_port = 8080;
     };
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application
 
 #include "ServiceBase.inl"

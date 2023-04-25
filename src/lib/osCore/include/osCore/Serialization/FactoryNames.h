@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace cho::osbase::core {
-    constexpr char *FACTORY_NAME_XML_STREAM("cho.osbase.core.impl.RapidXml");
-    constexpr char *FACTORY_NAME_JSON_STREAM("cho.osbase.core.impl.RapidJson");
-} // namespace cho::osbase::core
+namespace NS_OSBASE::core {
+    constexpr char FACTORY_NAME_XML_STREAM[] = "osbase.core.impl.RapidXml";
+    constexpr char FACTORY_NAME_JSON_STREAM[] = "osbase.core.impl.RapidJson";
+} // namespace NS_OSBASE::core

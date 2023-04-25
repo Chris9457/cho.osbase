@@ -7,7 +7,7 @@
 #include <memory.h>
 #include <string>
 
-namespace cho::osbase::core::impl {
+namespace NS_OSBASE::core::impl {
 
     /**
      * \brief 	This class represents:
@@ -61,4 +61,4 @@ namespace cho::osbase::core::impl {
         rapidxml::xml_node<char> *m_pCurrentNode;
     };
 
-} // namespace cho::osbase::core::impl
+} // namespace NS_OSBASE::core::impl

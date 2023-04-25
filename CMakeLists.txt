@@ -8,6 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # source
 set(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(OSBASE cho.osbase)
+add_compile_definitions(NS_OSBASE=cho::osbase)
 
 add_subdirectory(src)
 

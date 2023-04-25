@@ -3,7 +3,7 @@
 #pragma once
 #include "osCore/Serialization/CoreKeySerializer.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     /**
      * \brief Structire used to record an action
@@ -41,8 +41,8 @@ namespace cho::osbase::statemachine {
         std::string currentState;            //!< current state before the transition
         TransitionRecords transitionRecords; //!< lits of transitions during this record
     };
-} // namespace cho::osbase::statemachine
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::statemachine::ActionRecord, timestamp, name);
+} // namespace NS_OSBASE::statemachine
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::statemachine::ActionRecord, timestamp, name);
 OS_KEY_SERIALIZE_STRUCT(
-    cho::osbase::statemachine::TransitionRecord, timestamp, name, evtName, guardName, fromState, toState, actionRecords);
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::statemachine::StateMachineRecord, name, id, failure, currentState, transitionRecords);
+    NS_OSBASE::statemachine::TransitionRecord, timestamp, name, evtName, guardName, fromState, toState, actionRecords);
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::statemachine::StateMachineRecord, name, id, failure, currentState, transitionRecords);

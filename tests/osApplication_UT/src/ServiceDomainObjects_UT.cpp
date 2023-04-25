@@ -4,11 +4,11 @@
 #include "TestDomainObjects.h"
 #include "osApplication/ServiceException.h"
 
-namespace nsut       = cho::osbase::application::ut;
+namespace nsut       = NS_OSBASE::application::ut;
 namespace nsdo       = nsut::domain_objects;
 namespace nsdoimport = nsut::testdomainobjectsimport;
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     class ServiceDomainObjects_UT : public BaseService_UT {};
 
@@ -129,4 +129,4 @@ namespace cho::osbase::application::ut {
         ASSERT_TRUE(expectedAsyncPagedDataType);
     }
 
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

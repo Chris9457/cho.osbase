@@ -20,7 +20,7 @@
  * \ingroup PACKAGE_OSDATA
  */
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /**
      * \addtogroup PACKAGE_OSBASE_IMESSAGING
@@ -210,4 +210,4 @@ namespace cho::osbase::data {
     IMessagingPtr makeMessaging(); //!< create a IMessaging
 
     /** \} */
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

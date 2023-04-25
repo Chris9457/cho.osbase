@@ -4,7 +4,7 @@
 #include "osCore/Serialization/BasicType.h"
 #include <type_traits>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     /*
      * \Operators
      */
@@ -17,4 +17,4 @@ namespace cho::osbase::core {
         using EnumType = std::underlying_type_t<BasicType>;
         return static_cast<BasicType>(static_cast<EnumType>(lhs) & static_cast<EnumType>(rhs));
     }
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

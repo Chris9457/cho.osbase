@@ -2,7 +2,7 @@
 #include "osData/ByteBuffer.h"
 #include <gtest/gtest.h>
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class ByteBuffer_UT : public testing::Test {};
 
@@ -65,4 +65,4 @@ namespace cho::osbase::data::ut {
             ASSERT_EQ(static_cast<unsigned char>(byteBuffer[i]), vBuffer[i]);
         }
     }
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

@@ -4,7 +4,7 @@
 #include "Serializable.h"
 #include "Serializable.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     /*
      * \class Serializable<arithmetic_type || enum_type>
      */
@@ -144,4 +144,4 @@ namespace cho::osbase::core {
         return Serializable<std::vector<TValue>, TByte>::write(v, buffer);
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

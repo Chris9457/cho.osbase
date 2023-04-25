@@ -6,14 +6,14 @@
 
 class QPainter;
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     class StartStateWidget : public AbstractStateWidget {
         Q_OBJECT
 
     public:
-        StartStateWidget(cho::osbase::statemachine::StartStatePtr pStartState);
+        StartStateWidget(NS_OSBASE::statemachine::StartStatePtr pStartState);
 
     protected:
         void paintEvent(QPaintEvent *event) override;
     };
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

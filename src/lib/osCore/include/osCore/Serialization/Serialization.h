@@ -90,7 +90,7 @@
         ...
         #include "osCore/Serialization/KeyStream.h"
         #include "osCoreImpl/CoreImpl.h" // for the link with the concrete realizations of key-streams
-        using namespace cho::osbase;
+        using namespace NS_OSBASE;
 
         // Declaration of the custom data (struct)
         // Remark: MyCustomData contains MySubCustomData

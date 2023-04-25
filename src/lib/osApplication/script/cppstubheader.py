@@ -296,10 +296,10 @@ class CppStubHeader(CppBase):
 
         self.file.write('    };\n\n')
         self.file.write(
-            '    using ' + serviceName + ' = cho::osbase::application::IService<' + className + '>;\n')
+            '    using ' + serviceName + ' = NS_OSBASE::application::IService<' + className + '>;\n')
         self.file.write('    using ' + serviceName + 'Ptr = std::shared_ptr<' + serviceName + '>;\n\n')
         self.file.write(
-            '    ' + serviceName + 'Ptr makeStub(cho::osbase::application::TaskLoopPtr pTaskLoop = nullptr);\n')
+            '    ' + serviceName + 'Ptr makeStub(NS_OSBASE::application::TaskLoopPtr pTaskLoop = nullptr);\n')
         self.file.write('\n')
 
     def __addEvents(self):
@@ -316,13 +316,13 @@ class CppStubHeader(CppBase):
                 self.file.write('     * \\brief ' + event[tags.descriptionTag] + '\n')
                 self.file.write('     */\n')
 
-            self.file.write('    struct ' + event[tags.nameTag] + ' : cho::osbase::application::ServiceMsg<')
+            self.file.write('    struct ' + event[tags.nameTag] + ' : NS_OSBASE::application::ServiceMsg<')
             if self.hasField(event, tags.typeTag):
                 cppType = self.getCppType(event[tags.typeTag])
                 if cppType is None:
                     return
             else:
-                cppType = 'cho::osbase::application::NullMsg'
+                cppType = 'NS_OSBASE::application::NullMsg'
 
             self.file.write(cppType + '> {};\n')
 
@@ -380,7 +380,7 @@ class CppStubHeader(CppBase):
                     self.file.write('        };\n\n')
 
                     error = '"Unknown ' + name + ' value: " + std::to_string(static_cast<int>(value))'
-                    self.file.write('        throw cho::osbase::application::ServiceException(' + error + ');\n')
+                    self.file.write('        throw NS_OSBASE::application::ServiceException(' + error + ');\n')
 
                     self.file.write('    }\n')
                     self.file.write('};\n')

@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 #include <mutex>
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
     class RecursiveNamesMutex_UT : public testing::Test {};
 
     TEST_F(RecursiveNamesMutex_UT, ctor) {
@@ -69,4 +69,4 @@ namespace cho::osbase::core::ut {
         ASSERT_FALSE(val);
         th.join();
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

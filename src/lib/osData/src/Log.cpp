@@ -2,7 +2,7 @@
 
 #include "osData/Log.h"
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nsdata   = nsosbase::data;
 
 namespace oslog {
@@ -78,7 +78,7 @@ nsdata::Logger &operator<<(nsdata::Logger &logger, nsdata::LoggerTimestamp &&msg
     return logger.addMessage(nsdata::LoggerMessage<std::string>(nsdata::LOGGER_KEY_TIMESTAMP, msg.toString()));
 }
 
-cho::osbase::data::Logger &operator<<(cho::osbase::data::Logger &logger, std::chrono::system_clock::time_point &&tp) {
+NS_OSBASE::data::Logger &operator<<(NS_OSBASE::data::Logger &logger, std::chrono::system_clock::time_point &&tp) {
     return logger << nsdata::LoggerTimestamp(tp);
 }
 

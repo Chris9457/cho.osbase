@@ -11,7 +11,7 @@
 #include <vector>
 #include <array>
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
     enum class TestEnum { field1 = 1, field2, field3 };
 
     inline std::ostream &operator<<(std::ostream &os, const TestEnum v) {
@@ -600,4 +600,4 @@ namespace cho::osbase::core::ut {
             return {};
         }
     };
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

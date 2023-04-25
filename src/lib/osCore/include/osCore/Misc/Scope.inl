@@ -1,7 +1,7 @@
 // \file  Scope.inl
 // \brief Implementation of the class scope_exit
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class scope_exit
@@ -34,4 +34,4 @@ namespace cho::osbase::core {
         return scope_exit<Fn>(std::forward<Fn>(fn));
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

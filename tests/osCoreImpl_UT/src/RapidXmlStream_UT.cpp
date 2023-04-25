@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 #include <fstream>
 
-namespace cho::osbase::core::impl::ut {
+namespace NS_OSBASE::core::impl::ut {
 
     class RapidXML_UT : public testing::Test {};
     template <typename T>
@@ -285,4 +285,4 @@ namespace cho::osbase::core::impl::ut {
         ASSERT_NE(defaultValue, pStream->getKeyValue(key, defaultValue));
         ASSERT_EQ(value, pStream->getKeyValue(key, defaultValue));
     }
-} // namespace cho::osbase::core::impl::ut
+} // namespace NS_OSBASE::core::impl::ut

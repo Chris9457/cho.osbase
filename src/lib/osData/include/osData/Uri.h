@@ -11,7 +11,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /**
      * \brief exception thrown when trying to parse a bad uri
@@ -97,13 +97,13 @@ namespace cho::osbase::data {
      * \return true if equal
      */
     bool operator==(const std::string &lhs, const Uri::Host &rhs);
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data
 
 /**
  * \brief Serialization of the Uri
  */
 template <>
-struct cho::osbase::core::KeySerializer<std::string, cho::osbase::data::Uri, false> {
+struct NS_OSBASE::core::KeySerializer<std::string, NS_OSBASE::data::Uri, false> {
     static data::Uri getValue(KeyStream<std::string> &keyStream, const data::Uri &defaultValue); //!< \private
     static bool setValue(KeyStream<std::string> &keyStream, const data::Uri &value);             //!< \private
 };
@@ -112,8 +112,8 @@ struct cho::osbase::core::KeySerializer<std::string, cho::osbase::data::Uri, fal
  * \brief Convert an Uri to a string
  */
 template <>
-struct type_converter<std::string, cho::osbase::data::Uri> {
-    static std::string convert(const cho::osbase::data::Uri &uri); //!< \private
+struct type_converter<std::string, NS_OSBASE::data::Uri> {
+    static std::string convert(const NS_OSBASE::data::Uri &uri); //!< \private
 };
 
 /**
@@ -121,16 +121,16 @@ struct type_converter<std::string, cho::osbase::data::Uri> {
  * \throws BadUriException if strUri is not well formed
  */
 template <>
-struct type_converter<cho::osbase::data::Uri, std::string> {
-    static cho::osbase::data::Uri convert(const std::string &strUri); //!< \private */
+struct type_converter<NS_OSBASE::data::Uri, std::string> {
+    static NS_OSBASE::data::Uri convert(const std::string &strUri); //!< \private */
 };
 
 /**
  * \brief Convert an Uri to a wstring
  */
 template <>
-struct type_converter<std::wstring, cho::osbase::data::Uri> {
-    static std::wstring convert(const cho::osbase::data::Uri &uri); //!< \private
+struct type_converter<std::wstring, NS_OSBASE::data::Uri> {
+    static std::wstring convert(const NS_OSBASE::data::Uri &uri); //!< \private
 };
 
 /**
@@ -138,8 +138,8 @@ struct type_converter<std::wstring, cho::osbase::data::Uri> {
  * \throws BadUriException if strUri is not well formed
  */
 template <>
-struct type_converter<cho::osbase::data::Uri, std::wstring> {
-    static cho::osbase::data::Uri convert(const std::wstring &wStrUri); //!< \private */
+struct type_converter<NS_OSBASE::data::Uri, std::wstring> {
+    static NS_OSBASE::data::Uri convert(const std::wstring &wStrUri); //!< \private */
 };
 
 /**
@@ -147,35 +147,35 @@ struct type_converter<cho::osbase::data::Uri, std::wstring> {
  * \throws BadUriException if the scheme of the Uri is not "file" or no path is assigned
  */
 template <>
-struct type_converter<std::filesystem::path, cho::osbase::data::Uri> {
-    static std::filesystem::path convert(const cho::osbase::data::Uri uri); //!< \private */
+struct type_converter<std::filesystem::path, NS_OSBASE::data::Uri> {
+    static std::filesystem::path convert(const NS_OSBASE::data::Uri uri); //!< \private */
 };
 
 /**
  * \brief Convert a path to an uri
  */
 template <>
-struct type_converter<cho::osbase::data::Uri, std::filesystem::path> {
-    static cho::osbase::data::Uri convert(const std::filesystem::path &path); //!< \private */
+struct type_converter<NS_OSBASE::data::Uri, std::filesystem::path> {
+    static NS_OSBASE::data::Uri convert(const std::filesystem::path &path); //!< \private */
 };
 
 /**
  * \brief Specialization for uri
  */
 template <>
-struct std::hash<cho::osbase::data::Uri> {
-    size_t operator()(const cho::osbase::data::Uri &uri) const; //!< \private
+struct std::hash<NS_OSBASE::data::Uri> {
+    size_t operator()(const NS_OSBASE::data::Uri &uri) const; //!< \private
 };
 
 /**
  * \brief Specialization for uri
  */
 template <>
-struct std::less<cho::osbase::data::Uri> {
-    bool operator()(const cho::osbase::data::Uri &lhs, const cho::osbase::data::Uri &rhs) const; //!< \private
+struct std::less<NS_OSBASE::data::Uri> {
+    bool operator()(const NS_OSBASE::data::Uri &lhs, const NS_OSBASE::data::Uri &rhs) const; //!< \private
 };
 
 /**
  * \brief Stream operator for uris
  */
-std::ostream &operator<<(std::ostream &os, const cho::osbase::data::Uri &uri);
+std::ostream &operator<<(std::ostream &os, const NS_OSBASE::data::Uri &uri);

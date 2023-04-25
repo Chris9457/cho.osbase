@@ -4,9 +4,9 @@
 #include "TestProcess.h"
 #include "osApplication_UT/TestProcessServiceImpl.h"
 
-namespace nsdata = cho::osbase::data;
+namespace nsdata = NS_OSBASE::data;
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     template <typename TMth>
     struct is_const_mth;
@@ -134,4 +134,4 @@ namespace cho::osbase::application::ut {
         ASSERT_FALSE(is_const_mth<decltype(&process::TestProcess::retAsyncArg)>::value);
     }
 
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

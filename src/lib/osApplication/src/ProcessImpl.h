@@ -9,14 +9,14 @@
 #include <future>
 #include <vector>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     class ProcessImpl;
     using ProcessImplPtr = std::shared_ptr<ProcessImpl>;
 
     class ProcessImpl {
     public:
-        ProcessImpl(const ProcessSetting &setting, const cho::osbase::application::ServiceOptions &options);
+        ProcessImpl(const ProcessSetting &setting, const NS_OSBASE::application::ServiceOptions &options);
         ~ProcessImpl();
 
     private:
@@ -33,4 +33,4 @@ namespace cho::osbase::application {
         std::atomic_bool m_bStopRequired  = false;
         std::future<void> m_waitEndProcess;
     };
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

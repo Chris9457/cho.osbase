@@ -2,7 +2,7 @@
 
 #pragma once
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /*
      * \class Logger
@@ -49,4 +49,4 @@ namespace cho::osbase::data {
         return *this;
     }
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

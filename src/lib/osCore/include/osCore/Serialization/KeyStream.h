@@ -15,7 +15,7 @@
  * \ingroup PACKAGE_SERIALIZATION
  */
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     template <typename>
     class KeyStream;
@@ -223,6 +223,6 @@ namespace cho::osbase::core {
      * \ingroup PACKAGE_KEYSTREAM
      */
     std::ostream &operator<<(std::ostream &os, const KeyStream<std::string> &keyStream);
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "KeyStream.inl"

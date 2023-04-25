@@ -5,7 +5,7 @@
 #include "osCore/DesignPattern/AbstractFactory.h"
 #include <Windows.h>
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
     OS_REGISTER_FACTORY_N(ILogOutput, LogOutputDebug, 0, LOGOUTPUT_DEBUG_FACTORY_NAME)
 
     /*
@@ -17,4 +17,4 @@ namespace cho::osbase::data::impl {
 
     void LogOutputDebug::flush(std::ostream &) {
     }
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

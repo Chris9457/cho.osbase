@@ -7,7 +7,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class Logger_UT : public testing::Test {
         class LogOutputString : public ILogOutput {
@@ -307,5 +307,5 @@ namespace cho::osbase::data::ut {
         ASSERT_EQ("test content: " + std::to_string(value), getKeyMessage<std::string>(LOGGER_KEY_CONTENT));
         ASSERT_EQ(o, getKeyMessage<TestObject>(LOGGER_KEY_OBJECT));
     }
-} // namespace cho::osbase::data::ut
-OS_KEY_SERIALIZE_STRUCT(cho::osbase::data::ut::TestObject, value, strValue);
+} // namespace NS_OSBASE::data::ut
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::data::ut::TestObject, value, strValue);

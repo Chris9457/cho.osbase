@@ -4,19 +4,19 @@
 #include "benchmark/benchmark.h"
 #include <sstream>
 
-namespace cho::osbase::core::bm {
+namespace NS_OSBASE::core::bm {
 
     void serializeVector(std::ostream &os, const size_t size) {
         os << makeBinaryValue(std::vector<int>(size, 2));
     }
-} // namespace cho::osbase::core::bm
+} // namespace NS_OSBASE::core::bm
 
 void BM_SerializeVector(benchmark::State &state) {
     std::stringstream ss;
-    auto out = cho::osbase::core::makeBinaryValue<std::vector<int>>();
+    auto out = NS_OSBASE::core::makeBinaryValue<std::vector<int>>();
 
     for (auto _ : state) {
-        auto const in = cho::osbase::core::makeBinaryValue(std::vector<int>(state.range(0), 2));
+        auto const in = NS_OSBASE::core::makeBinaryValue(std::vector<int>(state.range(0), 2));
 
         ss << in;
         ss >> out;

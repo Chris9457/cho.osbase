@@ -5,7 +5,7 @@
 #include "osCore/Misc/Scope.h"
 
 #pragma region KeySerializer < TKey, TEnum>
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
     /*
      * KeySerializer<TKey, TEnum>
      */
@@ -144,4 +144,4 @@ namespace cho::osbase::core {
     }
 #pragma endregion
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

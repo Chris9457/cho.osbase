@@ -17,5 +17,5 @@ target_link_libraries(${APPLICATION}
 						${OSBASE}.data
 					 )
 
-#target_compile_definitions(${APPLICATION} PUBLIC CHO_OSBASE_APPLICATION_SERVICE_TRACE)
+#target_compile_definitions(${APPLICATION} PUBLIC OSBASE_APPLICATION_SERVICE_TRACE)
 

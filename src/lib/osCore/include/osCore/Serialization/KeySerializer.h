@@ -8,7 +8,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief   This class represents the serialization / desrialization strategies
@@ -91,6 +91,6 @@ namespace cho::osbase::core {
         static bool setValue(KeyStream<TKey> &keyStream, const TKey &key, const std::optional<TValue> &value);
     };
     /** \endcond */
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "KeySerializer.inl"

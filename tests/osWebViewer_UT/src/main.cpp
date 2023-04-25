@@ -11,11 +11,11 @@ OS_CORE_IMPL_LINK();
 OS_DATA_IMPL_LINK();
 
 using namespace std::chrono_literals;
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nsdata   = nsosbase::data;
 namespace nsapp    = nsosbase::application;
 
-namespace cho::osbase::webviewer::ut {
+namespace NS_OSBASE::webviewer::ut {
     class WebViewerLauncher {
     public:
         WebViewerLauncher() : m_pBroker(nsdata::makeBroker()) {
@@ -33,10 +33,10 @@ namespace cho::osbase::webviewer::ut {
         nsapp::ProcessPtr m_pProcess;
         nsdata::IBrokerPtr m_pBroker;
     };
-} // namespace cho::osbase::webviewer::ut
+} // namespace NS_OSBASE::webviewer::ut
 
 int main(int argc, char **argv) {
-    cho::osbase::webviewer::ut::WebViewerLauncher launcher;
+    NS_OSBASE::webviewer::ut::WebViewerLauncher launcher;
 
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

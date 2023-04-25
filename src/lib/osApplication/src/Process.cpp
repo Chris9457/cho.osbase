@@ -5,7 +5,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
     ProcessPtr Process::create(const ProcessSetting &setting, const ServiceOptions &options) {
         return ProcessPtr(new Process(setting, options));
     }
@@ -13,4 +13,4 @@ namespace cho::osbase::application {
     Process::Process(const ProcessSetting &setting, const ServiceOptions &options)
         : m_pImpl(std::make_shared<ProcessImpl>(setting, options)) {
     }
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

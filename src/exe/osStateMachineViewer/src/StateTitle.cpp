@@ -5,11 +5,11 @@
 #include "osCore/Misc/Scope.h"
 #include <QtWidgets>
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nscore   = nsosbase::core;
 namespace nssm     = nsosbase::statemachine;
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     StateTitle::StateTitle(nssm::AbstractStatePtr pState)
         : QLabel(QString::fromStdString(pState->getName())), m_color(STATE_DEACTIVATED_COLOR) {
         setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -40,4 +40,4 @@ namespace cho::osbase::statemachineviewer {
             rect.right() - STATEWIDGET_BORDER_WIDTH + 1,
             rect.bottom() - STATEWIDGET_BORDER_WIDTH + 1);
     }
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

@@ -6,7 +6,7 @@
 #include "osWeb/IWebViewerEngine.h"
 #include "osCore/DesignPattern/Singleton.h"
 
-namespace cho::osbase::webviewer {
+namespace NS_OSBASE::webviewer {
 
     /**
      * \brief implementation of the WebViewer service
@@ -36,4 +36,4 @@ namespace cho::osbase::webviewer {
         LogServiceObsreverPtr m_pLogServiceObserver;
     };
 #define TheWebViewerServiceImpl WebViewerServiceImpl::getInstance()
-} // namespace cho::osbase::webviewer
+} // namespace NS_OSBASE::webviewer

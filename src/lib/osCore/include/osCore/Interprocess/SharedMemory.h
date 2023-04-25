@@ -5,7 +5,7 @@
 #include <mutex>
 #include <string>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \defgroup PACKAGE_SHAREDMEMORY Shared Memory
@@ -79,7 +79,7 @@ namespace cho::osbase::core {
 
     /** \} */
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 /** \cond */
 #include "sharedmemory.inl"

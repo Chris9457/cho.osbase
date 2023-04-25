@@ -4,7 +4,7 @@
 #include "osData/ExchangeMaker.h"
 #include "osCore/Exception/Check.h"
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     namespace internal {
         template <typename T>
@@ -293,4 +293,4 @@ namespace cho::osbase::application {
         suspendAliveNotification();
         resumeAliveNotification();
     }
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

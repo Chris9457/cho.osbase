@@ -1,7 +1,7 @@
 ﻿// \file  Factory.inl
 // \brief Implementation of classes Factory
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class Factory<TBase, TConcrete, singleton>
@@ -29,4 +29,4 @@ namespace cho::osbase::core {
         // Do nothing here because singletons are destroyed by the application
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

@@ -4,7 +4,7 @@
 #include "osApplication/TaskQueue.h"
 #include <algorithm>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /*
      * \class TaskQueue
@@ -105,4 +105,4 @@ namespace cho::osbase::application {
         return pTask;
     }
 
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

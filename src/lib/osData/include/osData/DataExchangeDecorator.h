@@ -3,7 +3,7 @@
 #pragma once
 #include "IDataExchange.h"
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /**
      * \brief Base class for all DataExchange decorators
@@ -30,4 +30,4 @@ namespace cho::osbase::data {
 
         IDataExchangePtr m_pDataExchange;
     };
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

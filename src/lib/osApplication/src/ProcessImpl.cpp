@@ -28,7 +28,7 @@ namespace {
     }
 } // namespace
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
     namespace {
         constexpr auto timeout = 10000ms;
 
@@ -190,4 +190,4 @@ namespace cho::osbase::application {
         std::cout << std::endl;
         m_bRunning = false;
     }
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

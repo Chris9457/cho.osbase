@@ -2,7 +2,7 @@
 
 #include "osData/DataExchangeDecorator.h"
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /*
      * \class DataExchangeDecorator
@@ -60,4 +60,4 @@ namespace cho::osbase::data {
             throw DataExchangeException("DataExchangeDecorator: decorated instance null!");
         }
     }
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

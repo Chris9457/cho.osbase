@@ -6,10 +6,10 @@
 
 using namespace std::chrono_literals;
 
-OS_SERIALIZE_STRUCT(cho::osbase::core::ut::TestStruct, st, i, d, v)
-OS_SERIALIZE_STRUCT(cho::osbase::core::ut::ComplexTestStruct, d, t, e, s)
+OS_SERIALIZE_STRUCT(NS_OSBASE::core::ut::TestStruct, st, i, d, v)
+OS_SERIALIZE_STRUCT(NS_OSBASE::core::ut::ComplexTestStruct, d, t, e, s)
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class AsyncData_UT : public testing::Test {
     protected:
@@ -591,4 +591,4 @@ namespace cho::osbase::data::ut {
         thReceiver.join();
     }
 
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

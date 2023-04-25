@@ -6,7 +6,7 @@
 #include "osCore/Exception/RuntimeException.h"
 #include <gdiplus.h>
 
-namespace cho::osbase::webengine {
+namespace NS_OSBASE::webengine {
 
     /*
      * \class CaptureWindowManager
@@ -143,4 +143,4 @@ namespace cho::osbase::webengine {
 
         throw core::RuntimeException("unable to get the encoder for the format " + mimeFormat);
     }
-} // namespace cho::osbase::webengine
+} // namespace NS_OSBASE::webengine

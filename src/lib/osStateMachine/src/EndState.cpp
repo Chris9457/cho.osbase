@@ -4,7 +4,7 @@
 #include "osStateMachine/State.h"
 #include "osStateMachine/StateMachineRes.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     /*
      * \class EndState
@@ -28,4 +28,4 @@ namespace cho::osbase::statemachine {
     EndState::EndState(StatePtr pParent, const std::string &name) : AbstractState(pParent, name) {
     }
 
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

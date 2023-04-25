@@ -3,7 +3,7 @@
 #include "osData/Logger.h"
 #include <sstream>
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     namespace {} // namespace
 
@@ -79,4 +79,4 @@ namespace cho::osbase::data {
     std::shared_ptr<core::KeyStream<std::string>> Logger::createKeyStream(std::string &&log) {
         return core::makeJsonStream(std::stringstream(std::forward<std::string>(log)));
     }
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

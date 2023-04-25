@@ -8,7 +8,7 @@
 #include <future>
 #include <chrono>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /**
      * çbrief Exception thrown by runners
@@ -55,4 +55,4 @@ namespace cho::osbase::application {
 
         static constexpr std::chrono::milliseconds s_defaultTimeout = std::chrono::milliseconds(10);
     };
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

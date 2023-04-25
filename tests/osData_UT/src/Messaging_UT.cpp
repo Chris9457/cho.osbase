@@ -13,7 +13,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     IMessagingPtr connectToWamp() {
         const std::string url = "127.0.0.1";
@@ -446,4 +446,4 @@ namespace cho::osbase::data::ut {
         ASSERT_EQ(status, std::future_status::timeout);
     }
 
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

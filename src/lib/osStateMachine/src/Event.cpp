@@ -2,7 +2,7 @@
 
 #include "osStateMachine/Event.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
     EventPtr Event::create(const std::string &name, const std::any &value) {
         return EventPtr(new Event(name, value));
     }
@@ -17,4 +17,4 @@ namespace cho::osbase::statemachine {
 
     Event::Event(const std::string &name, const std::any &value) : m_name(name), m_value(value) {
     }
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

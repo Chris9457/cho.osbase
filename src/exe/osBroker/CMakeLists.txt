@@ -12,4 +12,4 @@ target_link_libraries(${BROKER} PRIVATE
 					 )
 
 install(TARGETS ${BROKER} DESTINATION broker)
-install(FILES $<TARGET_RUNTIME_DLLS:${BROKER}> DESTINATION broker)
+install_deps(TARGET ${BROKER} DESTINATION broker)

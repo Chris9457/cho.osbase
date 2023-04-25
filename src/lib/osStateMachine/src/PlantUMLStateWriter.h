@@ -4,7 +4,7 @@
 #include "osStateMachine/IStateWriter.h"
 #include <sstream>
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     class PlantUMLStateWriter : public IStateWriter {
     public:
@@ -18,4 +18,4 @@ namespace cho::osbase::statemachine {
         std::ostringstream m_buffer;
         std::vector<std::string> m_legendLines;
     };
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

@@ -10,9 +10,9 @@
 
 #include "osStateMachine/Transition.h"
 
-namespace nsdata = cho::osbase::data;
+namespace nsdata = NS_OSBASE::data;
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     /*
      * \class StateMachine::StateDelegate
@@ -261,4 +261,4 @@ namespace cho::osbase::statemachine {
             }
         }
     }
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

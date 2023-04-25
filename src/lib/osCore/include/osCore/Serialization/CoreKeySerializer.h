@@ -7,7 +7,7 @@
 #include <array>
 #include <tuple>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /** \cond */
     template <typename TKey>
@@ -88,7 +88,7 @@ namespace cho::osbase::core {
         static bool setValue(KeyStream<TKey> &keyStream, const char value);
     };
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "CoreKeySerializer.inl"
 /** \endcond */

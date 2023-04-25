@@ -15,19 +15,19 @@
 using namespace std::chrono_literals;
 
 template <>
-struct type_converter<std::string, cho::osbase::data::impl::WebSocketDataExchange::Side> {
-    static std::string convert(const cho::osbase::data::impl::WebSocketDataExchange::Side side) {
+struct type_converter<std::string, NS_OSBASE::data::impl::WebSocketDataExchange::Side> {
+    static std::string convert(const NS_OSBASE::data::impl::WebSocketDataExchange::Side side) {
         switch (side) {
-        case cho::osbase::data::impl::WebSocketDataExchange::Side::Server:
+        case NS_OSBASE::data::impl::WebSocketDataExchange::Side::Server:
             return "server";
-        case cho::osbase::data::impl::WebSocketDataExchange::Side::Client:
+        case NS_OSBASE::data::impl::WebSocketDataExchange::Side::Client:
             return "client";
         }
         return "client";
     }
 };
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
     OS_REGISTER_FACTORY_N(IDataExchange, WebSocketDataExchange, 0, IDATAEXCHANGE_WEBSOCKET_FACTORY_NAME)
 
     WebSocketDataExchange::WebSocketDataExchange() : m_accessType(AccessType::CreateOpen) {
@@ -285,4 +285,4 @@ namespace cho::osbase::data::impl {
         }
     }
 
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

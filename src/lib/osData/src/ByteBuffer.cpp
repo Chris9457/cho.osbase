@@ -2,7 +2,7 @@
 
 #include "osData/ByteBuffer.h"
 
-using namespace cho::osbase::data;
+using namespace NS_OSBASE::data;
 
 // unsigned char* ==> ByteBuffer
 ByteBuffer type_converter<ByteBuffer, unsigned char *>::convert(const unsigned char *pBufferArray, const size_t length) {

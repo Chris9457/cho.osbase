@@ -13,7 +13,7 @@
  * \ingroup PACKAGE_OSSTATEMACHINE
  */
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     class StateMachine;
     using StateMachinePtr = std::shared_ptr<StateMachine>;
@@ -78,4 +78,4 @@ namespace cho::osbase::statemachine {
         unsigned char m_logChannel = static_cast<unsigned char>(sizeof(unsigned long long) * 8 - 1); // by default, highest weighted bit
     };
 
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

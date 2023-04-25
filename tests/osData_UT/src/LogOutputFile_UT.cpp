@@ -7,7 +7,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class LogOutputFile_UT : public testing::Test {};
 
@@ -53,4 +53,4 @@ namespace cho::osbase::data::ut {
         std::getline(os, flushedMsg);
         ASSERT_EQ(flushedMsg, msg);
     }
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

@@ -6,7 +6,7 @@
 #include <mutex>
 #include <set>
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
 
     class LocalFileExchange : public IFileExchange {
     public:
@@ -42,4 +42,4 @@ namespace cho::osbase::data::impl {
         std::atomic_bool m_bEndWatchLocalPath = false;
         mutable std::atomic_bool m_bPushed    = false;
     };
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

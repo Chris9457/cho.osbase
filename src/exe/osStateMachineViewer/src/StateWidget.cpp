@@ -9,11 +9,11 @@
 #include <QtWidgets>
 #include <iostream>
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nscore   = nsosbase::core;
 namespace nssm     = nsosbase::statemachine;
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     StateWidget::StateWidget(nssm::StatePtr pState) : AbstractStateWidget(pState) {
         auto *pLayout = new QVBoxLayout(this);
 
@@ -38,7 +38,7 @@ namespace cho::osbase::statemachineviewer {
         m_pTitle->setColor(getColor());
     }
 
-    void StateWidget::addAbstractState(cho::osbase::statemachine::AbstractStatePtr pState) {
+    void StateWidget::addAbstractState(NS_OSBASE::statemachine::AbstractStatePtr pState) {
         m_pClientArea->addSubState(pState);
     }
 
@@ -74,4 +74,4 @@ namespace cho::osbase::statemachineviewer {
             STATEWIDGET_RADIUS,
             STATEWIDGET_RADIUS);
     }
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

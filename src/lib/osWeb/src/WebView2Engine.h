@@ -7,7 +7,7 @@
 #include <Windows.h>
 #include <mutex>
 
-namespace cho::osbase::webengine {
+namespace NS_OSBASE::webengine {
 
     /*
      * \brief Implementation for the Microsoft Edge Web Engine
@@ -53,4 +53,4 @@ namespace cho::osbase::webengine {
         static std::recursive_mutex s_EdgeWebEngineInstanceLock;
         static std::unordered_map<HWND, WebView2Engine *> s_mapHwndEdgeWebEngine;
     };
-} // namespace cho::osbase::webengine
+} // namespace NS_OSBASE::webengine

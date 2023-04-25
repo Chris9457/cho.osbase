@@ -1,6 +1,6 @@
 module:
   name: "TestDomainObjectsImport"
-  namespace: "cho.osbase.application.ut.testdomainobjectsimport"
+  namespace: "@OSBASE@.application.ut.testdomainobjectsimport"
 
 domain_objects:
   - alias: "Vectf4"

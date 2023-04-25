@@ -18,7 +18,7 @@
  * \ingroup PACKAGE_OSSTATEMACHINE
  */
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     class Transition;
     using TransitionPtr  = std::shared_ptr<Transition>;
@@ -101,6 +101,6 @@ namespace cho::osbase::statemachine {
         ITransitionDelegateWPtr m_pDelegate;
     };
 
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine
 
-std::ostream &operator<<(std::ostream &os, const cho::osbase::statemachine::AbstractState &state);
+std::ostream &operator<<(std::ostream &os, const NS_OSBASE::statemachine::AbstractState &state);

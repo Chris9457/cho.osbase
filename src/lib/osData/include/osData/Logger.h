@@ -9,7 +9,7 @@
 #include "osCore/Serialization/KeyStream.h"
 #include <mutex>
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
     /**
      * \addtogroup PACKAGE_OSBASE_LOGS
      * \{
@@ -54,6 +54,6 @@ namespace cho::osbase::data {
 
 #define TheLogger Logger::getInstance() //!< macro helper to invoke the singleton
     /** \} */
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data
 
 #include "Logger.inl"

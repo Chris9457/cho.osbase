@@ -2,7 +2,7 @@
 
 #include "osData/IExchange.h"
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
     IExchange::AccessType operator&(const IExchange::AccessType &lhs, const IExchange::AccessType &rhs) {
         return static_cast<IExchange::AccessType>(static_cast<std::underlying_type_t<IExchange::AccessType>>(lhs) &
                                                   static_cast<std::underlying_type_t<IExchange::AccessType>>(rhs));
@@ -12,4 +12,4 @@ namespace cho::osbase::data {
         return static_cast<IExchange::AccessType>(static_cast<std::underlying_type_t<IExchange::AccessType>>(lhs) |
                                                   static_cast<std::underlying_type_t<IExchange::AccessType>>(rhs));
     }
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

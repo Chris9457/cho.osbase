@@ -3,9 +3,9 @@
 #include "osData/Log.h"
 #include "gtest/gtest.h"
 
-using namespace cho::osbase::application;
+using namespace NS_OSBASE::application;
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     class TaskQueue_UT : public testing::Test {
     protected:
@@ -360,4 +360,4 @@ namespace cho::osbase::application::ut {
         timespan = (int)std::chrono::duration_cast<std::chrono::milliseconds>(TaskQueue::clock::now() - start).count();
         oslog::trace() << "timespan: " << timespan << oslog::end();
     }
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

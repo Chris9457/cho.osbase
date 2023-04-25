@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief Base class to declare non copyable classes
@@ -18,4 +18,4 @@ namespace cho::osbase::core {
         NonCopyable()  = default;
         ~NonCopyable() = default;
     };
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

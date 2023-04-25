@@ -2,6 +2,6 @@
 
 #pragma once
 
-namespace cho::osbase::webengine {
-    constexpr char WEBENGINE_WEBVIEW2[] = "cho.osbase.webengine.webview2webengine";
+namespace NS_OSBASE::webengine {
+    constexpr char WEBENGINE_WEBVIEW2[] = "osbase.webengine.webview2webengine";
 }

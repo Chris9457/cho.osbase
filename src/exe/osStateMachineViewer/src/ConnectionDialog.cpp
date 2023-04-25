@@ -3,7 +3,7 @@
 #include "ConnectionDialog.h"
 #include "ui_connectiondialog.h"
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
 
     /*
      * \class ConnectionDialog
@@ -39,4 +39,4 @@ namespace cho::osbase::statemachineviewer {
         ui->hostEdit->setText("localhost");
         ui->portEdit->setText("8080");
     }
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

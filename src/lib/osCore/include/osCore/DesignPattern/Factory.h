@@ -4,7 +4,7 @@
 #pragma once
 #include <memory>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief Generic base class of classes AbstractFactory
@@ -81,6 +81,6 @@ namespace cho::osbase::core {
 
     /** \} */
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "Factory.inl"

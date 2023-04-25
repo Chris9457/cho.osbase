@@ -6,7 +6,7 @@
 #include <filesystem>
 #include <functional>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     constexpr char DUMPFORMAT[]       = "%Y%m%d_%H%M%S.dmp";
     constexpr char DUMPBASEFILENAME[] = "dump_";
@@ -55,6 +55,6 @@ namespace cho::osbase::core {
     };
 
 #define TheStructuredExceptionHandler StructuredExceptionHandler::getInstance()
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "StructuredExceptionHandler.inl"

@@ -43,7 +43,7 @@
  * \ingroup PACKAGE_APPLICATION
  */
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     template <typename>
     class ITypedTask;
@@ -124,6 +124,6 @@ namespace cho::osbase::application {
     ITaskPtr makeMethodTask(std::shared_ptr<TInstance> pInstance, const TMthCallback &mthCallback, TArgs &&...args);
     /**\}*/
 
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application
 
 #include "Task.inl"

@@ -4,7 +4,7 @@
 #include <filesystem>
 #include <fstream>
 
-namespace cho::osbase::statemachine::ut {
+namespace NS_OSBASE::statemachine::ut {
     class StateWriter_UT : public testing::Test {
     protected:
         void SetUp() override {
@@ -134,4 +134,4 @@ namespace cho::osbase::statemachine::ut {
         // std::ofstream ofs(outputFile);
         // ofs << *pWriter;
     }
-} // namespace cho::osbase::statemachine::ut
+} // namespace NS_OSBASE::statemachine::ut

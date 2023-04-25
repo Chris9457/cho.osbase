@@ -1,4 +1,4 @@
-# cho.osbase
+# osbase
 This project gathers the pure technical (non-domain) generic features used to build domain application
 
 # Needed configuration

@@ -12,7 +12,7 @@
 #include <vector>
 #include <optional>
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /**
      * \brief Base implementation of the "stub" of the service
@@ -131,6 +131,6 @@ namespace cho::osbase::application {
 
         static constexpr int s_factorAlivePeriod = 2;
     };
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application
 
 #include "ServiceStub.inl"

@@ -11,7 +11,7 @@
 #include "osStateMachine/StateMachineRes.h"
 #include "osCore/Misc/Scope.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     /*
      * \class State
@@ -384,4 +384,4 @@ namespace cho::osbase::statemachine {
     }
 #pragma endregion
 
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

@@ -2,7 +2,7 @@
 #include "osStateMachine/osStateMachine.h"
 #include <gtest/gtest.h>
 
-namespace cho::osbase::statemachine::ut {
+namespace NS_OSBASE::statemachine::ut {
     class Transition_UT : public testing::Test {};
 
     TEST_F(Transition_UT, create) {
@@ -59,4 +59,4 @@ namespace cho::osbase::statemachine::ut {
         ASSERT_EQ(name, pTransition->getName());
     }
 
-} // namespace cho::osbase::statemachine::ut
+} // namespace NS_OSBASE::statemachine::ut

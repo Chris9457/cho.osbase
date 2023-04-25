@@ -6,10 +6,10 @@
 #include "StateWidget.h"
 #include <deque>
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nssm     = nsosbase::statemachine;
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     AbstractStateWidget::AbstractStateWidget(nssm::AbstractStatePtr pState) : m_pState(pState), m_color(STATE_DEACTIVATED_COLOR) {
     }
 
@@ -106,4 +106,4 @@ namespace cho::osbase::statemachineviewer {
 
         return fromClientArea.front();
     }
-}; // namespace cho::osbase::statemachineviewer
+}; // namespace NS_OSBASE::statemachineviewer

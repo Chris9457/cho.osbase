@@ -5,7 +5,7 @@
 #include "osCore/DesignPattern/AbstractFactory.h"
 
 #define OS_WEBENGINE_LINK()                                                                                                                \
-    namespace cho::osbase::webengine {                                                                                                     \
+    namespace NS_OSBASE::webengine {                                                                                                     \
         OS_LINK_FACTORY_N(IWebViewerEngine, WebView2Engine, 0);                                                                            \
         OS_LINK_FACTORY_N(IWebViewerEngine, WebView2Engine, 1);                                                                            \
     }

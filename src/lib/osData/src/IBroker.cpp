@@ -4,12 +4,12 @@
 #include "osData/FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 
-namespace nscore = cho::osbase::core;
+namespace nscore = NS_OSBASE::core;
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     IBrokerPtr makeBroker() {
         return nscore::TheFactoryManager.createInstance<IBroker>(WAMPCCBROCKER_FACTORY_NAME);
     }
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

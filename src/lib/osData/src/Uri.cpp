@@ -25,7 +25,7 @@ namespace {
 
 } // namespace
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /*
      * \class Uri::Host
@@ -144,9 +144,9 @@ namespace cho::osbase::data {
         static const std::string schemeName = "ftp";
         return schemeName;
     }
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nscore   = nsosbase::core;
 namespace nsdata   = nsosbase::data;
 
@@ -239,14 +239,14 @@ nsdata::Uri type_converter<nsdata::Uri, std::string>::convert(const std::string 
     return uri;
 }
 
-std::wstring type_converter<std::wstring, cho::osbase::data::Uri>::convert(const cho::osbase::data::Uri &uri) {
+std::wstring type_converter<std::wstring, NS_OSBASE::data::Uri>::convert(const NS_OSBASE::data::Uri &uri) {
     auto const strUri = type_cast<std::string>(uri);
     return type_cast<std::wstring>(strUri);
 }
 
-cho::osbase::data::Uri type_converter<cho::osbase::data::Uri, std::wstring>::convert(const std::wstring &wStrUri) {
+NS_OSBASE::data::Uri type_converter<NS_OSBASE::data::Uri, std::wstring>::convert(const std::wstring &wStrUri) {
     auto const strUri = type_cast<std::string>(wStrUri);
-    return type_cast<cho::osbase::data::Uri>(strUri);
+    return type_cast<NS_OSBASE::data::Uri>(strUri);
 }
 
 std::filesystem::path type_converter<std::filesystem::path, nsdata::Uri>::convert(const nsdata::Uri uri) {
@@ -261,7 +261,7 @@ std::filesystem::path type_converter<std::filesystem::path, nsdata::Uri>::conver
     return *uri.path;
 }
 
-nsdata::Uri type_converter<cho::osbase::data::Uri, std::filesystem::path>::convert(const std::filesystem::path &path) {
+nsdata::Uri type_converter<NS_OSBASE::data::Uri, std::filesystem::path>::convert(const std::filesystem::path &path) {
     return nsdata::Uri{ nsdata::Uri::schemeFile(), {}, path.string(), {}, {} };
 }
 
@@ -273,7 +273,7 @@ bool std::less<nsdata::Uri>::operator()(const nsdata::Uri &lhs, const nsdata::Ur
     return std::less<>()(type_cast<std::string>(lhs), type_cast<std::string>(rhs));
 }
 
-std::ostream &operator<<(std::ostream &os, const cho::osbase::data::Uri &uri) {
+std::ostream &operator<<(std::ostream &os, const NS_OSBASE::data::Uri &uri) {
     os << type_cast<std::string>(uri);
     return os;
 }

@@ -3,7 +3,7 @@
 #include "osCore/Exception/RuntimeException.h"
 #include "gtest/gtest.h"
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     class RuntimeException_UT : public testing::Test {};
 
@@ -56,4 +56,4 @@ namespace cho::osbase::core::ut {
             EXPECT_STREQ(e.what(), runtimeExceptionMessage.c_str()) << "Wrong message in runtime exception";
         }
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

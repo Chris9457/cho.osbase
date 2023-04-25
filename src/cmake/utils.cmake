@@ -197,54 +197,36 @@ function(install_qt_plugins)
     endforeach()
 endfunction()
 
-# Utility function to create a new Google Test
-# example: add_google_test(MyTest test1.cpp test2.cpp)
-function(add_google_test TargetName)
-    add_executable(${TargetName} ${ARGN})
-    target_precompile_headers(${TargetName} PRIVATE ${TargetName}.h)
-    target_link_libraries(${TargetName} PRIVATE CONAN_PKG::gtest)
-
-    set(_xml_outdir ${CMAKE_BINARY_DIR}/gtest)
-    file(MAKE_DIRECTORY ${_xml_outdir})
-    add_test(NAME ${TargetName} COMMAND ${TargetName} --gtest_output=xml:${_xml_outdir}/${_target_name}.xml)
-    set_tests_properties(${TargetName} PROPERTIES TIMEOUT 120)
-endfunction()
-
-# Utility function to add a new configuration file
-# example: add_configuration_file(TAGNAME myTag INPUT_FILE inFile OUTPUT_FILE outFile)
-function(add_configuration_file)
-	set(options COPYONLY)
-	set(oneValueArgs TAGNAME INPUT_FILE OUTPUT_FILE)
+function(install_deps)
+	set(options "")
+	set(oneValueArgs TARGET DESTINATION)
 	set(multiValueArgs "")
 	cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 	
 	##########################################
 	# check mandatory params
-	foreach(arg TAGNAME INPUT_FILE)
+	foreach(arg TARGET DESTINATION)
 		if (NOT ARG_${arg})
 			list(APPEND missing_params ${arg})
 		endif()
 	endforeach()
 	
 	if (missing_params)
-		message(FATAL_ERROR "add_configuration_file: missing params => ${missing_params}")
+		message(FATAL_ERROR "install_deps: missing params => ${missing_params}")
 	endif()
 	##########################################
 
-	if (NOT ARG_OUTPUT_FILE)
-		set(ARG_OUTPUT_FILE ${ARG_INPUT_FILE})
-	endif()
+	find_program(POWERSHELL powershell)
 
-	set(OUTPUT_SETTINGS_DIR ${CMAKE_CURRENT_BINARY_DIR}/settings)
-	if (ARG_COPYONLY)
-		configure_file(${ARG_INPUT_FILE} ${OUTPUT_SETTINGS_DIR}/${ARG_OUTPUT_FILE} COPYONLY)
-	else()
-		configure_file(${ARG_INPUT_FILE} ${OUTPUT_SETTINGS_DIR}/${ARG_OUTPUT_FILE})
-	endif()
+	add_custom_command(TARGET ${ARG_TARGET} POST_BUILD
+					   COMMAND ${CMAKE_COMMAND} -E remove_directory "$<TARGET_FILE_DIR:${ARG_TARGET}>/${ARG_DESTINATION}"
+					   COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:${ARG_TARGET}>/${ARG_DESTINATION}"
+					   COMMAND ${POWERSHELL} -file "${CMAKE_SOURCE_DIR}/src/cmake/install_deps.ps1" 
+								-SourcePath "$<TARGET_FILE_DIR:${ARG_TARGET}>" 
+								-DestinationPath "$<TARGET_FILE_DIR:${ARG_TARGET}>/${ARG_DESTINATION}"
+								-FileExtension ${CMAKE_SHARED_LIBRARY_SUFFIX}
+					   )
 
-	get_property(conf_files GLOBAL PROPERTY ${ARG_TAGNAME}_CONFIGURATION)
-	set(conf_files ${conf_files} ${OUTPUT_SETTINGS_DIR}/)
-	list(REMOVE_DUPLICATES conf_files)
-	set_property(GLOBAL PROPERTY ${ARG_TAGNAME}_CONFIGURATION ${conf_files})
+	install(DIRECTORY "$<TARGET_FILE_DIR:${ARG_TARGET}>/${ARG_DESTINATION}" DESTINATION .)
 endfunction()
 

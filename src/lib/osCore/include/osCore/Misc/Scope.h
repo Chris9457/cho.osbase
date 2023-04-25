@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /**
      * \brief 	This class represents:
@@ -45,6 +45,6 @@ namespace cho::osbase::core {
     template <typename Fn>
     scope_exit<Fn> make_scope_exit(Fn &&fn) noexcept;
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core
 
 #include "Scope.inl"

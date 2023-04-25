@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 
-namespace cho::osbase::logviewer {
+namespace NS_OSBASE::logviewer {
 
     /*
      * \class LogViewer::LogServiceObserver
@@ -403,4 +403,4 @@ namespace cho::osbase::logviewer {
                    and.value_or(Operations{}) == other.and.value_or(Operations{}) &&
                or.value_or(Operations{}) == other.or.value_or(Operations{}) && output == other.output;
     }
-} // namespace cho::osbase::logviewer
+} // namespace NS_OSBASE::logviewer

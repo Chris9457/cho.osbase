@@ -27,7 +27,7 @@ class CppImplHeader(CppBase):
         self.file.write('\n    /**\n')
         self.file.write('     * \\brief Skeleton declaration\n')
         self.file.write('     */\n')
-        self.file.write('    class ' + skeletonName + ' : public cho::osbase::application::ServiceImpl<' +
+        self.file.write('    class ' + skeletonName + ' : public NS_OSBASE::application::ServiceImpl<' +
                         serviceName + '> {\n')
         self.file.write('    protected:\n')
         self.file.write('        ' + skeletonName + '();\n\n')

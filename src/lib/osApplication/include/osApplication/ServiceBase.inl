@@ -4,7 +4,7 @@
 #include "ServiceException.h"
 #include "osData/MessagingException.h"
 
-namespace cho::osbase::application {
+namespace NS_OSBASE::application {
 
     /*
      * \class ServiceBase::MessagingConnectionObserver
@@ -110,4 +110,4 @@ namespace cho::osbase::application {
         notify(ServiceConnectionMsg{ bConnected });
     }
 
-} // namespace cho::osbase::application
+} // namespace NS_OSBASE::application

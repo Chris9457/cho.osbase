@@ -3,7 +3,7 @@
 #pragma once
 #include "osCore/Exception/Exception.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     /**
      * \brief Generic exception for the state machines
@@ -12,4 +12,4 @@ namespace cho::osbase::statemachine {
     class StateMachineException : public core::RuntimeException {
         using core::RuntimeException::RuntimeException;
     };
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

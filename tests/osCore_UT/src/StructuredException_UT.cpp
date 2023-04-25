@@ -4,7 +4,7 @@
 #include "osCore/Exception/Check.h"
 #include "gtest/gtest.h"
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
     class StructuredException_UT : public testing::Test {
     protected:
         void TearDown() override {
@@ -191,4 +191,4 @@ namespace cho::osbase::core::ut {
         ASSERT_TRUE(getDumpFiles().empty());
     }
 
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

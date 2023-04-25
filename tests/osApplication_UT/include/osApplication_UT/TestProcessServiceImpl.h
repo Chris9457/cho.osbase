@@ -4,7 +4,7 @@
 #include "TestProcessSkeleton.h"
 #include "osCore/DesignPattern/Singleton.h"
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     class TestProcessImpl final : public process::TestProcessServiceSkeleton, public core::Singleton<TestProcessImpl> {
         friend core::Singleton<TestProcessImpl>;
@@ -23,12 +23,12 @@ namespace cho::osbase::application::ut {
         double retFloatingNoArg() override;
         std::string retStringNoArg() override;
         bool retBoolNoArg() override;
-        cho::osbase::data::Uri retUriNoArg() override;
+        NS_OSBASE::data::Uri retUriNoArg() override;
         process::CustomType retCustomTypeNoArg() override;
         std::array<int, 4> retArrayFixNoArg() override;
         std::vector<std::string> retArrayNotFixNoArg() override;
-        cho::osbase::data::AsyncData<std::vector<std::string>> retAsyncNoArg() override;
-        cho::osbase::data::AsyncPagedData<std::vector<bool>> retAsyncPagedNoArg() override;
+        NS_OSBASE::data::AsyncData<std::vector<std::string>> retAsyncNoArg() override;
+        NS_OSBASE::data::AsyncPagedData<std::vector<bool>> retAsyncPagedNoArg() override;
         process::TestAllBasicTypes retArgs(char _char,
             unsigned char _unsigned_char,
             short _short_integer,
@@ -41,10 +41,10 @@ namespace cho::osbase::application::ut {
             double _floating,
             std::string _string,
             bool _boolean,
-            cho::osbase::data::Uri _uri) override;
+            NS_OSBASE::data::Uri _uri) override;
         process::ResultAsync retAsyncArg(process::AsyncStruct asyncValues) override;
         std::string retNoArgConst() const override;
-        cho::osbase::data::AsyncData<std::vector<int>> fwdAsyncData() override;
+        NS_OSBASE::data::AsyncData<std::vector<int>> fwdAsyncData() override;
 
         void setFwdData(const std::vector<int> &data);
 
@@ -61,4 +61,4 @@ namespace cho::osbase::application::ut {
     };
 
 #define TheTestProcessImpl TestProcessImpl::getInstance()
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

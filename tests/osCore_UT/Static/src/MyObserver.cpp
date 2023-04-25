@@ -3,7 +3,7 @@
 
 #include "Static/MyObserver.h"
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     /*
      * \class MyObservable
@@ -166,4 +166,4 @@ namespace cho::osbase::core::ut {
     void MyObserverWaitOnUpdate::go() {
         m_cv.notify_all();
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

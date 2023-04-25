@@ -18,13 +18,13 @@
 #include <filesystem>
 #include <fstream>
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nscore   = nsosbase::core;
 namespace nsdata   = nsosbase::data;
 namespace nsapp    = nsosbase::application;
 namespace nssm     = nsosbase::statemachine;
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     /*
      * \class StateMachineWindow::LogReceiverDelegate
      */
@@ -481,7 +481,7 @@ namespace cho::osbase::statemachineviewer {
         }
     }
 
-    void StateMachineWindow::updateStateWidget(cho::osbase::statemachine::StatePtr pState) const {
+    void StateMachineWindow::updateStateWidget(NS_OSBASE::statemachine::StatePtr pState) const {
         auto const pStateWidget = findStateWidget(pState);
         if (pStateWidget != nullptr) {
             return;
@@ -490,7 +490,7 @@ namespace cho::osbase::statemachineviewer {
         createStateWidget(pState);
     }
 
-    void StateMachineWindow::updateStartStateWidget(cho::osbase::statemachine::StartStatePtr pStartState) const {
+    void StateMachineWindow::updateStartStateWidget(NS_OSBASE::statemachine::StartStatePtr pStartState) const {
         auto const pStartStateWidgets = getStateDiagramWidget()->findChildren<StartStateWidget *>();
         auto const itStartStateWidget = std::find_if(pStartStateWidgets.cbegin(),
             pStartStateWidgets.cend(),
@@ -503,7 +503,7 @@ namespace cho::osbase::statemachineviewer {
         createStateWidget(pStartState);
     }
 
-    void StateMachineWindow::updateEndStateWidget(cho::osbase::statemachine::EndStatePtr pEndState) const {
+    void StateMachineWindow::updateEndStateWidget(NS_OSBASE::statemachine::EndStatePtr pEndState) const {
         auto const pEndStateWidgets = getStateDiagramWidget()->findChildren<EndStateWidget *>();
         auto const itEndStateWidget = std::find_if(pEndStateWidgets.cbegin(),
             pEndStateWidgets.cend(),
@@ -516,7 +516,7 @@ namespace cho::osbase::statemachineviewer {
         createStateWidget(pEndState);
     }
 
-    void StateMachineWindow::updateHistoryStateWidget(cho::osbase::statemachine::HistoryStatePtr pHistoryState) const {
+    void StateMachineWindow::updateHistoryStateWidget(NS_OSBASE::statemachine::HistoryStatePtr pHistoryState) const {
         auto const pHistoryStateWidgets = getStateDiagramWidget()->findChildren<HistoryStateWidget *>();
         auto const itEndStateWidget =
             std::find_if(pHistoryStateWidgets.cbegin(), pHistoryStateWidgets.cend(), [&pHistoryState](auto const pHistoryStateWidget) {
@@ -530,7 +530,7 @@ namespace cho::osbase::statemachineviewer {
         createStateWidget(pHistoryState);
     }
 
-    void StateMachineWindow::createStateWidget(cho::osbase::statemachine::AbstractStatePtr pAbstractState) const {
+    void StateMachineWindow::createStateWidget(NS_OSBASE::statemachine::AbstractStatePtr pAbstractState) const {
         if (pAbstractState->getParent() == nullptr) {
             // for the root, create the main StateWidget
             auto const pRoot = std::dynamic_pointer_cast<nssm::State>(pAbstractState);
@@ -583,7 +583,7 @@ namespace cho::osbase::statemachineviewer {
         m_pSMComboBox->clear();
     }
 
-    StateWidget *StateMachineWindow::findStateWidget(cho::osbase::statemachine::StatePtr pState) const {
+    StateWidget *StateMachineWindow::findStateWidget(NS_OSBASE::statemachine::StatePtr pState) const {
         auto const pStateWidgets = getStateDiagramWidget()->findChildren<StateWidget *>();
         auto const itStateWidget = std::find_if(pStateWidgets.cbegin(), pStateWidgets.cend(), [&pState](auto const pStateWidget) {
             return pStateWidget->getState() == pState;
@@ -756,4 +756,4 @@ namespace cho::osbase::statemachineviewer {
         }
     }
 
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

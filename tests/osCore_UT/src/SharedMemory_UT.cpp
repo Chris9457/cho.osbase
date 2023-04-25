@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 #include <future>
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
     class SharedMemory_UT : public testing::Test {
     protected:
         static bool testLockProc(SharedMemory<void> *pSharedMemory) {
@@ -102,4 +102,4 @@ namespace cho::osbase::core::ut {
 
         ASSERT_TRUE(testLock(sharedMemory2));
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

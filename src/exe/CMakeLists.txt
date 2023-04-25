@@ -1,3 +1,6 @@
+set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
+
+
 add_subdirectory(osBroker)
 add_subdirectory(osLauncher)
 add_subdirectory(osLog)

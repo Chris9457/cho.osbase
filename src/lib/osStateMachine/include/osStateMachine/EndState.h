@@ -3,7 +3,7 @@
 #pragma once
 #include "AbstractState.h"
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     class EndState;
     using EndStatePtr = std::shared_ptr<EndState>;
@@ -23,4 +23,4 @@ namespace cho::osbase::statemachine {
     private:
         EndState(StatePtr pParent, const std::string &name);
     };
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

@@ -2,7 +2,7 @@
 
 #pragma once
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
     constexpr char PLANTUML_HEADER[]                = "@startuml";
     constexpr char PLANTUML_FOOTER[]                = "@enduml";
     constexpr char PLANTUML_STATE[]                 = "state";
@@ -21,4 +21,4 @@ namespace cho::osbase::statemachine {
     constexpr char PLANTUML_START_LEGEND[]          = "legend";
     constexpr char PLANTUML_END_LEGEND[]            = "end legend";
 
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

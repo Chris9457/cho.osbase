@@ -3,7 +3,7 @@
 #pragma once
 #include "osData/ILogOutput.h"
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
 
     /**
      * \brief Realization of the interface ILogOutput
@@ -13,4 +13,4 @@ namespace cho::osbase::data::impl {
         void log(std::string &&msg) override;
         void flush(std::ostream &os) override;
     };
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

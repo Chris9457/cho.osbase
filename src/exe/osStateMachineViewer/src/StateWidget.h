@@ -5,7 +5,7 @@
 
 class QPainter;
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     class StateTitle;
     class StateClientArea;
 
@@ -13,12 +13,12 @@ namespace cho::osbase::statemachineviewer {
         Q_OBJECT
 
     public:
-        StateWidget(cho::osbase::statemachine::StatePtr pState);
+        StateWidget(NS_OSBASE::statemachine::StatePtr pState);
 
         void activate(const ActivationMode mode) override;
         void deactivate() override;
 
-        void addAbstractState(cho::osbase::statemachine::AbstractStatePtr pState);
+        void addAbstractState(NS_OSBASE::statemachine::AbstractStatePtr pState);
         void resetTransition() override;
         StateClientArea *getClientArea() const;
 
@@ -28,4 +28,4 @@ namespace cho::osbase::statemachineviewer {
         StateClientArea *m_pClientArea;
         StateTitle *m_pTitle;
     };
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

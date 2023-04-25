@@ -4,7 +4,7 @@
 #include "DataExchangeDecorator.h"
 #include <mutex>
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /**
      * \addtogroup PACKAGE_OSBASE_EXCHANGE
@@ -53,4 +53,4 @@ namespace cho::osbase::data {
                                                                                                           //!< with a scheme
 
     /** \} */
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

@@ -3,7 +3,7 @@
 #pragma once
 #include <QColor>
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     constexpr int STATEWIDGET_RADIUS       = 15;
     constexpr int STATEWIDGET_TITLE_HEIGHT = 25;
     constexpr int STATEWIDGET_MIN_WIDTH    = 100;
@@ -48,4 +48,4 @@ namespace cho::osbase::statemachineviewer {
     const QColor STATE_ACTIVATED_COLOR_FAILURE      = Qt::red;
     const QColor STATE_DEACTIVATED_COLOR            = Qt::black;
 
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

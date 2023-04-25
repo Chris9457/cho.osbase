@@ -2,7 +2,7 @@
 
 #include "osData/PagedDataExchange.h"
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /*
      * \class PagedDataExchange::DataExchangeDelegate
@@ -126,4 +126,4 @@ namespace cho::osbase::data {
         return makePagedDataExchange(pDataExchange, PagedDataExchange::s_websocketPageSize);
     }
 
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

@@ -4,7 +4,7 @@
 #include "osCore/Interprocess/SharedMemory.h"
 #include <Windows.h>
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class SharedMemory
@@ -94,4 +94,4 @@ namespace cho::osbase::core {
     SharedMemoryLocker::~SharedMemoryLocker() {
         m_sharedMemory.unlock();
     }
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

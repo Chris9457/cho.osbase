@@ -4,7 +4,7 @@
 #include "osStateMachine/AbstractState.h"
 #include <QtWidgets>
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
 
     class AbstractStateWidget;
 
@@ -12,9 +12,9 @@ namespace cho::osbase::statemachineviewer {
         Q_OBJECT
 
     public:
-        StateClientArea(cho::osbase::statemachine::AbstractStatePtr pState);
+        StateClientArea(NS_OSBASE::statemachine::AbstractStatePtr pState);
 
-        void addSubState(cho::osbase::statemachine::AbstractStatePtr pSubState);
+        void addSubState(NS_OSBASE::statemachine::AbstractStatePtr pSubState);
         void setTransition(AbstractStateWidget *pFromAbstractStateWidget, AbstractStateWidget *pToAbstractStateWidget);
 
     protected:
@@ -30,4 +30,4 @@ namespace cho::osbase::statemachineviewer {
         AbstractStateWidget *m_pFromStateWidget;
         AbstractStateWidget *m_pToStateWidget;
     };
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

@@ -10,7 +10,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
     OS_REGISTER_FACTORY_N(IFileExchange, LocalFileExchange, 0, IFILEEXCHANGE_LOCALFILE_FACTORY_NAME)
 
     LocalFileExchange::~LocalFileExchange() {
@@ -267,4 +267,4 @@ namespace cho::osbase::data::impl {
         }
         m_accessType = AccessType::CreateOpen;
     }
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

@@ -14,11 +14,11 @@ OS_STATEMACHINE_LINK();
 
 using namespace std::chrono_literals;
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nscore   = nsosbase::core;
 namespace nsdata   = nsosbase::data;
 namespace nsapp    = nsosbase::application;
-namespace nsviewer = cho::osbase::statemachineviewer;
+namespace nsviewer = NS_OSBASE::statemachineviewer;
 
 class HandshakeDelegate : public nsapp::ServiceHandshake::IDelegate {
 public:

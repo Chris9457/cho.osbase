@@ -9,11 +9,11 @@
 #include "osStateMachine/State.h"
 #include "osCore/Misc/Scope.h"
 
-namespace nsosbase = cho::osbase;
+namespace nsosbase = NS_OSBASE;
 namespace nscore   = nsosbase::core;
 namespace nssm     = nsosbase::statemachine;
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     StateClientArea::StateClientArea(nssm::AbstractStatePtr pState) : m_pHistoryLayout(new QVBoxLayout(this)) {
         const bool bHorizontalLayout = pState->getDepth() % 2 == 0;
 
@@ -156,4 +156,4 @@ namespace cho::osbase::statemachineviewer {
         painter.drawLine(QPoint(-arrowEdge + arrowEnd.x(), -arrowEdge + arrowEnd.y()), arrowEnd);
         painter.drawLine(QPoint(arrowEdge / 2 + arrowEnd.x(), -arrowEdge + arrowEnd.y()), arrowEnd);
     }
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

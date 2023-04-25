@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include <vector>
 
-namespace cho::osbase::webengine {
+namespace NS_OSBASE::webengine {
 
     /**
      * \brief Provide methods to capture a window in the good image format
@@ -28,4 +28,4 @@ namespace cho::osbase::webengine {
         ULONG_PTR m_gdiplusToken{};
     };
 #define TheCaptureWindowManager CaptureWindowManager::getInstance()
-} // namespace cho::osbase::webengine
+} // namespace NS_OSBASE::webengine

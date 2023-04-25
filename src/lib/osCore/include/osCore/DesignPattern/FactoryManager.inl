@@ -1,7 +1,7 @@
 ﻿// \file  FactoryManager.inl
 // \brief Implementation of the class FactoryManager
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class FactoryManager
@@ -55,4 +55,4 @@ namespace cho::osbase::core {
         return pAbstractFactory;
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

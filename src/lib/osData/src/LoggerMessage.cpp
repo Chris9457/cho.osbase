@@ -8,7 +8,7 @@
 #include <filesystem>
 #include <thread>
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
 
     /*
      * \class LoggerTimestamp
@@ -141,4 +141,4 @@ namespace cho::osbase::data {
         info.threadId = oss.str();
         return info;
     }
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data

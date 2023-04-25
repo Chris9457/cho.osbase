@@ -2,9 +2,9 @@
 
 #include "TransitionRecord.h"
 
-namespace nssm = cho::osbase::statemachine;
+namespace nssm = NS_OSBASE::statemachine;
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
 
     bool KeyTransitionRecord::operator<(const KeyTransitionRecord &other) const {
         if (processName != other.processName) {
@@ -17,4 +17,4 @@ namespace cho::osbase::statemachineviewer {
 
         return smId < other.smId;
     }
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

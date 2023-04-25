@@ -3,9 +3,9 @@
 #include "osCore/Exception/LogicException.h"
 #include "gtest/gtest.h"
 
-namespace nscore = cho::osbase::core;
+namespace nscore = NS_OSBASE::core;
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     class LogicException_UT : public testing::Test {};
 
@@ -58,4 +58,4 @@ namespace cho::osbase::core::ut {
             EXPECT_STREQ(e.what(), logicExceptionMessage.c_str()) << "Wrong message in logic exception";
         }
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

@@ -5,7 +5,7 @@
 #include <any>
 #include <string>
 
-namespace cho::osbase::statemachine {
+namespace NS_OSBASE::statemachine {
 
     class Event;
     using EventPtr = std::shared_ptr<Event>;
@@ -27,4 +27,4 @@ namespace cho::osbase::statemachine {
         std::string m_name;
         std::any m_value;
     };
-} // namespace cho::osbase::statemachine
+} // namespace NS_OSBASE::statemachine

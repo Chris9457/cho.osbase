@@ -5,7 +5,7 @@
 #include "KeySerializer.h"
 #include "osCore/Misc/Scope.h"
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
 #pragma region KeyStream
     namespace internal {
@@ -154,4 +154,4 @@ namespace cho::osbase::core {
     }
 #pragma endregion
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

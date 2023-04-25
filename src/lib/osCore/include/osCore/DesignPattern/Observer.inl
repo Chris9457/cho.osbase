@@ -1,7 +1,7 @@
 // \file  Observer.inl
 // \brief Implementation of template methods and classes of the pattern Observer
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \class TypedObserver
@@ -277,4 +277,4 @@ namespace cho::osbase::core {
         }
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

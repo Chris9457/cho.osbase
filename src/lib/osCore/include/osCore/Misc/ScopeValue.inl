@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace cho::osbase::core {
+namespace NS_OSBASE::core {
 
     /*
      * \struct scope_value
@@ -35,4 +35,4 @@ namespace cho::osbase::core {
         return scope_value<TValue>(refValue, newValue);
     }
 
-} // namespace cho::osbase::core
+} // namespace NS_OSBASE::core

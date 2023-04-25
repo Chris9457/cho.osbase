@@ -7,7 +7,7 @@
 OS_CORE_IMPL_LINK()
 OS_DATA_IMPL_LINK()
 
-namespace nslogviewer = cho::osbase::logviewer;
+namespace nslogviewer = NS_OSBASE::logviewer;
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
     const nslogviewer::LogViewer logViewer;

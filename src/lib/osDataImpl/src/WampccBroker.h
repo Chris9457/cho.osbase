@@ -7,7 +7,7 @@
 #include <thread>
 #include <wampcc/wampcc.h>
 
-namespace cho::osbase::data::impl {
+namespace NS_OSBASE::data::impl {
     /**
      * Implementation of the Wampcc broker
      */
@@ -31,4 +31,4 @@ namespace cho::osbase::data::impl {
         std::condition_variable m_cvStarted;
         std::condition_variable m_cvStopped;
     };
-} // namespace cho::osbase::data::impl
+} // namespace NS_OSBASE::data::impl

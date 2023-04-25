@@ -7,7 +7,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     class PagedDataExchange_UT : public testing::Test {
     protected:
@@ -147,4 +147,4 @@ namespace cho::osbase::data::ut {
             ASSERT_EQ(buffer, receivedData.value());
         }
     }
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut

@@ -2,7 +2,7 @@
 #include "osStateMachine/osStateMachine.h"
 #include <gtest/gtest.h>
 
-namespace cho::osbase::statemachine::ut {
+namespace NS_OSBASE::statemachine::ut {
     class Event_UT : public testing::Test {};
 
     TEST_F(Event_UT, create) {
@@ -26,4 +26,4 @@ namespace cho::osbase::statemachine::ut {
         ASSERT_EQ(value, std::any_cast<decltype(value)>(pEvent->getValue()));
     }
 
-} // namespace cho::osbase::statemachine::ut
+} // namespace NS_OSBASE::statemachine::ut

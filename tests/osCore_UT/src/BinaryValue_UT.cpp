@@ -4,7 +4,7 @@
 #include "osCore_UT/ConstantValue.h"
 #include "gtest/gtest.h"
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
     template <typename T>
     class BinaryValue_UT : public testing::Test {};
 
@@ -86,4 +86,4 @@ namespace cho::osbase::core::ut {
         ASSERT_FALSE(bv1 != bv1);
         ASSERT_TRUE(bv1 != bv2);
     }
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

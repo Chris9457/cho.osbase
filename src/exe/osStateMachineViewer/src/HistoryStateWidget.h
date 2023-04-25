@@ -6,14 +6,14 @@
 
 class QPainter;
 
-namespace cho::osbase::statemachineviewer {
+namespace NS_OSBASE::statemachineviewer {
     class HistoryStateWidget : public AbstractStateWidget {
         Q_OBJECT
 
     public:
-        HistoryStateWidget(cho::osbase::statemachine::HistoryStatePtr pHistoryState);
+        HistoryStateWidget(NS_OSBASE::statemachine::HistoryStatePtr pHistoryState);
 
     protected:
         void paintEvent(QPaintEvent *event) override;
     };
-} // namespace cho::osbase::statemachineviewer
+} // namespace NS_OSBASE::statemachineviewer

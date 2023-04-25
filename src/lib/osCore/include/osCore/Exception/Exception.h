@@ -23,7 +23,7 @@
  void main() {
     try {
         oscheck::throwIfCrash(foo, 1, "c");
-    } catch (const cho::osbase::core::StructuredException& e) {
+    } catch (const NS_OSBASE::core::StructuredException& e) {
         std::cout << e.what() << std::endl;
     }
  }
@@ -37,7 +37,7 @@
     try {
         auto const v = oscheck::throwIfCrashOrReturn<int>(foo, 1, "c");
         ...
-    } catch (const cho::osbase::core::StructuredException& e) {
+    } catch (const NS_OSBASE::core::StructuredException& e) {
         std::cout << e.what() << std::endl;
     }
  }
@@ -55,7 +55,7 @@
  *  - NotLE => throw if not lesser than or equal
  *  - NotGT => throw if not greater than (strict)
  *  - NotGE => throw if not greater than or equal.
- * All these functions throw the exception cho::osbase::core::StructuredException in case of crash (SEH).\n
+ * All these functions throw the exception NS_OSBASE::core::StructuredException in case of crash (SEH).\n
  * \n
  * Examples:
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.cpp}

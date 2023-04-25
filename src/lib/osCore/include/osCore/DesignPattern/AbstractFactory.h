@@ -39,7 +39,7 @@
  ...
  #include "osCore/DesignPattern/AbstractFactory.h
  ...
- using namespace nscore = cho::osbase::core;
+ using namespace nscore = NS_OSBASE::core;
  ...
  auto pConcreteRealization = nscore::TheFactoryManager.createInstance<MyBaseClass>("My identifier" [, ctor args])
  ...
@@ -86,7 +86,7 @@
         OS_VARIABLE_FACTORY_LINKER(_baseClass, _concreteClass, _index).link();
 
 /** \cond */
-#define OSBASECORE_NS cho::osbase::core
+#define OSBASECORE_NS NS_OSBASE::core
 #define OS_VARIABLE_FACTORY_LINKER(_baseClass, _concreteClass, _index)                                                                     \
     OS_STATIC_JOIN(g_variable_factory_linker_, OS_STATIC_JOIN(_baseClass, OS_STATIC_JOIN(_, OS_STATIC_JOIN(_concreteClass, _index))))
 

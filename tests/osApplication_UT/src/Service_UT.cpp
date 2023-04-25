@@ -5,9 +5,9 @@
 
 using namespace std::chrono_literals;
 
-namespace nscore = cho::osbase::core;
+namespace nscore = NS_OSBASE::core;
 
-namespace cho::osbase::application::ut {
+namespace NS_OSBASE::application::ut {
 
     class Service_UT : public TService_UT<testservice::api::ITestService, testservice::impl::TestServiceImpl> {
     protected:
@@ -119,4 +119,4 @@ namespace cho::osbase::application::ut {
         ASSERT_TRUE(runtimeError.has_value());
     }
 
-} // namespace cho::osbase::application::ut
+} // namespace NS_OSBASE::application::ut

@@ -2,7 +2,7 @@
 #include "osStateMachine/osStateMachine.h"
 #include <gtest/gtest.h>
 
-namespace cho::osbase::statemachine::ut {
+namespace NS_OSBASE::statemachine::ut {
     class HistoryState_UT : public testing::Test {};
 
     TEST_F(HistoryState_UT, create) {
@@ -28,4 +28,4 @@ namespace cho::osbase::statemachine::ut {
         pHistoryState->setSavedState(pS1_1);
         ASSERT_EQ(pS1_1, pHistoryState->getSavedState());
     }
-} // namespace cho::osbase::statemachine::ut
+} // namespace NS_OSBASE::statemachine::ut

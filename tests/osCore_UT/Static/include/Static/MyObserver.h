@@ -6,12 +6,12 @@
 #include <condition_variable>
 #include <mutex>
 
-namespace cho::osbase::core::ut {
+namespace NS_OSBASE::core::ut {
 
     /**
      * \class MyObservable
      */
-    class MyObservable : public cho::osbase::core::Observable {
+    class MyObservable : public NS_OSBASE::core::Observable {
     public:
         class TMessage1 {
         public:
@@ -48,13 +48,13 @@ namespace cho::osbase::core::ut {
     /**
      * \class MyObserver1
      */
-    class MyObserver1 : public cho::osbase::core::Observer<MyObservable::TMessage1, MyObservable::TMessage2> {
+    class MyObserver1 : public NS_OSBASE::core::Observer<MyObservable::TMessage1, MyObservable::TMessage2> {
     public:
         int getMessage1LastValue() const;
         const std::string &getMessage2LastName() const;
 
-        void update(const cho::osbase::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
-        void update(const cho::osbase::core::Observable &rObservable, const MyObservable::TMessage2 &msg) override;
+        void update(const NS_OSBASE::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
+        void update(const NS_OSBASE::core::Observable &rObservable, const MyObservable::TMessage2 &msg) override;
 
     private:
         int m_message1LastValue = 0;
@@ -64,13 +64,13 @@ namespace cho::osbase::core::ut {
     /**
      * \class MyObserver2
      */
-    class MyObserver2 : public cho::osbase::core::Observer<MyObservable::TMessage1, MyObservable::TMessage3> {
+    class MyObserver2 : public NS_OSBASE::core::Observer<MyObservable::TMessage1, MyObservable::TMessage3> {
     public:
         int getMessage1LastValue() const;
         double getMessage3LastValue() const;
 
-        void update(const cho::osbase::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
-        void update(const cho::osbase::core::Observable &rObservable, const MyObservable::TMessage3 &msg) override;
+        void update(const NS_OSBASE::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
+        void update(const NS_OSBASE::core::Observable &rObservable, const MyObservable::TMessage3 &msg) override;
 
     private:
         int m_message1LastValue    = 0;
@@ -80,27 +80,27 @@ namespace cho::osbase::core::ut {
     /**
      * \class MyObserverDeleteAnOtherObserver
      */
-    class MyObserverDeleteAnOtherObserver : public cho::osbase::core::Observer<MyObservable::TMessage1> {
+    class MyObserverDeleteAnOtherObserver : public NS_OSBASE::core::Observer<MyObservable::TMessage1> {
     public:
-        void setOtherObserver(cho::osbase::core::TypedObserver<MyObservable::TMessage1> *observer);
+        void setOtherObserver(NS_OSBASE::core::TypedObserver<MyObservable::TMessage1> *observer);
 
         int getMessage1LastValue() const;
 
-        void update(const cho::osbase::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
+        void update(const NS_OSBASE::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
 
     private:
-        cho::osbase::core::TypedObserver<MyObservable::TMessage1> *m_observer = nullptr;
+        NS_OSBASE::core::TypedObserver<MyObservable::TMessage1> *m_observer = nullptr;
         int m_message1LastValue                                                      = 0;
     };
 
     /**
      * \class MyObserverSimple
      */
-    class MyObserverSimple : public cho::osbase::core::Observer<MyObservable::TMessage1> {
+    class MyObserverSimple : public NS_OSBASE::core::Observer<MyObservable::TMessage1> {
     public:
         int getMessage1LastValue() const;
 
-        void update(const cho::osbase::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
+        void update(const NS_OSBASE::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
 
     private:
         int m_message1LastValue = 0;
@@ -109,50 +109,50 @@ namespace cho::osbase::core::ut {
     /**
      * \class MyObserverDetachAnOtherObserver
      */
-    class MyObserverDetachAnOtherObserver : public cho::osbase::core::Observer<MyObservable::TMessage1> {
+    class MyObserverDetachAnOtherObserver : public NS_OSBASE::core::Observer<MyObservable::TMessage1> {
     public:
-        void setOtherObserver(cho::osbase::core::Observer<MyObservable::TMessage1> &observer);
+        void setOtherObserver(NS_OSBASE::core::Observer<MyObservable::TMessage1> &observer);
         void resetOtherObserver();
 
-        void setObservable(cho::osbase::core::Observable &observable);
+        void setObservable(NS_OSBASE::core::Observable &observable);
 
         int getMessage1LastValue() const;
 
-        void update(const cho::osbase::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
+        void update(const NS_OSBASE::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
 
     private:
-        cho::osbase::core::Observer<MyObservable::TMessage1> *m_observer = nullptr;
-        cho::osbase::core::Observable *m_observable                      = nullptr;
+        NS_OSBASE::core::Observer<MyObservable::TMessage1> *m_observer = nullptr;
+        NS_OSBASE::core::Observable *m_observable                      = nullptr;
         int m_message1LastValue                                                 = 0;
     };
 
     /**
      * \class MyObserverAttachAnOtherObserver
      */
-    class MyObserverAttachAnOtherObserver : public cho::osbase::core::Observer<MyObservable::TMessage1> {
+    class MyObserverAttachAnOtherObserver : public NS_OSBASE::core::Observer<MyObservable::TMessage1> {
     public:
-        void setOtherObserver(cho::osbase::core::Observer<MyObservable::TMessage1> &observer);
+        void setOtherObserver(NS_OSBASE::core::Observer<MyObservable::TMessage1> &observer);
         void resetOtherObserver();
 
-        void setObservable(cho::osbase::core::Observable &observable);
+        void setObservable(NS_OSBASE::core::Observable &observable);
 
         int getMessage1LastValue() const;
 
-        void update(const cho::osbase::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
+        void update(const NS_OSBASE::core::Observable &rObservable, const MyObservable::TMessage1 &msg) override;
 
     private:
-        cho::osbase::core::Observable *m_observable                      = nullptr;
-        cho::osbase::core::Observer<MyObservable::TMessage1> *m_observer = nullptr;
+        NS_OSBASE::core::Observable *m_observable                      = nullptr;
+        NS_OSBASE::core::Observer<MyObservable::TMessage1> *m_observer = nullptr;
         int m_message1LastValue                                                 = 0;
     };
 
     /**
      * \class MyObserverWaitOnUpdate
      */
-    class MyObserverWaitOnUpdate : public cho::osbase::core::Observer<MyObservable::TMessage1> {
+    class MyObserverWaitOnUpdate : public NS_OSBASE::core::Observer<MyObservable::TMessage1> {
     public:
         int getCount() const;
-        void update(const cho::osbase::core::Observable &, const MyObservable::TMessage1 &msg) override;
+        void update(const NS_OSBASE::core::Observable &, const MyObservable::TMessage1 &msg) override;
         void go();
 
     private:
@@ -160,4 +160,4 @@ namespace cho::osbase::core::ut {
         std::mutex m_mutex;
         std::condition_variable m_cv;
     };
-} // namespace cho::osbase::core::ut
+} // namespace NS_OSBASE::core::ut

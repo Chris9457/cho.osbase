@@ -6,7 +6,7 @@
 #include <mutex>
 #include <functional>
 
-namespace cho::osbase::data {
+namespace NS_OSBASE::data {
     /**
      * \brief Utility class that allow to acquire data through a IDataExchange instance
      * \ingroup PACKAGE_OSBASE_EXCHANGE
@@ -162,13 +162,13 @@ namespace cho::osbase::data {
 
     template <typename T>
     AsyncPagedData<T> makeAsyncPagedData(const Uri &uri); // create an async paged data based on the existing uri
-} // namespace cho::osbase::data
+} // namespace NS_OSBASE::data
 
 /**
  * \private
  */
 template <typename T, bool Paged>
-struct cho::osbase::core::KeySerializer<std::string, cho::osbase::data::AsyncData<T, Paged>, false> {
+struct NS_OSBASE::core::KeySerializer<std::string, NS_OSBASE::data::AsyncData<T, Paged>, false> {
     static data::AsyncData<T, Paged> getValue(
         KeyStream<std::string> &keyStream, const data::AsyncData<T, Paged> &defaultValue);           //!< \private
     static bool setValue(KeyStream<std::string> &keyStream, const data::AsyncData<T, Paged> &value); //!< \private

@@ -7,7 +7,7 @@
 
 using namespace std::chrono_literals;
 
-namespace cho::osbase::data::ut {
+namespace NS_OSBASE::data::ut {
 
     static const std::vector<std::string> schemeFamilies{ Uri::schemeFile() };
 
@@ -267,4 +267,4 @@ namespace cho::osbase::data::ut {
         }
     }
 
-} // namespace cho::osbase::data::ut
+} // namespace NS_OSBASE::data::ut
