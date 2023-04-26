@@ -5,7 +5,7 @@ set(RESOURCES_DIR resources)
 file(GLOB SRC_FILES ${SRC_DIR}/*)
 file(GLOB RESOURCES_FILES ${RESOURCES_DIR}/*)
 
-find_package(Qt5 COMPONENTS Core Widgets WebEngineWidgets Svg REQUIRED)
+find_package(Qt5 COMPONENTS Core Widgets Svg REQUIRED)
 
 qt5_add_resources(QT_RESOURCES_FILE ${RESOURCES_DIR}/statemachineviewer.qrc)
 
@@ -27,7 +27,6 @@ target_link_libraries(${STATEMACHINEVIEWER}
 set_property(TARGET ${STATEMACHINEVIEWER} PROPERTY WIN32_EXECUTABLE true)
 
 install(TARGETS ${STATEMACHINEVIEWER} DESTINATION statemachineviewer)
-install_qt5_dlls(DLL_FILES Qt5Core Qt5Gui Qt5Widgets
-					OUTPUT_DIR statemachineviewer)
-install_qt_plugins(PLUGINS platform imageformats OUTPUT_DIR statemachineviewer)
+install(FILES $<TARGET_FILE_DIR:${STATEMACHINEVIEWER}>/qt.conf DESTINATION statemachineviewer)
+install(DIRECTORY $<TARGET_FILE_DIR:${STATEMACHINEVIEWER}>/plugins DESTINATION statemachineviewer)
 install_deps(TARGET ${STATEMACHINEVIEWER} DESTINATION statemachineviewer)
