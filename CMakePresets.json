@@ -6,7 +6,6 @@
             "hidden": true,
             "binaryDir": "${sourceDir}/out/${presetName}",
             "generator": "Ninja",
-            "cmakeExecutable": "$env{CMAKEDIR}/cmake.exe",
             "cacheVariables": {
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/${presetName}/install",
                 "OSBASE_BUILD_TESTING": "ON",

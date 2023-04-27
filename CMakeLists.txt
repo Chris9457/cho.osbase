@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.20)
 project(osBase)
 
 include(${CMAKE_SOURCE_DIR}/cmake/utils.cmake)

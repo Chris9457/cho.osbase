@@ -8,7 +8,7 @@ file(GLOB SRC_FILES ${SRC_DIR}/*)
 add_library(${CORE} ${INCLUDE_FILES} ${SRC_FILES})
 
 target_include_directories(${CORE} PUBLIC ${INCLUDE_DIR})
-target_compile_options(${CORE} PUBLIC /W4 /WX /sdl)
+target_compile_options(${CORE} PUBLIC /W4 /WX /sdl /external:W3)
 target_compile_definitions(${CORE} PUBLIC UNICODE _UNICODE)
 
 # deactivate CRT_SECURE for specific sources
