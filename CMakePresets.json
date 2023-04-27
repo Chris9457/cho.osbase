@@ -1,0 +1,42 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "x64-debug",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKGROOT}/scripts/buildsystems/vcpkg.cmake",
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "vendor": {"microsoft.com/VisualStudioSettings/CMake/1.0": {"hostOS": "Windows"}}
+        },
+        {
+            "name": "x64-release",
+            "inherits": "x64-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        }    
+    ],
+    "buildPresets": [
+        {
+            "name": "x64-build-release",
+            "configurePreset": "x64-release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "x64-test-release",
+            "configurePreset": "x64-release",
+            "output": {
+                "outputOnFailure": true,
+                "verbosity": "verbose"
+            },
+            "execution": {
+                "stopOnFailure": true
+            }
+        }
+    ]
+}

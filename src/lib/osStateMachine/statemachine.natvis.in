@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
 
-    <Type Name="std::shared_ptr&lt;cho::osbase::statemachine::AbstractState&gt;">
-		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::State&gt;"></AlternativeType>
-		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::StartState&gt;"></AlternativeType>
-		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::EndState&gt;"></AlternativeType>
-		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::HistoryState&gt;"></AlternativeType>
-		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::Transition&gt;"></AlternativeType>
-		<AlternativeType Name="std::shared_ptr&lt;cho::osbase::statemachine::Event&gt;"></AlternativeType>
+    <Type Name="std::shared_ptr&lt;@NS_OSBASE@::statemachine::AbstractState&gt;">
+		<AlternativeType Name="std::shared_ptr&lt;@NS_OSBASE@::statemachine::State&gt;"></AlternativeType>
+		<AlternativeType Name="std::shared_ptr&lt;@NS_OSBASE@::statemachine::StartState&gt;"></AlternativeType>
+		<AlternativeType Name="std::shared_ptr&lt;@NS_OSBASE@::statemachine::EndState&gt;"></AlternativeType>
+		<AlternativeType Name="std::shared_ptr&lt;@NS_OSBASE@::statemachine::HistoryState&gt;"></AlternativeType>
+		<AlternativeType Name="std::shared_ptr&lt;@NS_OSBASE@::statemachine::Transition&gt;"></AlternativeType>
+		<AlternativeType Name="std::shared_ptr&lt;@NS_OSBASE@::statemachine::Event&gt;"></AlternativeType>
 	    <SmartPointer Usage="Minimal">_Ptr</SmartPointer>
 		<DisplayString Condition="_Rep == 0">empty</DisplayString>
 		<DisplayString Condition="_Rep != 0">{*_Ptr}</DisplayString>
@@ -16,7 +16,7 @@
 		</Expand>
     </Type>
 
-	<Type Name="cho::osbase::statemachine::Transition">
+	<Type Name="@NS_OSBASE@::statemachine::Transition">
 		<DisplayString Condition="m_pToState._Ptr == 0">internal</DisplayString>
 		<DisplayString Condition="m_pToState._Ptr != 0">=> {*m_pToState._Ptr}</DisplayString>
 		<Expand>
@@ -24,7 +24,7 @@
 		</Expand>
 	</Type>
 
-	<Type Name="cho::osbase::statemachine::State">
+	<Type Name="@NS_OSBASE@::statemachine::State">
 		<DisplayString>{m_name}</DisplayString>
 		<Expand>
 			<Item Name="name">m_name</Item>
@@ -35,7 +35,7 @@
 		</Expand>
     </Type>
 
-	<Type Name="cho::osbase::statemachine::State::Iterator">
+	<Type Name="@NS_OSBASE@::statemachine::State::Iterator">
 		<DisplayString Condition="m_rangeIterator.itCurrent == m_rangeIterator.itEnd">end</DisplayString>
 		<DisplayString Condition="m_rangeIterator.itCurrent != m_rangeIterator.itEnd">{m_rangeIterator.itCurrent}</DisplayString>
 		<Expand>
@@ -43,8 +43,8 @@
 		</Expand>
 	</Type>
 
-	<Type Name="cho::osbase::statemachine::StartState">
-		<AlternativeType Name="cho::osbase::statemachine::EndState"></AlternativeType>
+	<Type Name="@NS_OSBASE@::statemachine::StartState">
+		<AlternativeType Name="@NS_OSBASE@::statemachine::EndState"></AlternativeType>
 		<DisplayString>{m_name}</DisplayString>
 		<Expand>
 			<Item Name="name">m_name</Item>
@@ -54,7 +54,7 @@
 		</Expand>
 	</Type>
 
-	<Type Name="cho::osbase::statemachine::HistoryState">
+	<Type Name="@NS_OSBASE@::statemachine::HistoryState">
 		<DisplayString Condition="m_pSavedState._Ptr == 0">saved state: {m_pSavedState}</DisplayString>
 		<DisplayString Condition="m_pSavedState._Ptr != 0">saved state: {*m_pSavedState._Ptr}</DisplayString>
 		<Expand>
@@ -63,7 +63,7 @@
 		</Expand>
 	</Type>
 
-	<Type Name="cho::osbase::statemachine::Event">
+	<Type Name="@NS_OSBASE@::statemachine::Event">
 		<DisplayString >{m_name}</DisplayString>
 		<Expand>
 			<Item Name="name">m_name</Item>
