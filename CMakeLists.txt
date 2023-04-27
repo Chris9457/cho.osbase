@@ -14,8 +14,6 @@ add_compile_definitions(NS_OSBASE=cho::osbase)
 
 add_subdirectory(src)
 
-if (OSBASE_BUILD_TESTING)
-    enable_testing()
-    add_subdirectory(tests)
-endif()
+enable_testing()
+add_subdirectory(tests)
 
