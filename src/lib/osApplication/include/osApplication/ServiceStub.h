@@ -22,9 +22,9 @@ namespace NS_OSBASE::application {
     template <class TService>
     class ServiceStub : public ServiceBase<TService> {
     public:
-        void connect(const std::string &url, const unsigned short port) final; //!< Connect the service to the broker
-        void disconnect() final;                                               //!< Disconnect the service from the broker
-        unsigned long long getAlivePeriod() const override final;              //!< period of alive message in ms
+        void connect() final;                                     //!< Connect the service to the broker
+        void disconnect() final;                                  //!< Disconnect the service from the broker
+        unsigned long long getAlivePeriod() const override final; //!< period of alive message in ms
 
     protected:
         /**
@@ -44,7 +44,7 @@ namespace NS_OSBASE::application {
             T result = {}; //!< Return value
         };
 
-        ServiceStub(const std::string &serviceName, TaskLoopPtr pTaskLoop); //!< Ctor
+        ServiceStub(const std::string &serviceName, const data::Uri &uri, const std::string &realm, TaskLoopPtr pTaskLoop); //!< Ctor
 
         /**
          * \brief Invoke synchroneously the service process related to the URI

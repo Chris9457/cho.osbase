@@ -31,8 +31,8 @@ class CppImplCore(CppBase):
         self.file.write('     * \\class ' + skeletonName + '\n')
         self.file.write('     */\n')
         self.file.write('    ' + skeletonName + '::' + skeletonName +
-                        '() : ' + baseClass + '("' +
-                        name + 'Service") {\n')
+                        '(const NS_OSBASE::data::Uri &uri, const std::string &realm) : ' + baseClass + '("' +
+                        name + 'Service", uri, realm) {\n')
         self.file.write('    }\n\n')
 
         hasEvent = self.hasField(self.yamlApi, tags.eventsTag)

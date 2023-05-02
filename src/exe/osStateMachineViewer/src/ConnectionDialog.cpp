@@ -21,6 +21,7 @@ namespace NS_OSBASE::statemachineviewer {
 
         m_hostName = ui->hostEdit->text();
         m_port     = ui->portEdit->text().toUShort();
+        m_realm    = ui->realmEdit->text();
     }
 
     const QString &ConnectionDialog::getHost() const {
@@ -31,6 +32,10 @@ namespace NS_OSBASE::statemachineviewer {
         return m_port;
     }
 
+    const QString &ConnectionDialog::getRealm() const {
+        return m_realm;
+    }
+
     void ConnectionDialog::connectUi() {
         ui->setupUi(this);
 
@@ -38,5 +43,6 @@ namespace NS_OSBASE::statemachineviewer {
 
         ui->hostEdit->setText("localhost");
         ui->portEdit->setText("8080");
+        ui->realmEdit->setText("osbase");
     }
 } // namespace NS_OSBASE::statemachineviewer

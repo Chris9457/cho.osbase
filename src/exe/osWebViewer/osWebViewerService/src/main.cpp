@@ -5,6 +5,7 @@
 #include "osWebViewerImpl/WebViewerServiceImpl.h"
 #include "osCoreImpl/CoreImpl.h"
 #include "osDataImpl/osDataImpl.h"
+#include "osApplication/ServiceConfiguration.h"
 
 OS_CORE_LINK_KEYSTREAM_JSON()
 OS_DATA_IMPL_LINK();
@@ -20,7 +21,10 @@ int main(int argc, char **argv) {
     return runner.run(
         [url = runner.getBrokerUrl(), port = runner.getBrokerPort()]() {
             auto const guard = nscore::make_scope_exit([]() { nswebviewer::TheWebViewerServiceImpl.disconnect(); });
-            nswebviewer::TheWebViewerServiceImpl.connect(url, port);
+
+            nsapp::TheServiceConfiguration.setBrokerUri(std::string{ "ws://" + url + ":" + std::to_string(port) });
+            nsapp::TheServiceConfiguration.setRealm("");
+            nswebviewer::TheWebViewerServiceImpl.connect();
             nswebviewer::TheWebViewerServiceImpl.run();
         },
         []() { nswebviewer::TheWebViewerServiceImpl.stop(); });

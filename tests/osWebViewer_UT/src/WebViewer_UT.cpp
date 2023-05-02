@@ -9,8 +9,8 @@ namespace NS_OSBASE::webviewer::ut {
     class WebViewer_UT : public testing::Test {
     protected:
         void SetUp() override {
-            m_pStub = makeStub();
-            m_pStub->connect(brokerUrl, brokerPort);
+            m_pStub = makeStub(std::string{ "ws://" } + brokerUrl + ":" + std::to_string(brokerPort), "");
+            m_pStub->connect();
         }
 
         void TearDown() override {

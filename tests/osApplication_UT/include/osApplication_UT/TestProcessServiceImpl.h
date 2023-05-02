@@ -49,7 +49,7 @@ namespace NS_OSBASE::application::ut {
         void setFwdData(const std::vector<int> &data);
 
     protected:
-        void doConnect(const std::string &url, const unsigned short port) override;
+        void doConnect() override;
         void doDisconnect() override;
 
     private:

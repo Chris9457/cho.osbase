@@ -15,7 +15,7 @@ namespace NS_OSBASE::application::ut {
         NS_OSBASE::data::AsyncData<std::vector<int>> fwdAsyncData() override;
 
     protected:
-        void doConnect(const std::string &url, const unsigned short port) override;
+        void doConnect() override;
         void doDisconnect() override;
 
     private:

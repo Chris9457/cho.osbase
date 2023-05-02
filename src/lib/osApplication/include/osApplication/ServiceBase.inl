@@ -27,23 +27,24 @@ namespace NS_OSBASE::application {
      * \class ServiceBase
      */
     template <class TService>
-    ServiceBase<TService>::ServiceBase(const std::string &serviceName, TaskLoopPtr pTaskLoop)
+    ServiceBase<TService>::ServiceBase(
+        const std::string &serviceName, const data::Uri &uri, const std::string &realm, TaskLoopPtr pTaskLoop)
         : m_pTaskLoop(pTaskLoop),
+          m_pMessagingConnectionObserver(std::make_shared<MessagingConnectionObserver>(*this)),
           m_serviceName(serviceName),
-          m_pMessagingConnectionObserver(std::make_shared<MessagingConnectionObserver>(*this)) {
+          m_brokerUri(uri),
+          m_realm(realm) {
     }
 
     template <class TService>
-    void ServiceBase<TService>::connect(const std::string &url, const unsigned short port) {
+    void ServiceBase<TService>::connect() {
         auto const guard = core::make_scope_exit([this]() { m_pMessaging->attachAll(*m_pMessagingConnectionObserver); });
-        m_url            = url;
-        m_port           = port;
 
-        m_pMessaging = data::makeMessaging();
+        m_pMessaging = data::makeWampMessaging(m_brokerUri, m_realm);
         try {
-            m_pMessaging->connect(url, port);
+            m_pMessaging->connect();
             doRegister();
-            doConnect(url, port);
+            doConnect();
         } catch (const data::MessagingException &e) {
             throw ServiceException(e.what());
         }
@@ -91,7 +92,17 @@ namespace NS_OSBASE::application {
     }
 
     template <class TService>
-    void ServiceBase<TService>::doConnect([[maybe_unused]] const std::string &url, [[maybe_unused]] const unsigned short port) {
+    const data::Uri &ServiceBase<TService>::getBrokerUri() const {
+        return m_brokerUri;
+    }
+
+    template <class TService>
+    const std::string &ServiceBase<TService>::getRealm() const {
+        return m_realm;
+    }
+
+    template <class TService>
+    void ServiceBase<TService>::doConnect() {
     }
 
     template <class TService>
@@ -102,7 +113,7 @@ namespace NS_OSBASE::application {
     void ServiceBase<TService>::onMessagingConnection(const bool bConnected) {
         if (bConnected) {
             doRegister();
-            doConnect(m_url, m_port);
+            doConnect();
         } else {
             doDisconnect();
         }

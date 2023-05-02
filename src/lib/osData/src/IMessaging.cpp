@@ -28,8 +28,8 @@ namespace NS_OSBASE::data {
     IMessaging::IEventDelegate::~IEventDelegate()       = default;
     IMessaging::IErrorDelegate::~IErrorDelegate()       = default;
 
-    IMessagingPtr makeMessaging() {
-        return nscore::TheFactoryManager.createInstance<IMessaging>(MESSAGINGWAMPCC_FACTORY_NAME);
+    IMessagingPtr makeWampMessaging(const Uri &uri, const std::string &realm) {
+        return nscore::TheFactoryManager.createInstance<IMessaging>(MESSAGINGWAMPCC_FACTORY_NAME, uri, realm);
     }
 
 } // namespace NS_OSBASE::data

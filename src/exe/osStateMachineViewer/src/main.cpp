@@ -54,11 +54,12 @@ int main(int argc, char **argv) {
     QApplication app(argc, argv);
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setApplicationName("State Machine Viewer");
-    QCoreApplication::setOrganizationName("Zimmer Biomet");
+    QCoreApplication::setOrganizationName(OS_TO_STR(OSBASE));
     QCoreApplication::setApplicationVersion("1.0.0");
 
-    auto pStateMachineWindow = pHandshake != nullptr ? std::make_unique<nsviewer::StateMachineWindow>(url, port)
-                                                     : std::make_unique<nsviewer::StateMachineWindow>();
+    auto const pStateMachineWindow = pHandshake != nullptr ? std::make_unique<nsviewer::StateMachineWindow>(
+                                                                 std::string{ "ws://" + url + ":" + std::to_string(port) }, "")
+                                                           : std::make_unique<nsviewer::StateMachineWindow>();
     pStateMachineWindow->show();
     return app.exec();
 }

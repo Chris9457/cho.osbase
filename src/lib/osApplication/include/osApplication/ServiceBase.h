@@ -16,9 +16,9 @@ namespace NS_OSBASE::application {
     template <class TService>
     class ServiceBase : public TService {
     public:
-        virtual void connect(const std::string &url, const unsigned short port) override; //!< Connect the service to the broker
-        virtual void disconnect() override;                                               //!< Disconnect the service from the broker
-        void setCallTimeout(const std::chrono::milliseconds &timeout) override final;     //!< Set the timeout of a RPC invoke
+        virtual void connect() override;                                              //!< Connect the service to the broker
+        virtual void disconnect() override;                                           //!< Disconnect the service from the broker
+        void setCallTimeout(const std::chrono::milliseconds &timeout) override final; //!< Set the timeout of a RPC invoke
 
         TaskLoopPtr getTaskLoop() const; //!< Return the associated task loop
 
@@ -26,14 +26,18 @@ namespace NS_OSBASE::application {
         struct ReadyMsg : ServiceMsg<unsigned int> {}; //!< Message sent when the service finish its connection
         struct AliveMsg : ServiceMsg<unsigned int> {}; //!< Message priodically sent when the service is alive
 
-        explicit ServiceBase(const std::string &serviceName, TaskLoopPtr pTaskLoop); //!< Ctor
+        explicit ServiceBase(
+            const std::string &serviceName, const data::Uri &uri, const std::string &realm, TaskLoopPtr pTaskLoop); //!< Ctor
 
         data::IMessagingPtr getMessaging() const;                //!< Return the Messaging class
         const std::chrono::milliseconds &getCallTimeout() const; //!< Return the timeout of any RPC invoke
         std::string makeFullUri(const std::string &uri) const;   //!< Return the full uri (used fro RPC & PubSub uris)
 
-        virtual void doConnect(const std::string &url, const unsigned short port); //!< Method template called by connect() and performs
-                                                                                   //!< extra works needed after the connection
+        const data::Uri &getBrokerUri() const;
+        const std::string &getRealm() const;
+
+        virtual void doConnect();    //!< Method template called by connect() and performs
+                                     //!< extra works needed after the connection
         virtual void doDisconnect(); //!< Method template called by disconnect() and performs extra works needed after the disconnection
 
         virtual void doRegister() = 0;   //!< Methode template called by connect() to register the client (event subscription) or the server
@@ -57,8 +61,8 @@ namespace NS_OSBASE::application {
         TaskLoopPtr m_pTaskLoop;
         std::chrono::milliseconds m_callTimeout = std::chrono::milliseconds::max();
         std::string m_serviceName;
-        std::string m_url;
-        unsigned short m_port = 8080;
+        data::Uri m_brokerUri;
+        std::string m_realm;
     };
 } // namespace NS_OSBASE::application
 

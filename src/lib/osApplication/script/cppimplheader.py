@@ -30,7 +30,7 @@ class CppImplHeader(CppBase):
         self.file.write('    class ' + skeletonName + ' : public NS_OSBASE::application::ServiceImpl<' +
                         serviceName + '> {\n')
         self.file.write('    protected:\n')
-        self.file.write('        ' + skeletonName + '();\n\n')
+        self.file.write('        ' + skeletonName + '(const NS_OSBASE::data::Uri &uri, const std::string &realm);\n\n')
 
         hasEvent = self.hasField(self.yamlApi, tags.eventsTag)
         if hasEvent:

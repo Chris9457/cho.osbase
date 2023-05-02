@@ -18,7 +18,7 @@ namespace NS_OSBASE::webviewer {
         data::AsyncData<std::vector<char>> captureWindow(ImageFormat format) override;
 
     protected:
-        void doConnect(const std::string &url, const unsigned short port) override;
+        void doConnect() override;
         void doDisconnect() override;
 
     private:

@@ -1,8 +1,13 @@
 // \brief Declaration of the class Service_BMImpl
 
 #include "Service_BMImpl.h"
+#include "osApplication/ServiceConfiguration.h"
 
 namespace NS_OSBASE::application::bm {
+    Service_BMImpl::Service_BMImpl()
+        : IService_BMServiceSkeleton(TheServiceConfiguration.getBrokerUri(), TheServiceConfiguration.getRealm()) {
+    }
+
     void Service_BMImpl::noRetNoArg() {
     }
 

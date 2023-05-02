@@ -1,13 +1,15 @@
 // \brief Declaration of the class TestProcessServiceImpl
 
 #include "osApplication_UT/TestProcessServiceImpl.h"
+#include "osApplication/ServiceConfiguration.h"
 
 namespace NS_OSBASE::application::ut {
 
     /*
      * \class TestProcessImpl
      */
-    TestProcessImpl::TestProcessImpl() {
+    TestProcessImpl::TestProcessImpl()
+        : TestProcessServiceSkeleton(TheServiceConfiguration.getBrokerUri(), TheServiceConfiguration.getRealm()) {
     }
 
     void TestProcessImpl::noReturnNoArg() {
@@ -133,7 +135,7 @@ namespace NS_OSBASE::application::ut {
         m_asyncFwdData.set(data);
     }
 
-    void TestProcessImpl::doConnect(const std::string &, const unsigned short) {
+    void TestProcessImpl::doConnect() {
         m_asyncStrings.create();
         m_asyncStrings.set({ "titi", "toto" });
 

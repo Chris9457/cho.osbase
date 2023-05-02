@@ -19,7 +19,9 @@ namespace NS_OSBASE::application::ut {
 
     class ServiceProcess_UT : public TService_UT<process::TestProcessService, TestProcessImpl> {
     protected:
-        ServiceProcess_UT() : TService_UT<process::TestProcessService, TestProcessImpl>([]() { return process::makeStub(); }) {
+        ServiceProcess_UT()
+            : TService_UT<process::TestProcessService, TestProcessImpl>(
+                  []() { return process::makeStub(std::string{ "ws://" + getBrokerUrl() + ":" + std::to_string(getBrokerPort()) }, ""); }) {
         }
     };
 

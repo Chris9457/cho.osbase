@@ -114,19 +114,20 @@ namespace NS_OSBASE::application {
      * \class ServiceStub
      */
     template <class TService>
-    ServiceStub<TService>::ServiceStub(const std::string &serviceName, TaskLoopPtr pTaskLoop)
-        : ServiceBase<TService>(serviceName, pTaskLoop != nullptr ? pTaskLoop : std::make_shared<TaskLoop>()),
+    ServiceStub<TService>::ServiceStub(
+        const std::string &serviceName, const data::Uri &uri, const std::string &realm, TaskLoopPtr pTaskLoop)
+        : ServiceBase<TService>(serviceName, uri, realm, pTaskLoop != nullptr ? pTaskLoop : std::make_shared<TaskLoop>()),
           m_hasTaskLoopOwnerShip(pTaskLoop == nullptr) {
     }
 
     template <class TService>
-    void ServiceStub<TService>::connect(const std::string &url, const unsigned short port) {
+    void ServiceStub<TService>::connect() {
         if (m_hasTaskLoopOwnerShip) {
             m_futTaskLoop = getTaskLoop()->runAsync();
         }
 
         try {
-            ServiceBase<TService>::connect(url, port);
+            ServiceBase<TService>::connect();
         } catch (const ServiceException &) {
             return; // Failed connection is not an error, the method onMessagingConnection will be callesd on (re-)connection
         }

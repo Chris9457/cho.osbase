@@ -1,6 +1,7 @@
 // \brief Declaration of the class TestEventServiceImpl
 
 #include "osApplication_UT/TestEventServiceImpl.h"
+#include "osApplication/ServiceConfiguration.h"
 
 namespace NS_OSBASE::application::ut {
 
@@ -16,14 +17,16 @@ namespace NS_OSBASE::application::ut {
         return m_pTestProcessService->fwdAsyncData();
     }
 
-    void TestEventServiceImpl::doConnect(const std::string &url, const unsigned short port) {
-        m_pTestProcessService->connect(url, port);
+    void TestEventServiceImpl::doConnect() {
+        m_pTestProcessService->connect();
     }
 
     void TestEventServiceImpl::doDisconnect() {
         m_pTestProcessService->disconnect();
     }
 
-    TestEventServiceImpl::TestEventServiceImpl() : m_pTestProcessService(process::makeStub(getTaskLoop())) {
+    TestEventServiceImpl::TestEventServiceImpl()
+        : TestEventServiceSkeleton(TheServiceConfiguration.getBrokerUri(), TheServiceConfiguration.getRealm()),
+          m_pTestProcessService(process::makeStub(getBrokerUri(), getRealm(), getTaskLoop())) {
     }
 } // namespace NS_OSBASE::application::ut

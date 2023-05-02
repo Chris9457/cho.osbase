@@ -3,6 +3,7 @@
 #include "osCoreImpl/CoreImpl.h"
 #include "osDataImpl/osDataImpl.h"
 #include "osApplication/Runner.h"
+#include "osApplication/ServiceConfiguration.h"
 
 OS_CORE_IMPL_LINK();
 OS_DATA_IMPL_LINK();
@@ -17,7 +18,10 @@ int main(int argc, char **argv) {
     return runner.run(
         [url = runner.getBrokerUrl(), port = runner.getBrokerPort()]() {
             auto const guard = nscore::make_scope_exit([]() { nslog::TheLogServiceImpl.disconnect(); });
-            nslog::TheLogServiceImpl.connect(url, port);
+
+            nsapp::TheServiceConfiguration.setBrokerUri(std::string{ "ws://" + url + ":" + std::to_string(port) });
+            nsapp::TheServiceConfiguration.setRealm("");
+            nslog::TheLogServiceImpl.connect();
             nslog::TheLogServiceImpl.run();
         },
         []() { nslog::TheLogServiceImpl.stop(); });

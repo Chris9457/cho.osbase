@@ -31,19 +31,19 @@
 
 /** \cond */
 #define OS_DATA_LINK_MESSAGING()                                                                                                           \
-    namespace NS_OSBASE::data::impl {                                                                                             \
-        OS_LINK_FACTORY_N(IMessaging, MessagingWampcc, 0);                                                                                 \
+    namespace NS_OSBASE::data::impl {                                                                                                      \
+        OS_LINK_FACTORY_N(IMessaging, WampccMessaging, 0);                                                                                 \
         OS_LINK_FACTORY_N(IBroker, WampccBroker, 0);                                                                                       \
     }
 
 #define OS_DATA_LINK_EXCHANGE()                                                                                                            \
-    namespace NS_OSBASE::data::impl {                                                                                             \
+    namespace NS_OSBASE::data::impl {                                                                                                      \
         OS_LINK_FACTORY_N(IDataExchange, WebSocketDataExchange, 0);                                                                        \
         OS_LINK_FACTORY_N(IFileExchange, LocalFileExchange, 0);                                                                            \
     }
 
 #define OS_DATA_LINK_LOGOUTPUT()                                                                                                           \
-    namespace NS_OSBASE::data::impl {                                                                                             \
+    namespace NS_OSBASE::data::impl {                                                                                                      \
         OS_LINK_FACTORY_N(ILogOutput, LogOutputNull, 0);                                                                                   \
         OS_LINK_FACTORY_N(ILogOutput, LogOutputFile, 0);                                                                                   \
         OS_LINK_FACTORY_N(ILogOutput, LogOutputDataExchange, 0);                                                                           \
@@ -53,7 +53,7 @@
     }
 
 #define OS_DATA_LINK_NETWORK()                                                                                                             \
-    namespace NS_OSBASE::data::impl {                                                                                             \
+    namespace NS_OSBASE::data::impl {                                                                                                      \
         OS_LINK_FACTORY_N(INetwork, Network, 0);                                                                                           \
     }
 

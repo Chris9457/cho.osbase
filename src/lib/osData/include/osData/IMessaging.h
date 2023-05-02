@@ -2,6 +2,7 @@
 
 #pragma once
 #include "osCore/DesignPattern/Observer.h"
+#include "osData/Uri.h"
 #include <memory>
 #include <string>
 
@@ -38,10 +39,7 @@ namespace NS_OSBASE::data {
      */
     class IMessaging : public core::Observable {
     public:
-        /**
-         * Type reflecting the Json text received in the delegates
-         */
-        using JsonText = std::string;
+        using JsonText = std::string; //!< alias that reflecting the Json text received in the delegates
 
         class MessagingConnectionMsg {
         public:
@@ -65,14 +63,8 @@ namespace NS_OSBASE::data {
              */
             virtual void onResult(const JsonText &json) = 0;
         };
-        /**
-         * Typedef of shared pointer to IClientDelegate
-         */
-        using IClientDelegatePtr = std::shared_ptr<IClientDelegate>;
-        /**
-         * Typedef of weak pointer to IClientDelegate
-         */
-        using IClientDelegateWPtr = std::weak_ptr<IClientDelegate>;
+        using IClientDelegatePtr  = std::shared_ptr<IClientDelegate>; //!< alias of shared pointer to IClientDelegate
+        using IClientDelegateWPtr = std::weak_ptr<IClientDelegate>;   //!< alias of weak pointer to IClientDelegate
 
         /**
          * \brief Delegate interface passed when registering an RPC call. Will be used to compute the result of the RPC call
@@ -87,14 +79,8 @@ namespace NS_OSBASE::data {
              */
             virtual std::string onCall(const JsonText &json) = 0;
         };
-        /**
-         * Typedef of shared pointer to ISupplierDelegate
-         */
-        using ISupplierDelegatePtr = std::shared_ptr<ISupplierDelegate>;
-        /**
-         * Typedef of weak pointer to ISupplierDelegate
-         */
-        using ISupplierDelegateWPtr = std::weak_ptr<ISupplierDelegate>;
+        using ISupplierDelegatePtr  = std::shared_ptr<ISupplierDelegate>; //!< alias of shared pointer to ISupplierDelegate
+        using ISupplierDelegateWPtr = std::weak_ptr<ISupplierDelegate>;   // alias of weak pointer to ISupplierDelegate
 
         /**
          * \brief Delegate interface passed when subscribing to an event. The onEvent method will be called when an event happens
@@ -109,14 +95,8 @@ namespace NS_OSBASE::data {
              */
             virtual void onEvent(const JsonText &json) = 0;
         };
-        /**
-         * Typedef of shared pointer to IEventDelegate
-         */
-        using IEventDelegatePtr = std::shared_ptr<IEventDelegate>;
-        /**
-         * Typedef of weak pointer to IEventDelegate
-         */
-        using IEventDelegateWPtr = std::weak_ptr<IEventDelegate>;
+        using IEventDelegatePtr  = std::shared_ptr<IEventDelegate>; //!< alias of shared pointer to IEventDelegate
+        using IEventDelegateWPtr = std::weak_ptr<IEventDelegate>;   // alias of weak pointer to IEventDelegate
 
         /**
          * \brief Delegate interface passed to return errors that happen asynchronously. The onError method will be called when an error
@@ -132,28 +112,15 @@ namespace NS_OSBASE::data {
              */
             virtual void onError(const std::string &error) = 0;
         };
-        /**
-         * Typedef of shared pointer to IErrorDelegate
-         */
-        using IErrorDelegatePtr = std::shared_ptr<IErrorDelegate>;
-        /**
-         * Typedef of weak pointer to IErrorDelegate
-         */
-        using IErrorDelegateWPtr = std::weak_ptr<IErrorDelegate>;
+        using IErrorDelegatePtr  = std::shared_ptr<IErrorDelegate>; //!< alias of shared pointer to IErrorDelegate
+        using IErrorDelegateWPtr = std::weak_ptr<IErrorDelegate>;   //!< alias of weak pointer to IErrorDelegate
 
-        virtual ~IMessaging();
+        ~IMessaging() override; //!< dtor
 
-        /**
-         * \brief Method to connect to the messaging service. Needs to be called before using any of the other function.
-         * \param   url     Url of the server to connect to
-         * \param   port    Port of the server to connect to
-         * \throws  MessagingException Exception thrown when unable to connect to the messaging server
-         */
-        virtual void connect(const std::string &url, int port) = 0;
-        /**
-         * \brief Method to graciously disconnect from the messaging service. No subsequent call should be done after this.
-         */
-        virtual void disconnect() = 0;
+        virtual void connect() = 0;    //!< Method to connect to the messaging service. Needs to be called before using any of the other
+                                       //!< function.
+        virtual void disconnect() = 0; //!< Method to graciously disconnect from the messaging service. No subsequent call should be done
+                                       //!< after this.
         /**
          * \brief Register a RPC call in the messaging service.
          * \param   uri         Uri (name) of the RPC call
@@ -163,6 +130,7 @@ namespace NS_OSBASE::data {
          * call that has already been registered
          */
         virtual void registerCall(const std::string &uri, ISupplierDelegatePtr pDelegate, IErrorDelegatePtr pError) = 0;
+
         /**
          * \brief Unregister a RPC call in the messaging service.
          * \param   uri         Uri (name) of the RPC call
@@ -171,6 +139,7 @@ namespace NS_OSBASE::data {
          * unregistered a call that has not been registered
          */
         virtual void unregisterCall(const std::string &uri, IErrorDelegatePtr pError) = 0;
+
         /**
          * \brief Invoke a registered RPC call in the messaging service.
          * \param   uri             Uri (name) of the RPC call
@@ -181,6 +150,7 @@ namespace NS_OSBASE::data {
          */
         virtual void invoke(
             const std::string &uri, const std::string &argsSerialized, IClientDelegatePtr pDelegate, IErrorDelegatePtr pError) const = 0;
+
         /**
          * \brief Subscribe to a topic in the messaging service.
          * \param   topic       Topic to subscribe to.
@@ -190,6 +160,7 @@ namespace NS_OSBASE::data {
          * already subscribed topic
          */
         virtual void subscribe(const std::string &topic, IEventDelegatePtr pDelegate, IErrorDelegatePtr pError) = 0;
+
         /**
          * \brief Unsubscribe to a topic in the messaging service.
          * \param   topic       Topic to unsubscribe to.
@@ -197,6 +168,7 @@ namespace NS_OSBASE::data {
          * \throws  MessagingException      Exception thrown when calling the function without being connected
          */
         virtual void unsubscribe(const std::string &topic, IErrorDelegatePtr pError) = 0;
+
         /**
          * \brief Publish a message and parameters to a topic in the messaging service.
          * \param   topic           Topic to publish to.
@@ -207,7 +179,7 @@ namespace NS_OSBASE::data {
         virtual void publish(const std::string &topic, const std::string &argsSerialized, IErrorDelegatePtr pError) const = 0;
     };
 
-    IMessagingPtr makeMessaging(); //!< create a IMessaging
+    IMessagingPtr makeWampMessaging(const Uri &uri, const std::string &realm); //!< create a IMessaging
 
     /** \} */
 } // namespace NS_OSBASE::data

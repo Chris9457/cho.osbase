@@ -7,6 +7,8 @@
 namespace NS_OSBASE::application::bm {
 
     class Service_BMImpl : public IService_BMServiceSkeleton, public core::Singleton<Service_BMImpl> {
+        friend Singleton<Service_BMImpl>;
+
     public:
         void noRetNoArg() override;
         void noRet1Arg(int arg1) override;
@@ -32,6 +34,9 @@ namespace NS_OSBASE::application::bm {
         void doDisconnect() override;
 
     private:
+        Service_BMImpl();
+        ~Service_BMImpl() override = default;
+
         void callBackAsyncBuffer(std::vector<unsigned char> &&value);
         void callBackAsyncStruct(AsyncStruct &&value);
 

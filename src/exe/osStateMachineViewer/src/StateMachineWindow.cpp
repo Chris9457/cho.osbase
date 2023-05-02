@@ -55,9 +55,9 @@ namespace NS_OSBASE::statemachineviewer {
         connectUI();
     }
 
-    StateMachineWindow::StateMachineWindow(const std::string &brokerHost, const unsigned short brokerPort) : StateMachineWindow() {
+    StateMachineWindow::StateMachineWindow(const NS_OSBASE::data::Uri &uri, const std::string &realm) : StateMachineWindow() {
 
-        connectLog(brokerHost, brokerPort);
+        connectLog(uri, realm);
 
         ui->openAction->setEnabled(false);
         ui->connectAction->setEnabled(false);
@@ -151,7 +151,7 @@ namespace NS_OSBASE::statemachineviewer {
         ConnectionDialog dlg(this);
         if (dlg.exec() == QDialog::Accepted) {
             resetStateDiagram();
-            connectLog(dlg.getHost().toStdString(), dlg.getPort());
+            connectLog(QString("ws://%1:%2").arg(dlg.getHost()).arg(dlg.getPort()).toStdString(), dlg.getRealm().toStdString());
         }
     }
 
@@ -254,12 +254,12 @@ namespace NS_OSBASE::statemachineviewer {
         onRewindTransition();
     }
 
-    void StateMachineWindow::connectLog(const std::string &host, const unsigned short port) {
+    void StateMachineWindow::connectLog(const NS_OSBASE::data::Uri &uri, const std::string &realm) {
         auto const pTaskLoop   = std::make_shared<nsapp::TaskLoop>();
-        auto const pLogService = log::makeStub(pTaskLoop);
+        auto const pLogService = log::makeStub(uri, realm, pTaskLoop);
 
         try {
-            pLogService->connect(host, port);
+            pLogService->connect();
             auto const guard  = nscore::make_scope_exit([&pLogService]() { pLogService->disconnect(); });
             auto const logUri = pLogService->getOutputLogUri();
 

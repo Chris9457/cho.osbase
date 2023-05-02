@@ -3,6 +3,7 @@
 #include "osWebViewerImpl/WebViewerServiceImpl.h"
 #include "osCore/DesignPattern/Observer.h"
 #include "osData/Log.h"
+#include "osApplication/ServiceConfiguration.h"
 #include <fstream>
 
 using namespace std::chrono_literals;
@@ -23,7 +24,9 @@ namespace NS_OSBASE::webviewer {
      * \class WerbViewerServiceImpl
      */
     WebViewerServiceImpl::WebViewerServiceImpl()
-        : m_pLogService(log::makeStub(getTaskLoop())), m_pLogServiceObserver(std::make_shared<LogServiceObserver>()) {
+        : IWebViewerServiceSkeleton(application::TheServiceConfiguration.getBrokerUri(), application::TheServiceConfiguration.getRealm()),
+          m_pLogService(log::makeStub(getBrokerUri(), getRealm(), getTaskLoop())),
+          m_pLogServiceObserver(std::make_shared<LogServiceObserver>()) {
         auto const pStream  = core::makeJsonStream(std::ifstream(SETTING_FILE_NAME));
         auto const settings = pStream->getValue(webengine::Settings{});
 
@@ -41,11 +44,11 @@ namespace NS_OSBASE::webviewer {
         return m_asyncImage;
     }
 
-    void WebViewerServiceImpl::doConnect(const std::string &url, const unsigned short port) {
+    void WebViewerServiceImpl::doConnect() {
         m_asyncImage.create();
 
         m_pLogService->attachAll(*m_pLogServiceObserver);
-        m_pLogService->connect(url, port);
+        m_pLogService->connect();
     }
 
     void WebViewerServiceImpl::doDisconnect() {

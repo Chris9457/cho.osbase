@@ -30,12 +30,9 @@ namespace NS_OSBASE::application {
 
         /**
          * \brief Connect the service to the broker
-         * \param url   url of the broker
-         * \param port  port of the broker
-         *
          * \throws  MessagingException Exception thrown when unable to connect to the messaging server
          */
-        virtual void connect(const std::string &url, const unsigned short port) = 0;
+        virtual void connect() = 0;
 
         virtual void disconnect() = 0; //!< Disconnect the service from the broker
 

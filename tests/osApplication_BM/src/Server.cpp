@@ -2,6 +2,7 @@
 
 #include "Server.h"
 #include "Service_BMImpl.h"
+#include "osApplication/ServiceConfiguration.h"
 
 namespace NS_OSBASE::application::bm {
 
@@ -10,7 +11,9 @@ namespace NS_OSBASE::application::bm {
         m_pBroker->start(getBrokerPort());
 
         m_futRun = TheService_BMImpl.runAsync();
-        TheService_BMImpl.connect(getBrokerUrl(), getBrokerPort());
+        TheServiceConfiguration.setBrokerUri(std::string{ "ws://" + getBrokerUrl() + ":" + std::to_string(getBrokerPort()) });
+        TheServiceConfiguration.setRealm("");
+        TheService_BMImpl.connect();
 
         m_asyncBuffer.create();
         m_asyncStruct.create();
