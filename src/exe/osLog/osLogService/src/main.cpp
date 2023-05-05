@@ -8,21 +8,25 @@
 OS_CORE_IMPL_LINK();
 OS_DATA_IMPL_LINK();
 
-namespace nslog    = NS_OSBASE::log;
-namespace nsosbase = NS_OSBASE;
-namespace nscore   = nsosbase::core;
-namespace nsapp    = nsosbase::application;
+namespace nscore = NS_OSBASE::core;
+namespace nsdata = NS_OSBASE::data;
+namespace nsapp  = NS_OSBASE::application;
+namespace nslog  = NS_OSBASE::log;
 
 int main(int argc, char **argv) {
     nsapp::Runner runner(argc, argv);
     return runner.run(
-        [url = runner.getBrokerUrl(), port = runner.getBrokerPort()]() {
+        [options = runner.getOptions()]() {
             auto const guard = nscore::make_scope_exit([]() { nslog::TheLogServiceImpl.disconnect(); });
 
-            nsapp::TheServiceConfiguration.setBrokerUri(std::string{ "ws://" + url + ":" + std::to_string(port) });
-            nsapp::TheServiceConfiguration.setRealm("");
+            nsapp::TheServiceConfiguration.setBrokerUri(options.brokerUrl.value_or(nsdata::Uri("ws://127.0.0.1:8080")));
+            nsapp::TheServiceConfiguration.setRealm(options.realm.value_or(nsdata::IMessaging::DEFAULT_REALM));
             nslog::TheLogServiceImpl.connect();
             nslog::TheLogServiceImpl.run();
+            return 0;
         },
-        []() { nslog::TheLogServiceImpl.stop(); });
+        []() {
+            nslog::TheLogServiceImpl.stop();
+            return;
+        });
 }

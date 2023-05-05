@@ -13,4 +13,8 @@ namespace NS_OSBASE::application {
     Process::Process(const ProcessSetting &setting, const ServiceOptions &options)
         : m_pImpl(std::make_shared<ProcessImpl>(setting, options)) {
     }
+
+    std::string Process::getData() const {
+        return m_pImpl->getData();
+    }
 } // namespace NS_OSBASE::application

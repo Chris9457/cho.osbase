@@ -9,10 +9,9 @@
 namespace NS_OSBASE::launcher {
 
     struct LauncherSettings {
-        std::string brokerUrl;
-        unsigned short brokerPort = 8080;
+        data::Uri brokerUrl;
         application::ProcessSettings settings;
     };
 } // namespace NS_OSBASE::launcher
 
-OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::launcher::LauncherSettings, brokerUrl, brokerPort, settings)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::launcher::LauncherSettings, brokerUrl, settings)

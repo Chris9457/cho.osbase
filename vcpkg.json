@@ -6,8 +6,9 @@
 		"rapidxml",
 		"websocketpp",
 		"benchmark",
-		"cpp-httplib",
 		"webview2",
+		"getopt",
+		"cpprestsdk",
 		"qt5-base",
 		"qt5-svg"
 	]

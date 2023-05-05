@@ -2,7 +2,7 @@
 
 #pragma once
 #include "Serializable.h"
-#include "Serializable.h"
+#include "osCore/Misc/Scope.h"
 
 namespace NS_OSBASE::core {
     /*
@@ -123,7 +123,7 @@ namespace NS_OSBASE::core {
     }
 
     /*
-     * \class Serializable<std::vector>
+     * \class Serializable<std::array>
      */
     template <typename TValue, size_t N, typename TByte>
     bool Serializable<std::array<TValue, N>, TByte>::read(std::array<TValue, N> &value, const std::vector<TByte> &buffer, size_t &pos) {
@@ -142,6 +142,39 @@ namespace NS_OSBASE::core {
     bool Serializable<std::array<TValue, N>, TByte>::write(const std::array<TValue, N> &value, std::vector<TByte> &buffer) {
         const std::vector<TValue> v(value.cbegin(), value.cend());
         return Serializable<std::vector<TValue>, TByte>::write(v, buffer);
+    }
+
+    /*
+     * \class Serializable<std::optional>
+     */
+    template <typename TValue, typename TByte>
+    bool Serializable<std::optional<TValue>, TByte>::read(std::optional<TValue> &value, const std::vector<TByte> &buffer, size_t &pos) {
+        bool hasValue = false;
+
+        value.reset();
+        if (Serializable<bool, TByte>::read(hasValue, buffer, pos)) {
+            if (hasValue) {
+                TValue val{};
+                auto const guard = core::make_scope_exit([&value, &val] { value = val; });
+                return Serializable<TValue, TByte>::read(val, buffer, pos);
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    template <typename TValue, typename TByte>
+    bool Serializable<std::optional<TValue>, TByte>::write(const std::optional<TValue> &value, std::vector<TByte> &buffer) {
+        if (!Serializable<bool, TByte>::write(value.has_value(), buffer)) {
+            return false;
+        }
+
+        if (value.has_value()) {
+            return Serializable<TValue, TByte>::write(value.value(), buffer);
+        }
+
+        return true;
     }
 
 } // namespace NS_OSBASE::core

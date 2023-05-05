@@ -4,6 +4,7 @@
 #include "osApplication//Process.h"
 #include "osCoreImpl/CoreImpl.h"
 #include "osDataImpl/osDataImpl.h"
+#include "osData/Uri.h"
 #include <fstream>
 #include <iostream>
 
@@ -11,7 +12,8 @@ OS_CORE_IMPL_LINK();
 OS_DATA_IMPL_LINK();
 
 using namespace std::chrono_literals;
-namespace nsapp = NS_OSBASE::application;
+namespace nsdata = NS_OSBASE::data;
+namespace nsapp  = NS_OSBASE::application;
 
 int main(int argc, char **argv) {
     // This test is only to check in CI if the application can be launched
@@ -34,10 +36,11 @@ int main(int argc, char **argv) {
     std::cout << std::endl;
     std::cout << "Launching processes: " << std::endl;
 
-    const nsapp::ServiceOptions options = { launcherSettings.brokerUrl, launcherSettings.brokerPort };
+    nsapp::ServiceOptions options = { launcherSettings.brokerUrl, {} };
 
     // broker
     auto pBrokerProcess = nsapp::Process::create({ BROKER_NAME }, options);
+    options.brokerUrl   = pBrokerProcess->getData<nsdata::Uri>();
     std::vector<nsapp::ProcessPtr> pProcesses;
 
     for (auto &&launcherSetting : launcherSettings.settings) {

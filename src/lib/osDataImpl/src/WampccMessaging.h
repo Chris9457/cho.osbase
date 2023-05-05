@@ -62,6 +62,5 @@ namespace NS_OSBASE::data::impl {
         States m_state              = States::Idle;
 
         static constexpr auto s_timeoutRetryConnection = std::chrono::seconds(1);
-        static inline std::string s_default_realm      = "osbase";
     };
 } // namespace NS_OSBASE::data::impl

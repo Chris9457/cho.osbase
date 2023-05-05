@@ -20,7 +20,7 @@ namespace NS_OSBASE::webviewer::ut {
     public:
         WebViewerLauncher() : m_pBroker(nsdata::makeBroker()) {
             m_pBroker->start(brokerPort);
-            m_pProcess = nsapp::Process::create({ WEBVIEWER_NAME }, { brokerUrl, brokerPort });
+            m_pProcess = nsapp::Process::create({ WEBVIEWER_NAME }, {});
             std::this_thread::sleep_for(1s);
         }
 

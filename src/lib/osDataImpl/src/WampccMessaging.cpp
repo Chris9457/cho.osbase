@@ -55,7 +55,7 @@ namespace NS_OSBASE::data::impl {
     static auto const __logger = osLogger();
 
     WampccMessaging::WampccMessaging(const Uri &uri, const std::string &realm)
-        : m_uri(uri), m_realm(realm.empty() ? s_default_realm : realm), m_kernel(m_wampccConf, __logger) {
+        : m_uri(uri), m_realm(realm.empty() ? DEFAULT_REALM : realm), m_kernel(m_wampccConf, __logger) {
     }
 
     WampccMessaging::~WampccMessaging() /*override*/ {

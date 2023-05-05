@@ -79,19 +79,15 @@ namespace NS_OSBASE::application {
     void ProcessImpl::start() {
         std::cout << "Starting process: " << m_setting.serviceName << "..." << std::endl;
 
+        m_data.create();
+
         if (m_setting.killIfExist && killProcessByName(m_setting.serviceName)) {
             std::cout << "An existing process: " << m_setting.serviceName << " has been killed" << std::endl;
         }
 
-        m_pServiceHandshake = ServiceHandshake::create();
-        auto const uri      = m_pServiceHandshake->getUri();
-        if (uri.authority) {
-            m_options.handshakeScheme = uri.scheme;
-            m_options.handshakeHost   = uri.authority->host;
-            m_options.handshakePort   = uri.authority->port;
-        }
+        m_options.dataUrl = m_data.getUriOfCreator();
 
-        auto const commandLine = type_cast<std::string>(m_options);
+        auto const commandLine = m_setting.serviceName + " " + ServiceCommandParser(m_options).makeCommandLine();
         auto const pStrCmdLine = std::make_unique<char[]>(commandLine.size() + 1);
         strcpy_s(pStrCmdLine.get(), commandLine.size() + 1, commandLine.c_str());
 
@@ -100,7 +96,7 @@ namespace NS_OSBASE::application {
             startupInfo.dwFlags |= STARTF_USESTDHANDLES;
         }
 
-        m_bRunning = CreateProcessA(m_setting.serviceName.c_str(),
+        m_bRunning = CreateProcessA(nullptr,
                          pStrCmdLine.get(),
                          nullptr,
                          nullptr,
@@ -110,9 +106,6 @@ namespace NS_OSBASE::application {
                          (std::filesystem::current_path() / m_setting.serviceName).parent_path().string().c_str(),
                          &startupInfo,
                          &m_processInfo) == TRUE;
-        if (m_bRunning) {
-            m_bRunning = m_pServiceHandshake->engage(timeout);
-        }
 
         if (m_bRunning) {
             std::cout << "ProcessImpl: " << m_setting.serviceName << " started!" << std::endl;
@@ -120,6 +113,8 @@ namespace NS_OSBASE::application {
             if (!m_waitEndProcess.valid()) {
                 m_waitEndProcess = std::async([this]() { waitEndProcess(); });
             }
+
+            m_data.waitConnection();
         } else {
             std::cerr << "*** Failed to start the process: " << m_setting.serviceName << ": " << lastErrorToString() << std::endl;
         }
@@ -132,19 +127,17 @@ namespace NS_OSBASE::application {
             return;
 
         std::cout << "Stopping process: " << m_setting.serviceName << "..." << std::endl;
-
-        if (!m_pServiceHandshake->disengage(timeout)) {
-            std::cerr << "*** Fail to disengage the process: " << m_setting.serviceName << "!" << std::endl;
-            return;
-        }
+        m_data.set("end");
 
         m_bStopRequired = true;
         if (m_waitEndProcess.wait_for(timeout) == std::future_status::timeout) {
             std::cerr << "*** Fail to stop the process: " << m_setting.serviceName << "!" << std::endl;
         }
+        m_data.reset();
     }
 
     void ProcessImpl::waitEndProcess() {
+        // Manage the au-restart if required
         bool bLastWait                       = false;
         DWORD waitForSingleObjectReturnValue = WAIT_FAILED;
 
@@ -189,5 +182,14 @@ namespace NS_OSBASE::application {
 
         std::cout << std::endl;
         m_bRunning = false;
+    }
+
+    std::string ProcessImpl::getData() const {
+        if (!m_data.isConnected()) {
+            return {};
+        }
+
+        auto &self = const_cast<ProcessImpl &>(*this);
+        return self.m_data.get();
     }
 } // namespace NS_OSBASE::application

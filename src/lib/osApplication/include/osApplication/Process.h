@@ -17,9 +17,16 @@ namespace NS_OSBASE::application {
     public:
         static ProcessPtr create(const ProcessSetting &setting, const ServiceOptions &options);
 
+        std::string getData() const;
+
+        template <typename T>
+        T getData() const;
+
     private:
         Process(const ProcessSetting &setting, const ServiceOptions &options);
 
         ProcessImplPtr m_pImpl;
     };
 } // namespace NS_OSBASE::application
+
+#include "Process.inl"

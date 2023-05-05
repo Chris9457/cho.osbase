@@ -8,6 +8,7 @@ add_executable(${BROKER} ${INCLUDE_FILES} ${SRC_FILES})
 target_link_libraries(${BROKER} PRIVATE
 					  ${OSBASE}.application
 					  ${OSBASE}.core
+					  ${OSBASE}.core.impl
 					  ${OSBASE}.data.impl
 					 )
 

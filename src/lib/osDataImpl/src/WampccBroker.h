@@ -13,10 +13,11 @@ namespace NS_OSBASE::data::impl {
      */
     class WampccBroker : public IBroker {
     public:
-        WampccBroker() : m_kernel(), m_router(&m_kernel), m_runPromise(){};
+        WampccBroker();
+        ;
         ~WampccBroker() override = default;
 
-        void start(unsigned short port) override;
+        unsigned short start(const unsigned short port) override;
         void stop() override;
 
     private:
@@ -26,8 +27,7 @@ namespace NS_OSBASE::data::impl {
         std::mutex m_mutexStop;
         std::thread m_thread;
         wampcc::kernel m_kernel;
-        wampcc::wamp_router m_router;
-        std::promise<void> m_runPromise;
+        std::shared_ptr<wampcc::wamp_router> m_pRouter;
         std::condition_variable m_cvStarted;
         std::condition_variable m_cvStopped;
     };

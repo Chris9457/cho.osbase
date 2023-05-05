@@ -6,6 +6,8 @@
 #include <memory>
 #include <string>
 
+#include "IMessaging.h"
+
 /**
  * \defgroup PACKAGE_OSBASE_IMESSAGING Messaging Interface
  *
@@ -177,9 +179,11 @@ namespace NS_OSBASE::data {
          * \throws  MessagingException      Exception thrown when calling the function without being connected
          */
         virtual void publish(const std::string &topic, const std::string &argsSerialized, IErrorDelegatePtr pError) const = 0;
+
+        static inline std::string DEFAULT_REALM = "osbase";
     };
 
-    IMessagingPtr makeWampMessaging(const Uri &uri, const std::string &realm); //!< create a IMessaging
+    IMessagingPtr makeWampMessaging(const Uri &uri, const std::string &realm = IMessaging::DEFAULT_REALM); //!< create a IMessaging
 
     /** \} */
 } // namespace NS_OSBASE::data
