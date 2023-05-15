@@ -4,7 +4,6 @@
 #pragma once
 #include "osCore/Serialization/KeyStream.h"
 #include "rapidxml/rapidxml.hpp"
-#include <memory.h>
 #include <string>
 
 namespace NS_OSBASE::core::impl {
@@ -30,6 +29,9 @@ namespace NS_OSBASE::core::impl {
         std::wstring getValue(const std::wstring &strDefaultValue) override;
         bool setValue(const std::wstring &strValue) override;
 
+        bool getValue() override;
+        bool setValue() override;
+
         KeyValue<std::string, void> createKey(const std::string &key) override;
         KeyValue<std::string, void> openKey(const std::string &key) override;
         KeyValue<std::string, void> getCurrentKey() override;
@@ -50,8 +52,8 @@ namespace NS_OSBASE::core::impl {
         std::vector<unsigned char> getBuffer() const override;
 
     private:
-        char *getValue() const;
-        bool setValue(const std::string &value);
+        char *getStrValue() const;
+        bool setStrValue(const std::string &value);
         KeyValue<std::string, void> openKey(const std::string &key, bool bCreate);
         rapidxml::xml_node<char> *getParentArrayNode() const;
         static bool isArrayNode(rapidxml::xml_node<char> *pNode);

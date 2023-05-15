@@ -30,7 +30,7 @@
 | module          | Module section                                                |
 
 ### **Types**
-(`async_access`)`type_name`[`nb_occurrence`]
+(`async_access`)`type_name`[`nb_occurrence`]?
 
 (`async_access`) : optional - indicate if the access of the value is asynchroneous. Possible values of `async_access`:
    - `async`: one frame asynchroneous value 
@@ -51,6 +51,9 @@
    - dynamic if `nb_occurrence` is not filled (ex: integer[] ==> collection of integers, length not fixed) 
      - JSON type equivalence: array
      - c++ class equivalence: std::vector<`type_name`>
+
+? : optional - Inidicate if the type is optional
+   - JSON type equivalence
 
 
 | Type name                 | Description                                                   |  JSON Type        | CPP type                      |

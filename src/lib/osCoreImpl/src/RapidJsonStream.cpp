@@ -84,6 +84,25 @@ namespace NS_OSBASE::core::impl {
         return true;
     }
 
+    bool RapidJsonStream::getValue() {
+        auto const pCurrentValue = getCurrentValue();
+        if (pCurrentValue == nullptr) {
+            return false;
+        }
+
+        return pCurrentValue->IsNull();
+    }
+
+    bool RapidJsonStream::setValue() {
+        auto const pCurrentValue = getCurrentValue();
+        if (pCurrentValue == nullptr) {
+            return false;
+        }
+
+        pCurrentValue->SetNull();
+        return true;
+    }
+
     KeyValue<std::string, void> RapidJsonStream::createKey(const std::string &key) {
         auto keyValue = openKey(key);
         if (!keyValue.isNull())

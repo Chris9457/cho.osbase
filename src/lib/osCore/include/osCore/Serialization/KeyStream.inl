@@ -58,6 +58,16 @@ namespace NS_OSBASE::core {
     }
 
     template <typename TKey>
+    bool KeyStream<TKey>::getKeyValue(const TKey &key) {
+        return KeyValueSerializer<TKey, void>::getValue(*this, key);
+    }
+
+    template <typename TKey>
+    bool KeyStream<TKey>::setKeyValue(const TKey &key) {
+        return KeyValueSerializer<TKey, void>::setValue(*this, key);
+    }
+
+    template <typename TKey>
     KeyValue<TKey, void> KeyStream<TKey>::createKeys(const KeyPath<TKey> &keys) {
         static const auto nullKey = KeyValue<std::string, void>::null();
         if (keys.empty())

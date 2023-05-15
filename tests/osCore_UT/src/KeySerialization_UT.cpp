@@ -220,6 +220,34 @@ namespace NS_OSBASE::core::ut {
             ASSERT_EQ(otherCustomData, myCustomData);
         }
     }
+
+    TEST(KeyStream_UT, optional) {
+        auto pStream = core::makeJsonStream();
+        auto in      = std::make_tuple(2, std::optional<int>{ 8 }, 4);
+        decltype(in) out{};
+
+        pStream->setValue(in);
+
+        std::ostringstream oss;
+        oss << *pStream;
+
+        out = pStream->getValue(decltype(in){});
+        ASSERT_EQ(in, out);
+    }
+
+    TEST(KeyStream_UT, optional_in_tuple) {
+        auto pStream = core::makeJsonStream();
+        auto in      = std::make_tuple(2, std::optional<int>{ 8 }, 4, std::optional<std::string>{}, std::string("test"));
+        decltype(in) out{};
+
+        pStream->setValue(in);
+
+        std::ostringstream oss;
+        oss << *pStream;
+
+        out = pStream->getValue(decltype(in){});
+        ASSERT_EQ(in, out);
+    }
 } // namespace NS_OSBASE::core::ut
 OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::core::ut::MySubCustomData, strField);
 OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::core::ut::MyCustomData, intField, subCustomDataField);

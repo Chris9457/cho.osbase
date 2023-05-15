@@ -47,11 +47,11 @@ namespace NS_OSBASE::core::impl {
     bool RapidXmlStream::setValue(const bool &bValue) {
         std::stringstream ss;
         ss << std::noboolalpha << bValue;
-        return setValue(ss.str());
+        return setStrValue(ss.str());
     }
 
     int RapidXmlStream::getValue(const int &defaultValue) {
-        char *value = getValue();
+        const char *value = getStrValue();
         if (value == nullptr)
             return defaultValue;
 
@@ -61,11 +61,11 @@ namespace NS_OSBASE::core::impl {
     bool RapidXmlStream::setValue(const int &value) {
         std::stringstream ss;
         ss << value;
-        return setValue(ss.str());
+        return setStrValue(ss.str());
     }
 
     double RapidXmlStream::getValue(const double &defaultValue) {
-        char *value = getValue();
+        const char *value = getStrValue();
         if (value == nullptr)
             return defaultValue;
 
@@ -75,11 +75,11 @@ namespace NS_OSBASE::core::impl {
     bool RapidXmlStream::setValue(const double &value) {
         std::stringstream ss;
         ss << value;
-        return setValue(ss.str());
+        return setStrValue(ss.str());
     }
 
     std::wstring RapidXmlStream::getValue(const std::wstring &strDefaultValue) {
-        char *value = getValue();
+        char *value = getStrValue();
         if (value == nullptr)
             return strDefaultValue;
 
@@ -87,7 +87,20 @@ namespace NS_OSBASE::core::impl {
     }
 
     bool RapidXmlStream::setValue(const std::wstring &strValue) {
-        return setValue(type_cast<std::string>(strValue));
+        return setStrValue(type_cast<std::string>(strValue));
+    }
+
+    bool RapidXmlStream::getValue() {
+        char *value = getStrValue();
+        if (value == nullptr) {
+            return false;
+        }
+
+        return std::string(value).empty();
+    }
+
+    bool RapidXmlStream::setValue() {
+        return setStrValue({});
     }
 
     KeyValue<std::string, void> RapidXmlStream::createKey(const std::string &key) {
@@ -218,14 +231,14 @@ namespace NS_OSBASE::core::impl {
         return arraySize;
     }
 
-    char *RapidXmlStream::getValue() const {
+    char *RapidXmlStream::getStrValue() const {
         if (m_pCurrentNode != nullptr)
             return m_pCurrentNode->value();
 
         return nullptr;
     }
 
-    bool RapidXmlStream::setValue(const std::string &value) {
+    bool RapidXmlStream::setStrValue(const std::string &value) {
         if (m_pCurrentNode == nullptr)
             return false;
 

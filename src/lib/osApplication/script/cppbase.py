@@ -163,10 +163,12 @@ class CppBase:
         #   mynamespace.MyDomainObject[3]
         #   (async)char[]
         #   (async_paged)unsigned char[]
+        #   integer?
 
         match = re.match(r'(\((?P<access>[a-z_]*)\))?'
                          r'(?P<name>[a-zA-Z_][a-zA-Z0-9_. ]*)'
-                         r'(?P<occ>(\[(?P<nbocc>[0-9]*)\])?)$', type)
+                         r'(?P<occ>(\[(?P<nbocc>[0-9]*)\])?)'
+                         r'(?P<opt>\?)?$', type)
         if not match:
             raise CppException('CppBase.getCppType', 'Type not well formatted: ' + type)
 
@@ -174,10 +176,12 @@ class CppBase:
         typeName = match.group('name')
         occurrence = match.group('occ')
         nbOccurrence = match.group('nbocc')
+        optional = match.group('opt')
 
         hasAccess = not access is None and len(access) != 0
         hasOccurrence = not occurrence is None and len(occurrence) != 0
         hasNbOccurrence = not nbOccurrence is None and len(nbOccurrence) != 0
+        isOptional = not optional is None and len(optional) != 0
 
         if hasAccess and not access in CppBase.accessTypes:
             raise CppException('CppBase.getCppType', 'Unknown access: ' + access)
@@ -213,6 +217,9 @@ class CppBase:
 
         if hasAccess:
             cppType = CppBase.accessTypes[access] + '<' + cppType + '>'
+
+        if isOptional:
+            cppType = 'std::optional<' + cppType + '>'
 
         return cppType
 

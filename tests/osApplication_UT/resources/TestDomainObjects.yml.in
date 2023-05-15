@@ -80,3 +80,5 @@ domain_objects:
       - name: "_uri"
         type: "uri"
 
+  - alias: "OptInteger"
+    type: "integer[]?"
