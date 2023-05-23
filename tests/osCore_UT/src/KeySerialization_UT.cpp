@@ -222,7 +222,7 @@ namespace NS_OSBASE::core::ut {
     }
 
     TEST(KeyStream_UT, optional) {
-        auto pStream = core::makeJsonStream();
+        auto const pStream = core::makeJsonStream();
         auto in      = std::make_tuple(2, std::optional<int>{ 8 }, 4);
         decltype(in) out{};
 
@@ -236,7 +236,7 @@ namespace NS_OSBASE::core::ut {
     }
 
     TEST(KeyStream_UT, optional_in_tuple) {
-        auto pStream = core::makeJsonStream();
+        auto const pStream = core::makeJsonStream();
         auto in      = std::make_tuple(2, std::optional<int>{ 8 }, 4, std::optional<std::string>{}, std::string("test"));
         decltype(in) out{};
 
@@ -244,6 +244,7 @@ namespace NS_OSBASE::core::ut {
 
         std::ostringstream oss;
         oss << *pStream;
+        auto const strIn = oss.str();
 
         out = pStream->getValue(decltype(in){});
         ASSERT_EQ(in, out);

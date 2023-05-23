@@ -8,18 +8,13 @@ namespace NS_OSBASE::application {
      * \class Runner
      */
     template <typename T>
+    T Runner::getData() {
+        return m_options.getData<T>();
+    }
+
+    template <typename T>
     void Runner::sendData(const T &data) {
-        if (!m_data.isConnected()) {
-            return;
-        }
-
-        auto const pStream = core::makeJsonStream();
-        pStream->setValue(data);
-
-        std::ostringstream oss;
-        oss << *pStream;
-
-        m_data.set(oss.str());
+        m_options.setData(data);
     }
 
 } // namespace NS_OSBASE::application

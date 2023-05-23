@@ -21,9 +21,11 @@ target_link_libraries(${DATA_IMPL}
 target_include_directories(${DATA_IMPL} PUBLIC ${INCLUDE_DIR})
 
 target_compile_options(${DATA_IMPL}
-	PUBLIC
+	PRIVATE
 		$<$<PLATFORM_ID:Windows>:/DWIN32_LEAN_AND_MEAN>
 		$<$<PLATFORM_ID:Windows>:/D_WIN32_WINNT=0x0601>
-		$<$<PLATFORM_ID:Windows>:/D_WINSOCK_DEPRECATED_NO_WARNINGS>
-		)
+		$<$<PLATFORM_ID:Windows>:/D_WINSOCK_DEPRECATED_NO_WARNINGS>		
+)
 
+list(APPEND no_crt_secure_sources "${SRC_DIR}/WebSocketDataExchange.cpp")
+set_source_files_properties(${no_crt_secure_sources} PROPERTIES COMPILE_FLAGS "/wd4127 /wd4267")

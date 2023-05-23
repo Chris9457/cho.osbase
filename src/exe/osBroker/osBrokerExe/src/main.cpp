@@ -1,5 +1,6 @@
 // \brief Declaration of the broker
 
+#include "osBrokerApi/Settings.h"
 #include "osData/IBroker.h"
 #include "osData/INetwork.h"
 #include "osCoreImpl/CoreImpl.h"
@@ -9,9 +10,9 @@
 OS_CORE_IMPL_LINK();
 OS_DATA_IMPL_LINK();
 
-namespace nsosbase = NS_OSBASE;
-namespace nsdata   = nsosbase::data;
-namespace nsapp    = nsosbase::application;
+namespace nsdata   = NS_OSBASE::data;
+namespace nsapp    = NS_OSBASE::application;
+namespace nsbroker = NS_OSBASE::broker;
 
 int main(int argc, char **argv) {
     auto const pBroker = nsdata::makeBroker();
@@ -23,13 +24,13 @@ int main(int argc, char **argv) {
 
     return runner.run(
         [&runner, &pBroker, &mutStop, &cvStop, &bStop]() {
-            auto const port = pBroker->start(
-                runner.getOptions().brokerUrl.value_or(nsdata::Uri("ws://127.0.0.1:8080")).authority.value().port.value_or(8080));
+            auto settings   = runner.getData<nsbroker::Settings>();
+            auto const port = pBroker->start(settings.input.value_or(nsbroker::Input{ 8080 }).port);
 
             auto const pNetwork = nsdata::makeNetwork();
-            auto const brokerUri =
-                nsdata::Uri{ nsdata::Uri::schemeWebsocket(), nsdata::Uri::Authority{ {}, pNetwork->getLocalHost(), port } };
-            runner.sendData(brokerUri);
+            settings.output     = nsbroker::Output{ nsdata::Uri{
+                nsdata::Uri::schemeWebsocket(), nsdata::Uri::Authority{ {}, pNetwork->getLocalHost(), port } } };
+            runner.sendData(settings);
 
             std::unique_lock lock(mutStop);
             cvStop.wait(lock, [&bStop] { return bStop; });

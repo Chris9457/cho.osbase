@@ -1,10 +1,13 @@
 // \brief Definition of the launcher
 
 #include "LauncherSettings.h"
-#include "osApplication//Process.h"
+#include "osBrokerApi/Settings.h"
+#include "osApplication/Process.h"
+#include "osApplication/ServiceSettings.h"
 #include "osCoreImpl/CoreImpl.h"
 #include "osDataImpl/osDataImpl.h"
 #include "osData/Uri.h"
+#include "osData/IMessaging.h"
 #include <fstream>
 #include <iostream>
 
@@ -12,8 +15,9 @@ OS_CORE_IMPL_LINK();
 OS_DATA_IMPL_LINK();
 
 using namespace std::chrono_literals;
-namespace nsdata = NS_OSBASE::data;
-namespace nsapp  = NS_OSBASE::application;
+namespace nsdata   = NS_OSBASE::data;
+namespace nsapp    = NS_OSBASE::application;
+namespace nsbroker = NS_OSBASE::broker;
 
 int main(int argc, char **argv) {
     // This test is only to check in CI if the application can be launched
@@ -36,17 +40,23 @@ int main(int argc, char **argv) {
     std::cout << std::endl;
     std::cout << "Launching processes: " << std::endl;
 
-    nsapp::ServiceOptions options = { launcherSettings.brokerUrl, {} };
-
     // broker
-    auto pBrokerProcess = nsapp::Process::create({ BROKER_NAME }, options);
-    options.brokerUrl   = pBrokerProcess->getData<nsdata::Uri>();
+    nsapp::ServiceSettings serviceSettings;
+    auto const port = launcherSettings.brokerUrl.authority.value_or(nsdata::Uri::Authority{ {}, {}, 8080 }).port.value_or(8080);
+    nsbroker::Settings brokerSettings{ nsbroker::Input{ port }, {} };
+    auto pBrokerProcess = nsapp::Process::create({ BROKER_NAME }, brokerSettings);
+    brokerSettings      = pBrokerProcess->getData<nsbroker::Settings>();
+
+    serviceSettings.serviceInput = nsapp::ServiceSettingsInput{ false,
+        brokerSettings.output.value_or(nsbroker::Output{ type_cast<nsdata::Uri>(std::string("ws://127.0.0.1:8080")) }).uri,
+        nsdata::IMessaging::DEFAULT_REALM };
+
     std::vector<nsapp::ProcessPtr> pProcesses;
 
-    for (auto &&launcherSetting : launcherSettings.settings) {
-        auto const pServiceProcess = nsapp::Process::create(launcherSetting, options);
-        pProcesses.push_back(pServiceProcess);
-    }
+    // for (auto &&launcherSetting : launcherSettings.settings) {
+    //    auto const pServiceProcess = nsapp::Process::create(launcherSetting, serviceSettings);
+    //    pProcesses.push_back(pServiceProcess);
+    //}
 
     static const std::string strStop = "stop";
     std::cout << std::endl;

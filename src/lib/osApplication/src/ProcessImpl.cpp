@@ -1,6 +1,7 @@
 // \brief ProcessImpl launcher
 
 #include "ProcessImpl.h"
+#include "osApplication/ServiceSettings.h"
 #include <future>
 #include <iostream>
 #include <tchar.h>
@@ -21,7 +22,7 @@ namespace {
             0,
             nullptr);
 
-        std::wstring tmp(reinterpret_cast<LPTSTR>(lpMsgBuf));
+        std::wstring tmp(static_cast<LPTSTR>(lpMsgBuf));
         std::string retval;
         std::transform(tmp.begin(), tmp.end(), std::back_inserter(retval), [](auto c) { return static_cast<char>(c); });
         return retval;
@@ -67,7 +68,8 @@ namespace NS_OSBASE::application {
      * \class ProcessImpl
      */
 
-    ProcessImpl::ProcessImpl(const ProcessSetting &setting, const ServiceOptions &options) : m_setting(setting), m_options(options) {
+    ProcessImpl::ProcessImpl(const ProcessSetting &setting, const std::string &data) : m_setting(setting) {
+        m_options.setContent(data);
         ZeroMemory(&m_processInfo, sizeof(m_processInfo));
         start();
     }
@@ -79,15 +81,11 @@ namespace NS_OSBASE::application {
     void ProcessImpl::start() {
         std::cout << "Starting process: " << m_setting.serviceName << "..." << std::endl;
 
-        m_data.create();
-
         if (m_setting.killIfExist && killProcessByName(m_setting.serviceName)) {
             std::cout << "An existing process: " << m_setting.serviceName << " has been killed" << std::endl;
         }
 
-        m_options.dataUrl = m_data.getUriOfCreator();
-
-        auto const commandLine = m_setting.serviceName + " " + ServiceCommandParser(m_options).makeCommandLine();
+        auto const commandLine = m_setting.serviceName + " " + m_options.makeCommandLine();
         auto const pStrCmdLine = std::make_unique<char[]>(commandLine.size() + 1);
         strcpy_s(pStrCmdLine.get(), commandLine.size() + 1, commandLine.c_str());
 
@@ -113,8 +111,6 @@ namespace NS_OSBASE::application {
             if (!m_waitEndProcess.valid()) {
                 m_waitEndProcess = std::async([this]() { waitEndProcess(); });
             }
-
-            m_data.waitConnection();
         } else {
             std::cerr << "*** Failed to start the process: " << m_setting.serviceName << ": " << lastErrorToString() << std::endl;
         }
@@ -127,13 +123,14 @@ namespace NS_OSBASE::application {
             return;
 
         std::cout << "Stopping process: " << m_setting.serviceName << "..." << std::endl;
-        m_data.set("end");
+
+        m_options.setData(ServiceSettings{ ServiceSettingsInput{ true } });
 
         m_bStopRequired = true;
         if (m_waitEndProcess.wait_for(timeout) == std::future_status::timeout) {
             std::cerr << "*** Fail to stop the process: " << m_setting.serviceName << "!" << std::endl;
         }
-        m_data.reset();
+        m_options.reset();
     }
 
     void ProcessImpl::waitEndProcess() {
@@ -184,12 +181,11 @@ namespace NS_OSBASE::application {
         m_bRunning = false;
     }
 
-    std::string ProcessImpl::getData() const {
-        if (!m_data.isConnected()) {
-            return {};
-        }
+    std::string ProcessImpl::getStrData() const {
+        return m_options.getContent();
+    }
 
-        auto &self = const_cast<ProcessImpl &>(*this);
-        return self.m_data.get();
+    const ServiceOptions &ProcessImpl::getOptions() const {
+        return m_options;
     }
 } // namespace NS_OSBASE::application

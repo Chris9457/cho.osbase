@@ -39,19 +39,25 @@ namespace NS_OSBASE::data {
         : m_pDataExchange(Paged ? makePagedDataExchange(scheme) : makeDataExchange(scheme)),
           m_pDataExchangeDelegate(std::make_shared<DataExchangeDelegate>(*this)),
           m_bCreated(bCreated) {
-        m_pDataExchange->setDelegate(m_pDataExchangeDelegate);
+        if (m_pDataExchange != nullptr) {
+            m_pDataExchange->setDelegate(m_pDataExchangeDelegate);
+        }
     }
 
     template <typename T, bool Paged>
     AsyncData<T, Paged>::AsyncData(Uri &uri) : AsyncData<T, Paged>(uri.scheme.empty() ? Uri::schemeWebsocket() : uri.scheme, true) {
-        m_pDataExchange->create();
-        m_uriOfCreator = m_pDataExchange->getUriOfCreator();
-        uri            = m_uriOfCreator;
+        if (m_pDataExchange != nullptr) {
+            m_pDataExchange->create();
+            m_uriOfCreator = m_pDataExchange->getUriOfCreator();
+            uri            = m_uriOfCreator;
+        }
     }
 
     template <typename T, bool Paged>
     AsyncData<T, Paged>::AsyncData(const Uri &uri) : AsyncData<T, Paged>(uri.scheme, false) {
-        m_uriOfCreator = uri;
+        if (m_pDataExchange != nullptr) {
+            m_uriOfCreator = uri;
+        }
     }
 
     template <typename T, bool Paged>

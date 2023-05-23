@@ -8,9 +8,18 @@ namespace NS_OSBASE::application {
      * \class Process
      */
     template <typename T>
+    ProcessPtr Process::create(const ProcessSetting &setting, const T &data) {
+        auto const pStream = core::makeJsonStream();
+        pStream->setValue(data);
+
+        std::ostringstream oss;
+        oss << *pStream;
+        return ProcessPtr(new Process(setting, oss.str()));
+    }
+
+    template <typename T>
     T Process::getData() const {
-        auto const pStream = core::makeJsonStream(std::istringstream(getData()));
-        return pStream->getValue(T{});
+        return getOptions().getData<T>();
     }
 
 } // namespace NS_OSBASE::application

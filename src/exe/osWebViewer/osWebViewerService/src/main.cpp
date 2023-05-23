@@ -6,6 +6,7 @@
 #include "osCoreImpl/CoreImpl.h"
 #include "osDataImpl/osDataImpl.h"
 #include "osApplication/ServiceConfiguration.h"
+#include "osApplication/ServiceSettings.h"
 
 OS_CORE_LINK_KEYSTREAM_JSON()
 OS_DATA_IMPL_LINK();
@@ -19,11 +20,15 @@ namespace nswebviewer = NS_OSBASE::webviewer;
 int main(int argc, char **argv) {
     nsapp::Runner runner(argc, argv);
     return runner.run(
-        [options = runner.getOptions()]() {
+        [&runner]() {
             auto const guard = nscore::make_scope_exit([]() { nswebviewer::TheWebViewerServiceImpl.disconnect(); });
 
-            nsapp::TheServiceConfiguration.setBrokerUri(options.brokerUrl.value_or(nsdata::Uri("ws://127.0.0.1:8080")));
-            nsapp::TheServiceConfiguration.setRealm(options.realm.value_or(nsdata::IMessaging::DEFAULT_REALM));
+            auto const settings = runner.getData<nsapp::ServiceSettings>();
+            auto const input    = settings.serviceInput.value_or(
+                nsapp::ServiceSettingsInput{ {}, nsdata::Uri("ws://127.0.0.1:8080"), nsdata::IMessaging::DEFAULT_REALM });
+
+            nsapp::TheServiceConfiguration.setBrokerUri(input.brokerUrl);
+            nsapp::TheServiceConfiguration.setRealm(input.realm);
             nswebviewer::TheWebViewerServiceImpl.connect();
             nswebviewer::TheWebViewerServiceImpl.run();
 

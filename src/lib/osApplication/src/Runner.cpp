@@ -1,19 +1,39 @@
 // \brief Helper class to run a Servic// \brief Declaration of the class Runner
 
 #include "osApplication/Runner.h"
+#include "osApplication/ServiceSettings.h"
 #include "osData/IMessaging.h"
 #include <iostream>
 
 namespace NS_OSBASE::application {
 
     /*
-     * \class ServiceRunner<void>
+     *\class Runner::ServiceOptionsDelegate
      */
-    Runner::Runner(int argc, char **argv) : m_options(ServiceCommandParser(argc, argv).getOptions()), m_timeout(s_defaultTimeout) {
+    class Runner::ServiceOptionsDelegate : public ServiceOptions::IDelegate {
+    public:
+        ServiceOptionsDelegate(Runner &runner) : m_runner(runner) {
+        }
+
+        void onOptionsReceived() override {
+            m_runner.onOptionsReceived();
+        }
+
+    private:
+        Runner &m_runner;
+    };
+
+    /*
+     * \class Runner>
+     */
+    Runner::Runner(int argc, char **argv)
+        : m_options(ServiceOptions(argc, argv)),
+          m_timeout(s_defaultTimeout),
+          m_pServiceOptionsDelegate(std::make_shared<ServiceOptionsDelegate>(*this)) {
+        m_options.setDelegate(m_pServiceOptionsDelegate);
     }
 
-    Runner::~Runner() {
-    }
+    Runner::~Runner() = default;
 
     const std::chrono::milliseconds &Runner::getTimeout() const {
         return m_timeout;
@@ -23,9 +43,12 @@ namespace NS_OSBASE::application {
         m_timeout = timeout;
     }
 
-    void Runner::onData(std::string &&data) {
-        std::cout << data << std::endl;
-        if (m_onStop) {
+    void Runner::onOptionsReceived() const {
+        auto const pStream         = core::makeJsonStream(std::istringstream(m_options.getContent()));
+        auto const serviceSettings = pStream->getValue(ServiceSettings{});
+        auto const input           = serviceSettings.serviceInput.value_or(ServiceSettingsInput{ false, {}, {} });
+
+        if (input.bStop && m_onStop) {
             m_onStop();
         }
     }
@@ -34,12 +57,6 @@ namespace NS_OSBASE::application {
         auto const guard = core::make_scope_exit([this] { m_data.reset(); });
         m_onRun          = std::move(onRun);
         m_onStop         = std::move(onStop);
-
-        if (m_options.dataUrl.has_value()) {
-            auto const dataUrl = m_options.dataUrl.value();
-            m_data             = data::AsyncData<std::string>(dataUrl);
-            m_data.get([this](std::string &&data) { onData(std::move(data)); });
-        }
 
         if (m_onRun) {
             try {
@@ -51,9 +68,5 @@ namespace NS_OSBASE::application {
         }
 
         return -1;
-    }
-
-    const ServiceOptions &Runner::getOptions() const {
-        return m_options;
     }
 } // namespace NS_OSBASE::application
