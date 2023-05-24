@@ -1,6 +1,5 @@
 // \brief Declaration of the WebSocketDataExchangeImpl concrete methods
 
-
 #include "WebSocketPPImports.h"
 
 #include "osData/FactoryNames.h"
@@ -46,7 +45,7 @@ namespace NS_OSBASE::data::impl {
     }
 
     void WebSocketDataExchange::open(const Uri &uri) {
-        std::unique_lock<std::shared_mutex> lock(m_mutex);
+        std::lock_guard lock(m_mutex);
         checkAccessType(AccessType::CreateOpen);
         try {
             m_pClient = std::make_unique<Client>();
@@ -66,7 +65,7 @@ namespace NS_OSBASE::data::impl {
     }
 
     void WebSocketDataExchange::close() {
-        std::unique_lock<std::shared_mutex> lock(m_mutex);
+        std::lock_guard lock(m_mutex);
         if (m_pClient == nullptr) {
             return;
         }
@@ -84,7 +83,7 @@ namespace NS_OSBASE::data::impl {
     }
 
     void WebSocketDataExchange::create() {
-        std::unique_lock<std::shared_mutex> lock(m_mutex);
+        std::lock_guard lock(m_mutex);
         checkAccessType(AccessType::CreateOpen);
         try {
             m_pServer = std::make_unique<Server>();
@@ -112,7 +111,7 @@ namespace NS_OSBASE::data::impl {
     }
 
     void WebSocketDataExchange::destroy() {
-        std::unique_lock<std::shared_mutex> lock(m_mutex);
+        std::lock_guard lock(m_mutex);
         if (m_pServer == nullptr) {
             return;
         }
@@ -126,7 +125,7 @@ namespace NS_OSBASE::data::impl {
     }
 
     void WebSocketDataExchange::push(const ByteBuffer &buffer) const {
-        std::shared_lock<std::shared_mutex> lock(m_mutex);
+        std::lock_guard lock(m_mutex);
         if (m_accessType != AccessType::CreateReadWrite && m_accessType != AccessType::OpenReadWrite) {
             throw DataExchangeException("the endpoint is not on the right state");
         }
@@ -142,7 +141,7 @@ namespace NS_OSBASE::data::impl {
     }
 
     void WebSocketDataExchange::setDelegate(IDelegatePtr pDelegate) noexcept {
-        std::unique_lock<std::shared_mutex> lock(m_mutex);
+        std::lock_guard lock(m_mutex);
         m_pWDelegate = pDelegate;
     }
 
@@ -151,7 +150,7 @@ namespace NS_OSBASE::data::impl {
     }
 
     bool WebSocketDataExchange::isWired() const noexcept {
-        std::shared_lock<std::shared_mutex> lock(m_mutex);
+        std::lock_guard lock(m_mutex);
         try {
             if (m_accessType == AccessType::OpenReadWrite && m_pClient != nullptr) {
                 if (const auto con = m_pClient->get_con_from_hdl(m_hdl); con != nullptr) {
@@ -224,7 +223,7 @@ namespace NS_OSBASE::data::impl {
     }
 
     void WebSocketDataExchange::onMessage(const std::string &payload) const {
-        std::unique_lock<std::shared_mutex> lock(m_mutex);
+        std::lock_guard lock(m_mutex);
         if (const auto pDelegate = m_pWDelegate.lock(); pDelegate != nullptr) {
             const auto pBuffer = reinterpret_cast<const ByteBuffer::value_type *>(payload.c_str());
             ByteBuffer buffer;

@@ -125,14 +125,15 @@ namespace NS_OSBASE::application {
      * \class ServiceImpl
      */
     template <typename TService>
-    ServiceImpl<TService>::ServiceImpl(const std::string &serviceName) : ServiceBase<TService>(serviceName, std::make_shared<TaskLoop>()) {
+    ServiceImpl<TService>::ServiceImpl(const std::string &serviceName, const data::Uri &uri, const std::string &realm)
+        : ServiceBase<TService>(serviceName, uri, realm, std::make_shared<TaskLoop>()) {
         m_pPublishErrorDelegate = std::make_shared<PublishError>(*this);
     }
 
     template <typename TService>
-    void ServiceImpl<TService>::connect(const std::string &url, const unsigned short port) {
+    void ServiceImpl<TService>::connect() {
         try {
-            ServiceBase<TService>::connect(url, port);
+            ServiceBase<TService>::connect();
         } catch (const ServiceException &) {
             return; // Failed connection is not an error, the method onMessagingConnection will be callesd on (re-)connection
         }

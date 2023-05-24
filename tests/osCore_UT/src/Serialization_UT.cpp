@@ -32,7 +32,9 @@ namespace NS_OSBASE::core::ut {
         std::array<int, 5>,
         TestEnum,
         TestStruct,
-        ComplexTestStruct>;
+        ComplexTestStruct,
+        std::optional<int>,          // optional with value
+        std::optional<std::string>>; // optional without value
     TYPED_TEST_SUITE(Serialization_UT, value_types);
 
     TYPED_TEST(Serialization_UT, single_testGetSetValueOK) {

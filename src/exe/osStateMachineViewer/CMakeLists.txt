@@ -25,6 +25,7 @@ target_link_libraries(${STATEMACHINEVIEWER}
 						Qt5::Widgets)
 
 set_property(TARGET ${STATEMACHINEVIEWER} PROPERTY WIN32_EXECUTABLE true)
+target_compile_definitions(${STATEMACHINEVIEWER} PRIVATE OSBASE=${OSBASE})
 
 install(TARGETS ${STATEMACHINEVIEWER} DESTINATION statemachineviewer)
 install(FILES $<TARGET_FILE_DIR:${STATEMACHINEVIEWER}>/qt.conf DESTINATION statemachineviewer)

@@ -7,6 +7,7 @@
 #include <optional>
 #include <type_traits>
 #include <vector>
+#include <optional>
 
 namespace NS_OSBASE::core {
 
@@ -50,6 +51,12 @@ namespace NS_OSBASE::core {
         static std::vector<TValue> getValue(KeyStream<TKey> &keyStream, const std::vector<TValue> &defaultValue);
         static bool setValue(KeyStream<TKey> &keyStream, const std::vector<TValue> &value);
     };
+
+    template <typename TKey, typename TValue>
+    struct KeySerializer<TKey, std::optional<TValue>, false> {
+        static std::optional<TValue> getValue(KeyStream<TKey> &keyStream, const std::optional<TValue> &defaultValue);
+        static bool setValue(KeyStream<TKey> &keyStream, const std::optional<TValue> &value);
+    };
     /** \endcond */
 
     /**
@@ -79,6 +86,12 @@ namespace NS_OSBASE::core {
     };
 
     /** \cond */
+    template <typename TKey>
+    struct KeyValueSerializer<TKey, void> {
+        static bool getValue(KeyStream<TKey> &keyStream, const TKey &key);
+        static bool setValue(KeyStream<TKey> &keyStream, const TKey &key);
+    };
+
     template <typename TKey, typename TValue>
     struct KeyValueSerializer<TKey, std::vector<TValue>> {
         static std::vector<TValue> getValue(KeyStream<TKey> &keyStream, const TKey &key, const std::vector<TValue> &defaultValue);

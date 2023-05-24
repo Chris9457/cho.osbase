@@ -24,6 +24,7 @@ namespace NS_OSBASE::statemachineviewer {
         void accept() override;
         const QString &getHost() const;
         unsigned short getPort() const;
+        const QString &getRealm() const;
 
     private:
         void connectUi();
@@ -31,5 +32,6 @@ namespace NS_OSBASE::statemachineviewer {
         Ui::ConnectionDialog *ui;
         QString m_hostName;
         unsigned short m_port;
+        QString m_realm;
     };
 } // namespace NS_OSBASE::statemachineviewer

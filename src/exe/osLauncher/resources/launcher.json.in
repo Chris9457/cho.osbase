@@ -1,6 +1,5 @@
 {
-	"brokerUrl": "127.0.0.1",
-	"brokerPort": 8080,
+	"brokerUrl": "ws://127.0.0.1:0",
 	"settings": [
 		{
 			"serviceName": "../log/@OSBASE@.log.service.exe",

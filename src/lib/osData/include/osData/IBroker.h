@@ -33,8 +33,11 @@ namespace NS_OSBASE::data {
         /**
          * \brief Method called to start a broker
          * \param	port        Port on which to start the broker
+         * \return      the allocated port
+         *
+         * \remark  set the in param "port" to 0 will let the system to choose an available port provided as return value
          */
-        virtual void start(unsigned short port) = 0;
+        virtual unsigned short start(const unsigned short port) = 0;
 
         /**
          * \brief Method called to stop the broker

@@ -1,40 +1,39 @@
 // \brief Helper class to run a Servic// \brief Declaration of the class Runner
 
 #include "osApplication/Runner.h"
+#include "osApplication/ServiceSettings.h"
+#include "osData/IMessaging.h"
 #include <iostream>
 
 namespace NS_OSBASE::application {
 
     /*
-     * \class Runner::HandshakeDelegate
+     *\class Runner::ServiceOptionsDelegate
      */
-    class Runner::HandshakeDelegate : public ServiceHandshake::IDelegate {
+    class Runner::ServiceOptionsDelegate : public ServiceOptions::IDelegate {
     public:
-        HandshakeDelegate(Runner &serviceRunner) : m_runner(serviceRunner) {
+        ServiceOptionsDelegate(Runner &runner) : m_runner(runner) {
         }
 
-        void onEngage() override {
-        }
-
-        void onDisengage() override {
-            m_runner.stop();
+        void onOptionsReceived() override {
+            m_runner.onOptionsReceived();
         }
 
     private:
         Runner &m_runner;
     };
+
     /*
-     * \class ServiceRunner<void>
+     * \class Runner>
      */
     Runner::Runner(int argc, char **argv)
-        : m_options(type_cast<ServiceOptions>(ServiceCommandParser(argc, argv))), m_timeout(s_defaultTimeout) {
+        : m_options(ServiceOptions(argc, argv)),
+          m_timeout(s_defaultTimeout),
+          m_pServiceOptionsDelegate(std::make_shared<ServiceOptionsDelegate>(*this)) {
+        m_options.setDelegate(m_pServiceOptionsDelegate);
     }
 
-    Runner::~Runner() {
-        if (m_pHandshake != nullptr) {
-            m_pHandshake->disengage();
-        }
-    }
+    Runner::~Runner() = default;
 
     const std::chrono::milliseconds &Runner::getTimeout() const {
         return m_timeout;
@@ -44,50 +43,29 @@ namespace NS_OSBASE::application {
         m_timeout = timeout;
     }
 
-    const ServiceOptions &Runner::getOptions() const {
-        return m_options;
-    }
+    void Runner::onOptionsReceived() const {
+        auto const serviceSettings = m_options.getData<ServiceSettings>();
+        auto const input           = serviceSettings.serviceInput.value_or(ServiceSettingsInput{ false, {}, {} });
 
-    void Runner::initHandshake() {
-        if (m_options.handshakeScheme) {
-            m_pHandshake         = ServiceHandshake::create(data::Uri(
-                { *m_options.handshakeScheme, data::Uri::Uri::Authority{ {}, *m_options.handshakeHost, *m_options.handshakePort } }));
-            m_pHandshakeDelegate = std::make_shared<HandshakeDelegate>(*this);
-            m_pHandshake->setDelegate(m_pHandshakeDelegate);
-            m_pHandshake->engage(m_timeout);
-        }
-    }
-
-    int Runner::run(TCallback &&onRun, TCallback &&onStop) {
-        m_onRun  = std::move(onRun);
-        m_onStop = std::move(onStop);
-        initHandshake();
-
-        if (m_onRun) {
-            try {
-                m_onRun();
-            } catch (const RunnerException &e) {
-                std::cout << "Unable to start the runner" << std::endl;
-                std::cout << e.what() << std::endl;
-                return -1;
-            }
-        }
-
-        return 0;
-    }
-
-    void Runner::stop() {
-        if (m_onStop) {
+        if (input.bStop && m_onStop) {
             m_onStop();
         }
     }
 
-    std::string Runner::getBrokerUrl() const {
-        return getOptions().brokerUrl ? *getOptions().brokerUrl : "127.0.0.1";
-    }
+    int Runner::run(TCallbackRun &&onRun, TCallbackStop &&onStop) {
+        auto const guard = core::make_scope_exit([this] { m_data.reset(); });
+        m_onRun          = std::move(onRun);
+        m_onStop         = std::move(onStop);
 
-    unsigned short Runner::getBrokerPort() const {
-        return getOptions().brokerPort ? *getOptions().brokerPort : 8080;
-    }
+        if (m_onRun) {
+            try {
+                return m_onRun();
+            } catch (const RunnerException &e) {
+                std::cout << "Unable to start the runner" << std::endl;
+                std::cout << e.what() << std::endl;
+            }
+        }
 
+        return -1;
+    }
 } // namespace NS_OSBASE::application

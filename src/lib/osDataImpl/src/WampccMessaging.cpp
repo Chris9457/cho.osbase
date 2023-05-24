@@ -1,6 +1,6 @@
 // \brief Implementation of a WAMP client using wampcc SOUP
 
-#include "WampccClient.h"
+#include "WampccMessaging.h"
 #include "osData/FactoryNames.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 #include "osCore/Exception/RuntimeException.h"
@@ -25,7 +25,7 @@ using namespace wampcc;
 #define LOG_INFO(X) LOGIMPL(X, wampcc::logger::eInfo)
 
 namespace NS_OSBASE::data::impl {
-    OS_REGISTER_FACTORY_N(IMessaging, MessagingWampcc, 0, MESSAGINGWAMPCC_FACTORY_NAME);
+    OS_REGISTER_FACTORY_N(IMessaging, WampccMessaging, 0, MESSAGINGWAMPCC_FACTORY_NAME, Uri, std::string);
 
     namespace {
         wampcc::logger osLogger() {
@@ -54,10 +54,11 @@ namespace NS_OSBASE::data::impl {
 
     static auto const __logger = osLogger();
 
-    MessagingWampcc::MessagingWampcc() : m_kernel(m_wampccConf, __logger) {
+    WampccMessaging::WampccMessaging(const Uri &uri, const std::string &realm)
+        : m_uri(uri), m_realm(realm.empty() ? DEFAULT_REALM : realm), m_kernel(m_wampccConf, __logger) {
     }
 
-    MessagingWampcc::~MessagingWampcc() /*override*/ {
+    WampccMessaging::~WampccMessaging() /*override*/ {
         if (!m_bStopRetryConnection) {
             std::lock_guard lock(m_mutConnection);
             m_bStopRetryConnection = true;
@@ -73,21 +74,17 @@ namespace NS_OSBASE::data::impl {
         doDisconnect();
     }
 
-    void MessagingWampcc::connect(const std::string &brokerUrl, int brokerPort) {
-        connect(brokerUrl, brokerPort, m_default_realm);
-    }
-
-    void MessagingWampcc::connect(const std::string &brokerUrl, int brokerPort, const std::string &realm) {
-        using namespace std::chrono_literals;
+    void WampccMessaging::connect() {
         static constexpr auto helloTimeout = 4s;
 
+        if (!m_uri.isValid() || !m_uri.authority.has_value() || !m_uri.authority.value().port.has_value()) {
+            throw MessagingException("uri invalid: " + type_cast<std::string>(m_uri));
+        }
+
         m_session.reset();
-        m_brokerUrl  = brokerUrl;
-        m_brokerPort = brokerPort;
-        m_realm      = realm;
 
         auto sock                  = std::make_unique<wampcc::tcp_socket>(&m_kernel);
-        const auto connectionError = sock->connect(brokerUrl, brokerPort).get();
+        const auto connectionError = sock->connect(m_uri.authority.value().host, m_uri.authority->port.value()).get();
         if (connectionError != 0) {
             if (isStateConnected() || isStateIdle()) {
                 setStateDisconnected();
@@ -103,7 +100,7 @@ namespace NS_OSBASE::data::impl {
             }
         });
 
-        if (m_session->hello(realm).wait_for(helloTimeout) != std::future_status::ready) {
+        if (m_session->hello(m_realm).wait_for(helloTimeout) != std::future_status::ready) {
             throw MessagingException("Realm logon failed");
         }
         if (!m_session->is_open()) {
@@ -113,11 +110,11 @@ namespace NS_OSBASE::data::impl {
         setStateConnected();
     }
 
-    void MessagingWampcc::disconnect() {
+    void WampccMessaging::disconnect() {
         doDisconnect();
     }
 
-    void MessagingWampcc::registerCall(const std::string &uri, ISupplierDelegatePtr pDelegate, IErrorDelegatePtr pError) /*override*/ {
+    void WampccMessaging::registerCall(const std::string &uri, ISupplierDelegatePtr pDelegate, IErrorDelegatePtr pError) /*override*/ {
         std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
         if (m_registeredCalls.find(uri) != m_registeredCalls.end())
@@ -167,7 +164,7 @@ namespace NS_OSBASE::data::impl {
             });
     }
 
-    void MessagingWampcc::unregisterCall(const std::string &uri, IErrorDelegatePtr pError) {
+    void WampccMessaging::unregisterCall(const std::string &uri, IErrorDelegatePtr pError) {
         std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
         auto &session = ensureValidSession();
@@ -196,7 +193,7 @@ namespace NS_OSBASE::data::impl {
             });
     }
 
-    void MessagingWampcc::invoke(
+    void WampccMessaging::invoke(
         const std::string &uri, const std::string &argsSerialized, IClientDelegatePtr pDelegate, IErrorDelegatePtr pError) const {
         auto &session = ensureValidSession();
         wamp_args wampArgs;
@@ -230,7 +227,7 @@ namespace NS_OSBASE::data::impl {
             });
     }
 
-    void MessagingWampcc::subscribe(const std::string &topic, IEventDelegatePtr pDelegate, IErrorDelegatePtr pError) /*override*/ {
+    void WampccMessaging::subscribe(const std::string &topic, IEventDelegatePtr pDelegate, IErrorDelegatePtr pError) /*override*/ {
         std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
         auto &session = ensureValidSession();
@@ -264,7 +261,7 @@ namespace NS_OSBASE::data::impl {
             });
     }
 
-    void MessagingWampcc::unsubscribe(const std::string &topic, IErrorDelegatePtr pError) /*override*/ {
+    void WampccMessaging::unsubscribe(const std::string &topic, IErrorDelegatePtr pError) /*override*/ {
         std::lock_guard<std::recursive_mutex> guard(m_mutex);
 
         auto &session       = ensureValidSession();
@@ -288,7 +285,7 @@ namespace NS_OSBASE::data::impl {
             });
     }
 
-    void MessagingWampcc::publish(const std::string &topic, const std::string &argsSerialized, IErrorDelegatePtr pError) const
+    void WampccMessaging::publish(const std::string &topic, const std::string &argsSerialized, IErrorDelegatePtr pError) const
     /*override*/ {
         auto &session = ensureValidSession();
         wamp_args wampArgs;
@@ -303,16 +300,16 @@ namespace NS_OSBASE::data::impl {
         });
     }
 
-    wampcc::wamp_session &MessagingWampcc::ensureValidSession() const {
+    wampcc::wamp_session &WampccMessaging::ensureValidSession() const {
         if (m_session && m_session->is_open()) {
             return *m_session;
         }
         throw MessagingException("You have to connect to use the client");
     }
 
-    bool MessagingWampcc::tryConnect(const std::string &brokerUrl, int brokerPort, const std::string &realm) {
+    bool WampccMessaging::tryConnect() {
         try {
-            connect(brokerUrl, brokerPort, realm);
+            connect();
         } catch (const MessagingException &) {
             return false;
         }
@@ -320,7 +317,7 @@ namespace NS_OSBASE::data::impl {
         return true;
     }
 
-    void MessagingWampcc::doDisconnect() {
+    void WampccMessaging::doDisconnect() {
         if (m_session != nullptr && m_session->is_open()) {
             m_bStopRetryConnection = true;
             m_session->close().wait();
@@ -338,17 +335,17 @@ namespace NS_OSBASE::data::impl {
         setStateDisconnected();
     }
 
-    void MessagingWampcc::retryConnection() {
+    void WampccMessaging::retryConnection() {
         auto const guard = core::make_scope_exit([this]() { m_bStopRetryConnection = false; });
         while (!m_bStopRetryConnection) {
             std::unique_lock lock(m_mutConnection);
             if (!m_cvConnection.wait_for(lock, s_timeoutRetryConnection, [this]() { return m_bStopRetryConnection; })) {
-                m_bStopRetryConnection = tryConnect(m_brokerUrl, m_brokerPort, m_realm);
+                m_bStopRetryConnection = tryConnect();
             }
         }
     }
 
-    bool MessagingWampcc::isStateConnected() const {
+    bool WampccMessaging::isStateConnected() const {
         switch (m_state) {
         case States::Idle:
         case States::Disconnected:
@@ -363,7 +360,7 @@ namespace NS_OSBASE::data::impl {
         return false;
     }
 
-    void MessagingWampcc::setStateConnected() {
+    void WampccMessaging::setStateConnected() {
         switch (m_state) {
         case States::Idle:
         case States::Disconnected:
@@ -380,11 +377,11 @@ namespace NS_OSBASE::data::impl {
         notify(MessagingConnectionMsg{ true });
     }
 
-    bool MessagingWampcc::isStateDisconnected() const {
+    bool WampccMessaging::isStateDisconnected() const {
         return !isStateConnected() && m_state != States::Idle;
     }
 
-    void MessagingWampcc::setStateDisconnected() {
+    void WampccMessaging::setStateDisconnected() {
         switch (m_state) {
         case States::Disconnected:
         case States::DisconnectedCalling:
@@ -406,7 +403,7 @@ namespace NS_OSBASE::data::impl {
         notify(MessagingConnectionMsg{ false });
     }
 
-    bool MessagingWampcc::isStateIdle() const {
+    bool WampccMessaging::isStateIdle() const {
         return m_state == States::Idle;
     }
 

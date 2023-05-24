@@ -299,7 +299,8 @@ class CppStubHeader(CppBase):
             '    using ' + serviceName + ' = NS_OSBASE::application::IService<' + className + '>;\n')
         self.file.write('    using ' + serviceName + 'Ptr = std::shared_ptr<' + serviceName + '>;\n\n')
         self.file.write(
-            '    ' + serviceName + 'Ptr makeStub(NS_OSBASE::application::TaskLoopPtr pTaskLoop = nullptr);\n')
+            '    ' + serviceName + 'Ptr makeStub(const NS_OSBASE::data::Uri& uri, const std::string &realm, '
+                                   'NS_OSBASE::application::TaskLoopPtr pTaskLoop = nullptr);\n')
         self.file.write('\n')
 
     def __addEvents(self):

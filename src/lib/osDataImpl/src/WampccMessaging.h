@@ -2,18 +2,19 @@
 #pragma once
 
 #include "osData/IMessaging.h"
+#include "osData/Uri.h"
 #include "wampcc/wampcc.h"
 
 #include <mutex>
 #include <unordered_map>
 
 namespace NS_OSBASE::data::impl {
-    class MessagingWampcc : public IMessaging {
+    class WampccMessaging : public IMessaging {
     public:
-        MessagingWampcc();
-        ~MessagingWampcc() override;
+        WampccMessaging(const Uri &uri, const std::string &realm);
+        ~WampccMessaging() override;
 
-        void connect(const std::string &brokerUrl, int brokerPort) override;
+        void connect() override;
         void disconnect() override;
         void registerCall(const std::string &uri, ISupplierDelegatePtr pDelegate, IErrorDelegatePtr pError) override;
         void unregisterCall(const std::string &uri, IErrorDelegatePtr pError) override;
@@ -28,8 +29,7 @@ namespace NS_OSBASE::data::impl {
     private:
         enum class States { Idle, Disconnected, DisconnectedCalling, Connected, ConnectedCalling, ConnectedCallingAbort };
 
-        void connect(const std::string &brokerUrl, int brokerPort, const std::string &realm);
-        bool tryConnect(const std::string &brokerUrl, int brokerPort, const std::string &realm);
+        bool tryConnect();
         void doDisconnect();
         wampcc::wamp_session &ensureValidSession() const;
 
@@ -43,9 +43,8 @@ namespace NS_OSBASE::data::impl {
 
         bool isStateIdle() const;
 
-        inline static const std::string m_default_realm = "osbase";
-        static constexpr auto s_timeoutRetryConnection  = std::chrono::seconds(1);
-
+        Uri m_uri;
+        std::string m_realm;
         wampcc::config m_wampccConf;
         wampcc::kernel m_kernel;
         std::unique_ptr<wampcc::tcp_socket> m_sock;
@@ -55,14 +54,13 @@ namespace NS_OSBASE::data::impl {
         std::unordered_map<std::string, wampcc::t_subscription_id> m_subscribedTopics;
         std::unordered_map<wampcc::t_registration_id, ISupplierDelegateWPtr> m_callDelegates;
         std::unordered_map<std::string, wampcc::t_registration_id> m_registeredCalls;
-        std::string m_brokerUrl;
-        int m_brokerPort = 8080;
-        std::string m_realm;
 
         std::future<void> m_futConnection;
         std::mutex m_mutConnection;
         std::condition_variable m_cvConnection;
         bool m_bStopRetryConnection = false;
         States m_state              = States::Idle;
+
+        static constexpr auto s_timeoutRetryConnection = std::chrono::seconds(1);
     };
 } // namespace NS_OSBASE::data::impl

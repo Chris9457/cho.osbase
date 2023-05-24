@@ -81,13 +81,15 @@ namespace NS_OSBASE::application::ut {
 
         class TestServiceClient {
         public:
-            TestServiceClient() : m_pStub(testservice::api::makeStub()) {
-                m_pStub->connect(getBrokerUrl(), getBrokerPort());
+            TestServiceClient()
+                : m_pStub(testservice::api::makeStub(std::string{ "ws://" + getBrokerUrl() + ":" + std::to_string(getBrokerPort()) }, "")) {
+                m_pStub->connect();
             }
 
-            TestServiceClient(TestServiceObserver &o) : m_pStub(testservice::api::makeStub()) {
+            TestServiceClient(TestServiceObserver &o)
+                : m_pStub(testservice::api::makeStub(std::string{ "ws://" + getBrokerUrl() + ":" + std::to_string(getBrokerPort()) }, "")) {
                 m_pStub->attachAll(o);
-                m_pStub->connect(getBrokerUrl(), getBrokerPort());
+                m_pStub->connect();
             }
 
             ~TestServiceClient() {
@@ -130,7 +132,7 @@ namespace NS_OSBASE::application::ut {
 
         void startService() {
             testservice::impl::TheTestServiceImpl.runAsync();
-            testservice::impl::TheTestServiceImpl.connect(getBrokerUrl(), getBrokerPort());
+            testservice::impl::TheTestServiceImpl.connect();
             // std::this_thread::sleep_for(100ms);
         }
 

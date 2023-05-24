@@ -207,6 +207,22 @@ namespace NS_OSBASE::core::impl::ut {
         ASSERT_EQ(defaultValue, pStream->getKeyValue(KeyType<TypeParam>::getKey(), defaultValue));
     }
 
+    TEST_F(RapidXML_UT, getValue_void) {
+        auto const pStream = makeXmlStream(std::ifstream(xmlValuesPath));
+
+        pStream->openKey("values");
+        const std::string key = "keyVoid";
+        ASSERT_TRUE(pStream->getKeyValue(key));
+    }
+
+    TEST_F(RapidXML_UT, getValue_void_KO) {
+        auto const pStream = makeXmlStream(std::ifstream(xmlBadValuesPath));
+
+        pStream->openKey("values");
+        const std::string key = "keyVoid";
+        ASSERT_FALSE(pStream->getKeyValue(key));
+    }
+
     TYPED_TEST(RapidXMLTyped_UT, setValue_existingTag) {
         auto const pStream           = makeXmlStream(std::ifstream(xmlValuesPath));
         const TypeParam defaultValue = core::ut::ConstantValue<TypeParam, 0>::getValue();

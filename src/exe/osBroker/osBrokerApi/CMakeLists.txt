@@ -1,0 +1,8 @@
+set(BROKERAPI ${BROKER}.api)
+
+set(INCLUDE_DIR include)
+file(GLOB_RECURSE INCLUDE_FILES ${INCLUDE_DIR}/*)
+
+add_library(${BROKERAPI} INTERFACE ${INCLUDE_FILES})
+
+target_include_directories(${BROKERAPI} INTERFACE ${INCLUDE_DIR})

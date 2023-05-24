@@ -30,6 +30,9 @@ namespace NS_OSBASE::core::impl {
         std::wstring getValue(const std::wstring &strDefaultValue) override;
         bool setValue(const std::wstring &wStrValue) override;
 
+        bool getValue() override;
+        bool setValue() override;
+
         KeyValue<std::string, void> createKey(const std::string &key) override;
         KeyValue<std::string, void> openKey(const std::string &key) override;
         KeyValue<std::string, void> getCurrentKey() override;

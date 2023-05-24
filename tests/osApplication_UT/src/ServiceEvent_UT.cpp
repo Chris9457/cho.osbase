@@ -42,7 +42,9 @@ namespace NS_OSBASE::application::ut {
             std::promise<int> m_promiseDataReceived;
         };
 
-        ServiceEvent_UT() : TService_UT<event::TestEventService, TestEventServiceImpl>([]() { return event::makeStub(); }) {
+        ServiceEvent_UT()
+            : TService_UT<event::TestEventService, TestEventServiceImpl>(
+                  []() { return event::makeStub(std::string{ "ws://" + getBrokerUrl() + ":" + std::to_string(getBrokerPort()) }, ""); }) {
         }
     };
 
@@ -70,7 +72,7 @@ namespace NS_OSBASE::application::ut {
             }
             return;
         });
-        TheTestProcessImpl.connect(getBrokerUrl(), getBrokerPort());
+        TheTestProcessImpl.connect();
 
         const std::vector<int> expectedData{ 2, 3, 4 };
         TheTestProcessImpl.setFwdData(expectedData);

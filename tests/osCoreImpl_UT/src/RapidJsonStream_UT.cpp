@@ -205,8 +205,8 @@ namespace NS_OSBASE::core::impl::ut {
         const double defaultValue = core::ut::ConstantValue<double, 0>::getValue();
 
         pStream->openKey("values");
-        const double expectedValue = 3.;
-        const std::string key      = "keyDoubleAsInt";
+        constexpr double expectedValue = 3.;
+        const std::string key          = "keyDoubleAsInt";
         ASSERT_EQ(expectedValue, pStream->getKeyValue(key, defaultValue));
     }
 
@@ -216,6 +216,22 @@ namespace NS_OSBASE::core::impl::ut {
 
         pStream->openKey("values");
         ASSERT_EQ(defaultValue, pStream->getKeyValue(KeyType<TypeParam>::getKey(), defaultValue));
+    }
+
+    TEST_F(RapidJSON_UT, getValue_void) {
+        auto const pStream = makeJsonStream(std::ifstream(jsonValuesPath));
+
+        pStream->openKey("values");
+        const std::string key = "keyVoid";
+        ASSERT_TRUE(pStream->getKeyValue(key));
+    }
+
+    TEST_F(RapidJSON_UT, getValue_void_KO) {
+        auto const pStream = makeJsonStream(std::ifstream(jsonBadValuesPath));
+
+        pStream->openKey("values");
+        const std::string key = "keyVoid";
+        ASSERT_FALSE(pStream->getKeyValue(key));
     }
 
     TYPED_TEST(RapidJSONTyped_UT, setValue_existingTag) {

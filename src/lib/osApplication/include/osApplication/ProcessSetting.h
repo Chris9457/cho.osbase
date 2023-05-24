@@ -11,9 +11,8 @@ namespace NS_OSBASE::application {
         bool displayConsole            = false;
         bool autoRestart               = false;
         bool killIfExist               = true;
-        unsigned int endProcessTimeout = 100; //!< time to wait in milliseconds after calling endProcess
+        unsigned int endProcessTimeout = 10000; //!< time to wait in milliseconds after calling endProcess
     };
     using ProcessSettings = std::vector<ProcessSetting>;
 } // namespace NS_OSBASE::application
-OS_KEY_SERIALIZE_STRUCT(
-    NS_OSBASE::application::ProcessSetting, serviceName, displayConsole, autoRestart, killIfExist, endProcessTimeout)
+OS_KEY_SERIALIZE_STRUCT(NS_OSBASE::application::ProcessSetting, serviceName, displayConsole, autoRestart, killIfExist, endProcessTimeout)

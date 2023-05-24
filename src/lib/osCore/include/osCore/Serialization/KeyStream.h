@@ -45,6 +45,7 @@ namespace NS_OSBASE::core {
         virtual int getValue(const int &defaultValue)                      = 0;
         virtual double getValue(const double &defaultValue)                = 0;
         virtual std::wstring getValue(const std::wstring &strDefaultValue) = 0;
+        virtual bool getValue()                                            = 0;
         template <typename TValue>
         TValue getValue(const TValue &defaultValue);
         /** \} */
@@ -56,6 +57,7 @@ namespace NS_OSBASE::core {
         virtual bool setValue(const int &value)             = 0;
         virtual bool setValue(const double &value)          = 0;
         virtual bool setValue(const std::wstring &strValue) = 0;
+        virtual bool setValue()                             = 0;
         template <typename TValue>
         bool setValue(const TValue &value);
         /** \} */
@@ -66,6 +68,9 @@ namespace NS_OSBASE::core {
         template <typename TValue>
         bool setKeyValue(const TKey &key, const TValue &value); //!< Serialize a value at the current position with the <b>key</b> - the
                                                                 //!< return indicate the success
+
+        bool getKeyValue(const TKey &key);
+        bool setKeyValue(const TKey &key);
 
         /**\{ Navigation */
         virtual KeyValue<TKey, void> createKey(const TKey &key) = 0; //!< Create a new key

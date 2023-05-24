@@ -13,7 +13,7 @@ namespace NS_OSBASE::application {
     template <typename TService>
     class ServiceImpl : public ServiceBase<TService> {
     public:
-        void connect(const std::string &url, const unsigned short port) final;
+        void connect() final;
         void disconnect() final;
 
         void run();                          //!< \copydoc TaskLoop::run()
@@ -24,7 +24,7 @@ namespace NS_OSBASE::application {
         void setAlivePeriod(const unsigned long long period);
 
     protected:
-        ServiceImpl(const std::string &serviceName); //!< Ctor
+        ServiceImpl(const std::string &serviceName, const data::Uri &uri, const std::string &realm); //!< Ctor
 
         void doRegister() override;
         void doUnregister() override;

@@ -13,6 +13,7 @@ configure_file(${SETTING_FILE_NAME}.in ${CMAKE_CURRENT_BINARY_DIR}/${SETTING_FIL
 add_executable(${LAUNCHER} ${INCLUDE_FILES} ${SRC_FILES} ${RESOURCES_FILES})
 
 target_link_libraries(${LAUNCHER} PRIVATE
+					  ${OSBASE}.broker.api
 					  ${OSBASE}.application
 					  ${OSBASE}.core
 					  ${OSBASE}.core.impl

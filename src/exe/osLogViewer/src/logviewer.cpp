@@ -96,9 +96,14 @@ namespace NS_OSBASE::logviewer {
     /*
      * \class LogViewer
      */
-    LogViewer::LogViewer() : m_pLogService(log::makeStub()), m_pLogServiceObserver(std::make_shared<LogServiceObserver>(*this)) {
+    LogViewer::LogViewer() : m_pLogServiceObserver(std::make_shared<LogServiceObserver>(*this)) {
         auto const pStream = core::makeJsonStream(std::ifstream(SETTING_FILE_NAME));
         m_settings         = pStream->getValue(Settings{});
+
+        if (m_settings.input.logServiceSettings.has_value()) {
+            m_pLogService =
+                log::makeStub(m_settings.input.logServiceSettings.value().address, m_settings.input.logServiceSettings.value().realm);
+        }
 
         if (m_settings.filters.has_value()) {
             for (auto const &filter : m_settings.filters.value()) {
@@ -163,7 +168,7 @@ namespace NS_OSBASE::logviewer {
 
             auto const brokerUri = data::Uri(logServiceSettings.address);
             m_pLogService->attachAll(*m_pLogServiceObserver);
-            m_pLogService->connect(brokerUri.authority->host, *brokerUri.authority->port);
+            m_pLogService->connect();
         }
 
         auto const guard = core::make_scope_exit([this]() {

@@ -12,8 +12,10 @@ namespace NS_OSBASE::application::bm {
     public:
         void SetUp(const benchmark::State &state) override {
             m_asyncStruct.elts.resize(state.range(0), { 1.f, 2.f, 3.f, 4.f });
-            m_pStub = makeStub(TheService_BMImpl.getTaskLoop());
-            m_pStub->connect(TheServer.getBrokerUrl(), TheServer.getBrokerPort());
+            m_pStub = makeStub(std::string{ "ws://" + TheServer.getBrokerUrl() + ":" + std::to_string(TheServer.getBrokerPort()) },
+                "",
+                TheService_BMImpl.getTaskLoop());
+            m_pStub->connect();
         }
 
         void TearDown(const benchmark::State &) override {
@@ -57,8 +59,11 @@ namespace NS_OSBASE::application::bm {
             for (size_t index = 0; index < nbStubs; ++index) {
                 auto pServiceObserver = std::make_shared<ServiceObserver>();
 
-                auto const pStub = makeStub(TheService_BMImpl.getTaskLoop());
-                pStub->connect(TheServer.getBrokerUrl(), TheServer.getBrokerPort());
+                auto const pStub =
+                    makeStub(std::string{ "ws://" + TheServer.getBrokerUrl() + ":" + std::to_string(TheServer.getBrokerPort()) },
+                        "",
+                        TheService_BMImpl.getTaskLoop());
+                pStub->connect();
                 pStub->attachAll(*pServiceObserver);
 
                 m_pStubObservers.emplace_back(std::make_pair(pStub, pServiceObserver));

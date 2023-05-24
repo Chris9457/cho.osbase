@@ -14,20 +14,32 @@ namespace NS_OSBASE::data::impl {
             std::unique_lock lock(m_mutexStart);
             auto const guard    = core::make_scope_exit([this]() { m_cvStarted.notify_one(); });
             const auto provider = wampcc::auth_provider::no_auth_required();
-            auto fut            = m_router.listen(provider, port);
+            auto fut            = m_pRouter->listen(provider, port);
 
-            if (const auto result = fut.get())
+            if (const auto result = fut.get()) {
                 throw MessagingException(result.message());
+            }
         }
 
         std::unique_lock lock(m_mutexStop);
         m_cvStopped.wait(lock);
     }
 
-    void WampccBroker::start(unsigned short port) {
+    WampccBroker::WampccBroker() {
+        m_pRouter = std::make_shared<wampcc::wamp_router>(&m_kernel);
+    }
+
+    unsigned short WampccBroker::start(const unsigned short port) {
         std::unique_lock lock(m_mutexStart);
-        m_thread = std::thread([this](unsigned short p) { this->startWampcc(p); }, port);
+        m_thread = std::thread([this, port] { startWampcc(port); });
         m_cvStarted.wait(lock);
+
+        auto const addresses = m_pRouter->get_listen_addresses();
+        if (addresses.size() == 1) {
+            return static_cast<unsigned short>(addresses[0].port());
+        }
+
+        return port;
     }
 
     void WampccBroker::stop() {

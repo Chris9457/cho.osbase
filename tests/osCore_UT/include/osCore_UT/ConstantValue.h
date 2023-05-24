@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <optional>
 
 namespace NS_OSBASE::core::ut {
     enum class TestEnum { field1 = 1, field2, field3 };
@@ -135,13 +136,13 @@ namespace NS_OSBASE::core::ut {
     };
     template <>
     struct ConstantValue<short[], 1> {
-        static std::vector<char> getValue() {
+        static std::vector<short> getValue() {
             return { 77, 6, 1, 2 };
         }
     };
     template <>
     struct ConstantValue<short[], 2> {
-        static std::vector<int> getValue() {
+        static std::vector<short> getValue() {
             return { 78, 7, 2, 0 };
         }
     };
@@ -597,6 +598,20 @@ namespace NS_OSBASE::core::ut {
     template <>
     struct ConstantValue<std::vector<short>, 1> {
         static std::vector<short> getValue() {
+            return {};
+        }
+    };
+
+    template <typename T, int Rank>
+    struct ConstantValue<std::optional<T>, Rank> {
+        static std::optional<T> getValue() {
+            return ConstantValue<T, Rank>::getValue();
+        }
+    };
+
+    template <int Rank>
+    struct ConstantValue<std::optional<std::string>, Rank> {
+        static std::optional<std::string> getValue() {
             return {};
         }
     };

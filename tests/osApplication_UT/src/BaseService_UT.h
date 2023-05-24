@@ -43,7 +43,7 @@ namespace NS_OSBASE::application::ut {
             startBroker();
             startService();
             m_pStub = m_makeStub();
-            m_pStub->connect(getBrokerUrl(), getBrokerPort());
+            m_pStub->connect();
         }
 
         void TearDown() override {
@@ -87,7 +87,7 @@ namespace NS_OSBASE::application::ut {
         void startService() {
             if (m_refCountService == 0) {
                 m_futRun = TServiceImpl::getInstance().runAsync();
-                TServiceImpl::getInstance().connect(getBrokerUrl(), getBrokerPort());
+                TServiceImpl::getInstance().connect();
             }
             ++m_refCountService;
         }

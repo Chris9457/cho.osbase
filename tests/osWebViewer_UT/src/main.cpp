@@ -2,6 +2,7 @@
 #include "WebViewerRes.h"
 #include "osApplication/Process.h"
 #include "osData/IBroker.h"
+#include "osApplication/ServiceSettings.h"
 #include "osCoreImpl/CoreImpl.h"
 #include "osDataImpl/osDataImpl.h"
 #include <thread>
@@ -20,7 +21,8 @@ namespace NS_OSBASE::webviewer::ut {
     public:
         WebViewerLauncher() : m_pBroker(nsdata::makeBroker()) {
             m_pBroker->start(brokerPort);
-            m_pProcess = nsapp::Process::create({ WEBVIEWER_NAME }, { brokerUrl, brokerPort });
+            m_pProcess = nsapp::Process::create({ WEBVIEWER_NAME },
+                nsapp::ServiceSettings{ nsapp::ServiceSettingsInput{ false, type_cast<nsdata::Uri>(std::string("ws://127.0.0.1:0")) } });
             std::this_thread::sleep_for(1s);
         }
 

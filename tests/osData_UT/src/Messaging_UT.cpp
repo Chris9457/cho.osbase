@@ -16,15 +16,15 @@ using namespace std::chrono_literals;
 namespace NS_OSBASE::data::ut {
 
     IMessagingPtr connectToWamp() {
-        const std::string url = "127.0.0.1";
-        const int port        = 8080;
+        const data::Uri uri{ "ws://127.0.0.1:8080" };
+        const std::string realm{ "test_realm" };
 
-        auto wampccMessaging = makeMessaging();
-        if (wampccMessaging == nullptr)
+        auto wampMessaging = makeWampMessaging(uri, realm);
+        if (wampMessaging == nullptr)
             return nullptr;
 
-        wampccMessaging->connect(url, port);
-        return wampccMessaging;
+        wampMessaging->connect();
+        return wampMessaging;
     }
 
     class TestErrorDelegate : public IMessaging::IErrorDelegate {
@@ -157,13 +157,8 @@ namespace NS_OSBASE::data::ut {
     }
 
     TEST_F(IMessaging_UT, New_Delete_Right_Away) {
-        auto wampccMessaging = makeMessaging();
-
-        ASSERT_NE(wampccMessaging, nullptr);
-
-        wampccMessaging.reset();
-
-        ASSERT_EQ(wampccMessaging, nullptr);
+        auto const pMessaging = makeWampMessaging(std::string{ "ws://127.0.0.1:8080" }, "test_realm");
+        ASSERT_NE(pMessaging, nullptr);
     }
 
     TEST_F(IMessaging_UT, Register_And_Call_Should_Call_Delegate_And_Send_Response) {
@@ -329,29 +324,23 @@ namespace NS_OSBASE::data::ut {
     TEST_F(IMessaging_UT, Calling_Register_Without_Connect_Should_Throw) {
         const std::string uri = "com.test.fail";
 
-        auto wampccMessaging = makeMessaging();
+        auto const pMessaging = makeWampMessaging(std::string{ "ws://127.0.0.1:8080" }, "test_realm");
 
-        ASSERT_NE(wampccMessaging, nullptr);
-
-        EXPECT_THROW({ wampccMessaging->registerCall(uri, std::make_shared<TestSupplierDelegate>(), nullptr); }, MessagingException);
-
-        EXPECT_THROW({ wampccMessaging->unregisterCall(uri, nullptr); }, MessagingException);
-
-        EXPECT_THROW({ wampccMessaging->invoke(uri, "", std::make_shared<TestClientDelegate>(), nullptr); }, MessagingException);
-
-        EXPECT_THROW({ wampccMessaging->subscribe(uri, std::make_shared<TestEventDelegate>(), nullptr); }, MessagingException);
-
-        EXPECT_THROW({ wampccMessaging->unsubscribe(uri, nullptr); }, MessagingException);
-
-        EXPECT_THROW({ wampccMessaging->publish(uri, "", nullptr); }, MessagingException);
+        ASSERT_NE(pMessaging, nullptr);
+        EXPECT_THROW({ pMessaging->registerCall(uri, std::make_shared<TestSupplierDelegate>(), nullptr); }, MessagingException);
+        EXPECT_THROW({ pMessaging->unregisterCall(uri, nullptr); }, MessagingException);
+        EXPECT_THROW({ pMessaging->invoke(uri, "", std::make_shared<TestClientDelegate>(), nullptr); }, MessagingException);
+        EXPECT_THROW({ pMessaging->subscribe(uri, std::make_shared<TestEventDelegate>(), nullptr); }, MessagingException);
+        EXPECT_THROW({ pMessaging->unsubscribe(uri, nullptr); }, MessagingException);
+        EXPECT_THROW({ pMessaging->publish(uri, "", nullptr); }, MessagingException);
     }
 
     TEST_F(IMessaging_UT, check_connection_broker_started) {
-        auto pMessaging = makeMessaging();
+        auto const pMessaging = makeWampMessaging(std::string{ "ws://127.0.0.1:8080" }, "test_realm");
         MessagingConnectionObserver o;
         pMessaging->attachAll(o);
 
-        ASSERT_NO_THROW(pMessaging->connect("127.0.0.1", 8080));
+        ASSERT_NO_THROW(pMessaging->connect());
         auto const connect = o.wait(10s);
         ASSERT_TRUE(connect.has_value());
         ASSERT_TRUE(connect.value());
@@ -360,11 +349,11 @@ namespace NS_OSBASE::data::ut {
     TEST_F(IMessaging_UT, check_connection_broker_not_started) {
         stopBroker();
 
-        auto pMessaging = makeMessaging();
+        auto pMessaging = makeWampMessaging(std::string{ "ws://127.0.0.1:8080" }, "test_realm");
         MessagingConnectionObserver o;
         pMessaging->attachAll(o);
 
-        ASSERT_THROW(pMessaging->connect("127.0.0.1", 8080), MessagingException);
+        ASSERT_THROW(pMessaging->connect(), MessagingException);
         auto connect = o.wait(10s);
         ASSERT_TRUE(connect.has_value());
         ASSERT_FALSE(connect.value());

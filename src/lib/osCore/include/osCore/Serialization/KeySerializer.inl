@@ -4,8 +4,8 @@
 #pragma once
 #include "osCore/Misc/Scope.h"
 
-#pragma region KeySerializer < TKey, TEnum>
 namespace NS_OSBASE::core {
+#pragma region KeySerializer < TKey, TEnum>
     /*
      * KeySerializer<TKey, TEnum>
      */
@@ -59,6 +59,29 @@ namespace NS_OSBASE::core {
     }
 #pragma endregion
 
+#pragma region KeySerializer < TKey, std::optional < TValue>>
+    /*
+     * KeySerializer<TKey, std::optional<TValue>>
+     */
+    template <typename TKey, typename TValue>
+    std::optional<TValue> KeySerializer<TKey, std::optional<TValue>, false>::getValue(
+        [[maybe_unused]] KeyStream<TKey> &keyStream, [[maybe_unused]] const std::optional<TValue> &defaultValue) {
+        if (keyStream.getValue()) {
+            return {};
+        }
+        return keyStream.getValue(defaultValue.has_value() ? defaultValue.value() : TValue{});
+    }
+
+    template <typename TKey, typename TValue>
+    bool KeySerializer<TKey, std::optional<TValue>, false>::setValue(KeyStream<TKey> &keyStream, const std::optional<TValue> &value) {
+        if (value.has_value()) {
+            return keyStream.setValue(value.value());
+        }
+
+        return keyStream.setValue();
+    }
+#pragma endregion
+
 #pragma region KeyValueSerializer < TKey, TValue>
     /*
      * KeyValueSerializer<TKey, TValue>
@@ -79,6 +102,29 @@ namespace NS_OSBASE::core {
 
         auto se = make_scope_exit([&keyStream]() { keyStream.closeKey(); });
         return keyStream.setValue(value);
+    }
+#pragma endregion
+
+#pragma region KeyValueSerializer < TKey, void>
+    /*
+     * KeyValueSerializer<TKey, void>
+     */
+    template <typename TKey>
+    bool KeyValueSerializer<TKey, void>::getValue(KeyStream<TKey> &keyStream, const TKey &key) {
+        if (keyStream.openKey(key).isNull())
+            return false;
+
+        auto se = make_scope_exit([&keyStream]() { keyStream.closeKey(); });
+        return keyStream.getValue();
+    }
+
+    template <typename TKey>
+    bool KeyValueSerializer<TKey, void>::setValue(KeyStream<TKey> &keyStream, const TKey &key) {
+        if (keyStream.createKey(key).isNull())
+            return false;
+
+        auto se = make_scope_exit([&keyStream]() { keyStream.closeKey(); });
+        return keyStream.setValue();
     }
 #pragma endregion
 
@@ -138,6 +184,8 @@ namespace NS_OSBASE::core {
         KeyStream<TKey> &keyStream, const TKey &key, const std::optional<TValue> &value) {
         if (value) {
             KeyValueSerializer<TKey, TValue>::setValue(keyStream, key, *value);
+        } else {
+            KeyValueSerializer<TKey, void>::setValue(keyStream, key);
         }
 
         return true;

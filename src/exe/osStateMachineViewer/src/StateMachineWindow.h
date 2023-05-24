@@ -28,7 +28,7 @@ namespace NS_OSBASE::statemachineviewer {
 
     public:
         StateMachineWindow();
-        StateMachineWindow(const std::string &brokerHost, const unsigned short brokerPort);
+        StateMachineWindow(const NS_OSBASE::data::Uri &uri, const std::string &realm);
         ~StateMachineWindow() override;
 
     private:
@@ -49,7 +49,7 @@ namespace NS_OSBASE::statemachineviewer {
         void onPauseTransition();
 
         void loadFile(const QString &fileName);
-        void connectLog(const std::string &host, const unsigned short port);
+        void connectLog(const NS_OSBASE::data::Uri &uri, const std::string &realm);
         Q_INVOKABLE void parseLogLine(QString logLine);
         void parseStateMachineRecord(const std::string &logTimestamp,
             const NS_OSBASE::data::LoggerProcess::Info &processInfo,

@@ -1,6 +1,7 @@
 /// \brief Implementation of the service ITestService
 
 #include "TestServiceImpl/TestServiceImpl.h"
+#include "osApplication/ServiceConfiguration.h"
 
 namespace nsdata = NS_OSBASE::data;
 
@@ -27,7 +28,9 @@ namespace testservice::impl {
     /*
      * \class TestServiceImpl
      */
-    TestServiceImpl::TestServiceImpl() {
+    TestServiceImpl::TestServiceImpl()
+        : ITestServiceSkeleton(
+              NS_OSBASE::application::TheServiceConfiguration.getBrokerUri(), NS_OSBASE::application::TheServiceConfiguration.getRealm()) {
     }
 
     std::string TestServiceImpl::getText() const {
@@ -100,7 +103,7 @@ namespace testservice::impl {
         return m_positions;
     }
 
-    void TestServiceImpl::doConnect([[maybe_unused]] const std::string &url, [[maybe_unused]] const unsigned short port) {
+    void TestServiceImpl::doConnect() {
         m_booleansProvider.create();
         m_booleansProvider.set({ true, false });
     }

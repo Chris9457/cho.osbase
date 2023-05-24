@@ -1,17 +1,16 @@
 // \brief Declaration of the class Runner
 
 #pragma once
-#include "osApplication/ServiceCommandParser.h"
-#include "osApplication/ServiceHandshake.h"
+#include "osApplication/ServiceOptions.h"
 #include "osCore/Exception/RuntimeException.h"
-#include <memory>
+#include "osData/AsyncData.h"
 #include <future>
 #include <chrono>
 
 namespace NS_OSBASE::application {
 
     /**
-     * çbrief Exception thrown by runners
+     * \brief Exception thrown by runners
      */
     class RunnerException : public core::RuntimeException {
         using RuntimeException::RuntimeException;
@@ -23,36 +22,37 @@ namespace NS_OSBASE::application {
     class Runner {
 
     public:
-        using TCallback = std::function<void()>;
+        using TCallbackRun  = std::function<int()>;
+        using TCallbackStop = std::function<void()>;
 
         Runner(int argc, char **argv);
         ~Runner();
 
-        int run(TCallback &&onRun, TCallback &&onStop);
-        void stop();
-
-        std::string getBrokerUrl() const;
-        unsigned short getBrokerPort() const;
+        int run(TCallbackRun &&onRun, TCallbackStop &&onStop);
 
         const std::chrono::milliseconds &getTimeout() const;
         void setTimeout(const std::chrono::milliseconds &timeout);
 
-    protected:
-        const ServiceOptions &getOptions() const;
+        template <typename T>
+        T getData();
+
+        template <typename T>
+        void sendData(const T &data);
 
     private:
-        class HandshakeDelegate;
-        using HandshakeDelegatePtr = std::shared_ptr<HandshakeDelegate>;
+        class ServiceOptionsDelegate;
+        using ServiceOptionsDelegatePtr = std::shared_ptr<ServiceOptionsDelegate>;
+        void onOptionsReceived() const;
 
-        void initHandshake();
-
+        data::AsyncData<std::string> m_data;
         ServiceOptions m_options;
-        ServiceHandshakePtr m_pHandshake;
-        HandshakeDelegatePtr m_pHandshakeDelegate;
-        TCallback m_onRun;
-        TCallback m_onStop;
+        TCallbackRun m_onRun;
+        TCallbackStop m_onStop;
         std::chrono::milliseconds m_timeout;
+        ServiceOptionsDelegatePtr m_pServiceOptionsDelegate;
 
-        static constexpr std::chrono::milliseconds s_defaultTimeout = std::chrono::milliseconds(10);
+        static constexpr std::chrono::milliseconds s_defaultTimeout = std::chrono::milliseconds(100000);
     };
 } // namespace NS_OSBASE::application
+
+#include "Runner.inl"

@@ -5,7 +5,7 @@
 #include <vector>
 #include <array>
 #include <string>
-#include <istream>
+#include <optional>
 
 namespace NS_OSBASE::core {
     /**
@@ -52,6 +52,15 @@ namespace NS_OSBASE::core {
 
         static bool read(std::basic_string<TChar> &value, const std::vector<TByte> &buffer, size_t &pos);
         static bool write(const std::basic_string<TChar> &value, std::vector<TByte> &buffer);
+    };
+
+    /**
+     * \private
+     */
+    template <typename TValue, typename TByte>
+    struct Serializable<std::optional<TValue>, TByte> {
+        static bool read(std::optional<TValue> &value, const std::vector<TByte> &buffer, size_t &pos);
+        static bool write(const std::optional<TValue> &value, std::vector<TByte> &buffer);
     };
 
     /** \} */

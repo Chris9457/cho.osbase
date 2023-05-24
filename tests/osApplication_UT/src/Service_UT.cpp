@@ -76,7 +76,10 @@ namespace NS_OSBASE::application::ut {
             bool m_bAlive = false;
         };
 
-        Service_UT() : TService_UT([]() { return testservice::api::makeStub(); }) {
+        Service_UT()
+            : TService_UT([]() {
+                  return testservice::api::makeStub(std::string{ "ws://" + getBrokerUrl() + ":" + std::to_string(getBrokerPort()) }, "");
+              }) {
         }
     };
 

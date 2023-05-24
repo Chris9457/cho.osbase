@@ -88,8 +88,9 @@ class CppStubCore(CppBase):
         self.file.write('    public:\n')
         self.file.write('        ' +
                         stubClassName +
-                        '(NS_OSBASE::application::TaskLoopPtr pTaskLoop) : ' + self.__getBaseClassName(False)
-                        + '(' + '"' + serviceName + '"' + ', pTaskLoop) {}\n\n')
+                        '(const NS_OSBASE::data::Uri& uri, const std::string &realm, '
+                        'NS_OSBASE::application::TaskLoopPtr pTaskLoop) : ' + self.__getBaseClassName(False)
+                        + '(' + '"' + serviceName + '"' + ', uri, realm, pTaskLoop) {}\n\n')
 
         if tags.processTag in self.yamlApi and not self.yamlApi[tags.processTag] is None:
             for method in self.yamlApi[tags.processTag]:
@@ -112,8 +113,9 @@ class CppStubCore(CppBase):
         serviceName = self.yamlApi[tags.serviceTag][tags.nameTag] + 'Service'
         stubClassName = serviceName + 'Stub'
         self.file.write(
-            '    ' + serviceName + 'Ptr makeStub(NS_OSBASE::application::TaskLoopPtr pTaskLoop) {\n')
-        self.file.write('        return std::make_shared<' + stubClassName + '>(pTaskLoop);\n')
+            '    ' + serviceName + 'Ptr makeStub(const NS_OSBASE::data::Uri& uri, const std::string &realm, '
+                                   'NS_OSBASE::application::TaskLoopPtr pTaskLoop) {\n')
+        self.file.write('        return std::make_shared<' + stubClassName + '>(uri, realm, pTaskLoop);\n')
         self.file.write('    }\n')
 
     def generate(self):

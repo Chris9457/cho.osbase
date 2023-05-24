@@ -7,8 +7,7 @@
 
 namespace testservice::impl {
 
-    class TestServiceImpl final : public testservice::api::ITestServiceSkeleton,
-                                  public NS_OSBASE::core::Singleton<TestServiceImpl> {
+    class TestServiceImpl final : public testservice::api::ITestServiceSkeleton, public NS_OSBASE::core::Singleton<TestServiceImpl> {
         friend Singleton<TestServiceImpl>;
 
     public:
@@ -24,8 +23,7 @@ namespace testservice::impl {
         api::Mat4 getTransfo(api::Vec4 origin, api::Vec4 dest) override;
         void invokeCrash(api::sub2::enum1 value) override;
 
-        NS_OSBASE::data::AsyncPagedData<std::vector<bool>> setPositionsAsync(
-            NS_OSBASE::data::AsyncData<api::Positions> buffer) override;
+        NS_OSBASE::data::AsyncPagedData<std::vector<bool>> setPositionsAsync(NS_OSBASE::data::AsyncData<api::Positions> buffer) override;
 
         void wait(unsigned long long timeoutMs) override;
 
@@ -34,7 +32,7 @@ namespace testservice::impl {
         void notifyDummyEvent() const;
 
     protected:
-        void doConnect(const std::string &url, const unsigned short port) override;
+        void doConnect() override;
         void doDisconnect() override;
 
     private:

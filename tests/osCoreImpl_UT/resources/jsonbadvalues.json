@@ -7,6 +7,7 @@
 		"keyBoolss": [ false, true, false ],
 		"keyIntss": [ 32, 54, 85 ],
 		"keyDoubless": [ 3.4, 53.2, 45.6 ],
-		"keyStringss": [ "test1", "test2", "test3" ]
+		"keyStringss": [ "test1", "test2", "test3" ],
+		"keyVoid": 2
 	}
 }
