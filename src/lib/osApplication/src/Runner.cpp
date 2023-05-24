@@ -44,8 +44,7 @@ namespace NS_OSBASE::application {
     }
 
     void Runner::onOptionsReceived() const {
-        auto const pStream         = core::makeJsonStream(std::istringstream(m_options.getContent()));
-        auto const serviceSettings = pStream->getValue(ServiceSettings{});
+        auto const serviceSettings = m_options.getData<ServiceSettings>();
         auto const input           = serviceSettings.serviceInput.value_or(ServiceSettingsInput{ false, {}, {} });
 
         if (input.bStop && m_onStop) {

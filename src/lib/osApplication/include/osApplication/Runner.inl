@@ -9,7 +9,11 @@ namespace NS_OSBASE::application {
      */
     template <typename T>
     T Runner::getData() {
-        return m_options.getData<T>();
+        if (m_options.waitContent(m_timeout)) {
+            return m_options.getData<T>();
+        }
+
+        return T{};
     }
 
     template <typename T>

@@ -121,6 +121,12 @@ namespace NS_OSBASE::application {
         m_data.set(m_content);
     }
 
+    bool ServiceOptions::waitContent(const std::chrono::milliseconds &timeout) const {
+        std::unique_lock lock(m_mutContent);
+        auto const guard = core::make_scope_exit([this] { m_bContentReceived = false; });
+        return m_cvContent.wait_for(lock, timeout, [this] { return m_bContentReceived; });
+    }
+
     void ServiceOptions::onData(std::string &&data) {
         {
             std::lock_guard lock(m_mutContent);

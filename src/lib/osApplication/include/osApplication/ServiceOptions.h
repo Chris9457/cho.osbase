@@ -37,9 +37,10 @@ namespace NS_OSBASE::application {
         std::string getContent() const;
         void setContent(const std::string &content);
 
-        template <typename T>
-        T getData(const std::chrono::milliseconds &timeout = std::chrono::milliseconds(100000)) const;
+        bool waitContent(const std::chrono::milliseconds &timeout) const;
 
+        template <typename T>
+        T getData() const;
         template <typename T>
         void setData(const T &data);
 

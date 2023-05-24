@@ -20,7 +20,7 @@ namespace NS_OSBASE::application {
         static ProcessPtr create(const ProcessSetting &setting, const T &data);
 
         template <typename T>
-        T getData() const;
+        T getData(const std::chrono::milliseconds &timeout) const;
 
     private:
         Process(const ProcessSetting &setting, const std::string &strData);

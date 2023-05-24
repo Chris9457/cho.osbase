@@ -18,8 +18,12 @@ namespace NS_OSBASE::application {
     }
 
     template <typename T>
-    T Process::getData() const {
-        return getOptions().getData<T>();
+    T Process::getData(const std::chrono::milliseconds &timeout) const {
+        if (getOptions().waitContent(timeout)) {
+            return getOptions().getData<T>();
+        }
+
+        return T{};
     }
 
 } // namespace NS_OSBASE::application

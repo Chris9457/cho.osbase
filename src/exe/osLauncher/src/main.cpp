@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
     auto const port = launcherSettings.brokerUrl.authority.value_or(nsdata::Uri::Authority{ {}, {}, 8080 }).port.value_or(8080);
     nsbroker::Settings brokerSettings{ nsbroker::Input{ port }, {} };
     auto pBrokerProcess = nsapp::Process::create({ BROKER_NAME }, brokerSettings);
-    brokerSettings      = pBrokerProcess->getData<nsbroker::Settings>();
+    brokerSettings      = pBrokerProcess->getData<nsbroker::Settings>(10s);
 
     serviceSettings.serviceInput = nsapp::ServiceSettingsInput{ false,
         brokerSettings.output.value_or(nsbroker::Output{ type_cast<nsdata::Uri>(std::string("ws://127.0.0.1:8080")) }).uri,
@@ -53,10 +53,10 @@ int main(int argc, char **argv) {
 
     std::vector<nsapp::ProcessPtr> pProcesses;
 
-    // for (auto &&launcherSetting : launcherSettings.settings) {
-    //    auto const pServiceProcess = nsapp::Process::create(launcherSetting, serviceSettings);
-    //    pProcesses.push_back(pServiceProcess);
-    //}
+    for (auto &&launcherSetting : launcherSettings.settings) {
+        auto const pServiceProcess = nsapp::Process::create(launcherSetting, serviceSettings);
+        pProcesses.push_back(pServiceProcess);
+    }
 
     static const std::string strStop = "stop";
     std::cout << std::endl;
