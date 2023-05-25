@@ -1,5 +1,6 @@
 {
 	"brokerUrl": "ws://127.0.0.1:0",
+	"realm": "@OSBASE@",
 	"settings": [
 		{
 			"serviceName": "../log/@OSBASE@.log.service.exe",
@@ -9,6 +10,12 @@
 		},
 		{
 			"serviceName": "../webviewer/@OSBASE@.webviewer.service.exe",
+			"displayConsole": false,
+			"autoRestart": false,
+			"killIfExist": true
+		},
+		{
+			"serviceName": "../statemachineviewer/@OSBASE@.statemachineviewer.exe",
 			"displayConsole": false,
 			"autoRestart": false,
 			"killIfExist": true

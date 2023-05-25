@@ -19,12 +19,7 @@ namespace nsdata   = NS_OSBASE::data;
 namespace nsapp    = NS_OSBASE::application;
 namespace nsbroker = NS_OSBASE::broker;
 
-int main(int argc, char **argv) {
-    // This test is only to check in CI if the application can be launched
-    if (argc > 1 && std::string(argv[1]) == "-h") {
-        return 0;
-    }
-
+int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
     std::ifstream ifs(SETTING_FILE_NAME, std::ios_base::in);
     if (!ifs.is_open()) {
         std::cout << "Unable to open the file " << SETTING_FILE_NAME << std::endl;
@@ -49,7 +44,7 @@ int main(int argc, char **argv) {
 
     serviceSettings.serviceInput = nsapp::ServiceSettingsInput{ false,
         brokerSettings.output.value_or(nsbroker::Output{ type_cast<nsdata::Uri>(std::string("ws://127.0.0.1:8080")) }).uri,
-        nsdata::IMessaging::DEFAULT_REALM };
+        launcherSettings.realm };
 
     std::vector<nsapp::ProcessPtr> pProcesses;
 

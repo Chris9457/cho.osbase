@@ -18,8 +18,6 @@ namespace nsapp    = NS_OSBASE::application;
 namespace nsviewer = NS_OSBASE::statemachineviewer;
 
 int main(int argc, char **argv) {
-    static constexpr auto timeout = 10s;
-
     nsapp::Runner runner(argc, argv);
     return runner.run(
         [&runner, &argc, &argv]() {
