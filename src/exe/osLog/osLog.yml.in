@@ -5,17 +5,12 @@ service:
   namespace: "@OSBASE@.log"
 
 process:
-  - name: "getInputLogUri"
-    type: "uri"
-    description: "get the uri of a channel where pushing logs - each call return a new uri"
-    uri: "ILogService.getInputLogUri"
+  - name: "getInputStream"
+    type: "(async)string"
+    description: "provide the input log stream"
+    uri: "ILogService.getInputStream"
 
-  - name: "getOutputLogUri"
-    type: "uri"
-    description: "get the uri of a channel where logs are forwarded- each call return a new uri"
-    uri: "ILogService.getOutputLogUri"
-
-events:
-  - name: "ServiceReadyMsg"
-    description: "emit when the service is ready"
-    topic: "ILogService.serviceReady"
+  - name: "getOutputStream"
+    type: "(async)string"
+    description: "provide the output log stream"
+    uri: "ILogService.getOutputStream"

@@ -9,28 +9,10 @@
 namespace NS_OSBASE::log {
 
     /*
-     * \class LogServiceImpl::DataExchangeDelegate
-     */
-    class LogServiceImpl::DataExchangeDelegate : public data::IDataExchange::IDelegate {
-    public:
-        void onConnected(const bool) override {
-        }
-
-        void onFailure(std::string &&) override {
-        }
-
-        void onDataReceived(data::ByteBuffer &&buffer) override {
-            TheLogServiceImpl.getTaskLoop()->push(
-                [logStream = type_cast<std::string>(std::move(buffer))]() { TheLogServiceImpl.onLogReceived(logStream); });
-        }
-    };
-
-    /*
      * \class LogServiceImpl
      */
     LogServiceImpl::LogServiceImpl()
         : ILogServiceSkeleton(application::TheServiceConfiguration.getBrokerUri(), application::TheServiceConfiguration.getRealm()),
-          m_pDataExchangeDelegate(std::make_shared<DataExchangeDelegate>()),
           m_pLogOutputGroup(data::makeLogOutputGroup()) {
 
         auto const pStream = core::makeJsonStream(std::ifstream(SETTING_FILE_NAME));
@@ -53,36 +35,34 @@ namespace NS_OSBASE::log {
         data::TheLogger.setLogOutput(m_pLogOutputGroup);
     };
 
-    data::Uri LogServiceImpl::getInputLogUri() {
+    data::AsyncData<std::string> LogServiceImpl::getInputStream() {
         std::lock_guard lock(m_mutex);
-        auto const pInputDataExchange = data::makeDataExchange();
-        pInputDataExchange->setDelegate(m_pDataExchangeDelegate);
-        m_pDataExchanges.push_back(pInputDataExchange);
-        pInputDataExchange->create();
-        return pInputDataExchange->getUriOfCreator();
+        data::AsyncData<std::string> asyncInput;
+        auto const guard = core::make_scope_exit([this, &asyncInput] { m_streams.emplace_back(std::move(asyncInput)); });
+        asyncInput.create();
+        return asyncInput;
     }
 
-    data::Uri LogServiceImpl::getOutputLogUri() {
+    data::AsyncData<std::string> LogServiceImpl::getOutputStream() {
         std::lock_guard lock(m_mutex);
-        auto const pOutputDataExchange = data::makeDataExchange();
-        pOutputDataExchange->create();
-        m_pDataExchanges.push_back(pOutputDataExchange);
-
-        m_pLogOutputGroup->add(data::makeLogOutputDataExchange(pOutputDataExchange));
-        return pOutputDataExchange->getUriOfCreator();
+        data::AsyncData<std::string> asyncOutput;
+        auto const guard = core::make_scope_exit([this, &asyncOutput] { m_streams.emplace_back(std::move(asyncOutput)); });
+        asyncOutput.create();
+        m_pLogOutputGroup->add(data::makeLogOutputAsyncData(asyncOutput));
+        return asyncOutput;
     }
 
     void LogServiceImpl::doDisconnect() {
         std::lock_guard lock(m_mutex);
-        for (auto &&pDataExchange : m_pDataExchanges) {
-            pDataExchange->destroy();
+        for (auto &&stream : m_streams) {
+            stream.reset();
         }
         ILogServiceSkeleton::doDisconnect();
     }
 
-    void LogServiceImpl::onLogReceived(const std::string &logStream) {
+    void LogServiceImpl::onLogReceived(std::string &&logStream) {
         std::lock_guard lock(m_mutex);
-        data::TheLogger.injectLog(std::string(logStream));
+        data::TheLogger.injectLog(std::move(logStream));
     }
 
 } // namespace NS_OSBASE::log

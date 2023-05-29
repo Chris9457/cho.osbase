@@ -26,29 +26,6 @@ namespace nssm     = nsosbase::statemachine;
 
 namespace NS_OSBASE::statemachineviewer {
     /*
-     * \class StateMachineWindow::LogReceiverDelegate
-     */
-    class StateMachineWindow::LogReceiverDelegate : public nsdata::IDataExchange::IDelegate {
-    public:
-        LogReceiverDelegate(StateMachineWindow &window) : m_window(window) {
-        }
-
-        void onConnected(const bool) override {
-        }
-
-        void onFailure(std::string &&) override {
-        }
-
-        void onDataReceived(nsdata::ByteBuffer &&buffer) override {
-            auto const logLine = QString::fromStdString(type_cast<std::string>(std::forward<nsdata::ByteBuffer>(buffer)));
-            QMetaObject::invokeMethod(&m_window, "parseLogLine", Qt::QueuedConnection, Q_ARG(QString, logLine));
-        }
-
-    private:
-        StateMachineWindow &m_window;
-    };
-
-    /*
      * \class StateMachineWindow
      */
     StateMachineWindow::StateMachineWindow() : ui(new Ui::StateMachineWindow) {
@@ -64,10 +41,7 @@ namespace NS_OSBASE::statemachineviewer {
     }
 
     StateMachineWindow::~StateMachineWindow() {
-        if (m_pLogReceiver != nullptr) {
-            m_pLogReceiver->close();
-        }
-
+        m_logReceiver.reset();
         delete ui;
     }
 
@@ -238,6 +212,11 @@ namespace NS_OSBASE::statemachineviewer {
     void StateMachineWindow::onPauseTransition() {
     }
 
+    void StateMachineWindow::onLogReceived(std::string &&log) {
+        auto const logLine = QString::fromStdString(type_cast<std::string>(std::move(log)));
+        QMetaObject::invokeMethod(this, "parseLogLine", Qt::QueuedConnection, Q_ARG(QString, logLine));
+    }
+
     void StateMachineWindow::loadFile(const QString &fileName) {
         const std::filesystem::path path = fileName.toStdString();
         if (!exists(path)) {
@@ -260,13 +239,9 @@ namespace NS_OSBASE::statemachineviewer {
 
         try {
             pLogService->connect();
-            auto const guard  = nscore::make_scope_exit([&pLogService]() { pLogService->disconnect(); });
-            auto const logUri = pLogService->getOutputLogUri();
-
-            m_pLogReceiver         = nsdata::makeDataExchange(logUri.scheme);
-            m_pLogReceiverDelegate = std::make_shared<LogReceiverDelegate>(*this);
-            m_pLogReceiver->setDelegate(m_pLogReceiverDelegate);
-            m_pLogReceiver->open(logUri);
+            auto const guard = nscore::make_scope_exit([&pLogService]() { pLogService->disconnect(); });
+            m_logReceiver    = pLogService->getOutputStream();
+            m_logReceiver.get([this](std::string &&log) { onLogReceived(std::move(log)); });
         } catch (const nsapp::ServiceException &) {
             QMessageBox msgBox;
             msgBox.setText("Unable to connect to the log service");
@@ -368,7 +343,7 @@ namespace NS_OSBASE::statemachineviewer {
         updateStateWidgets();
     }
 
-    nssm::AbstractStatePtr StateMachineWindow::extractStateHierarchy(nssm::StatePtr &pRoot, const std::string &fullName) {
+    nssm::AbstractStatePtr StateMachineWindow::extractStateHierarchy(nssm::StatePtr &pRoot, const std::string &fullName) const {
         std::vector<std::string> stateNames;
         std::string parsed;
         std::istringstream iss(fullName);

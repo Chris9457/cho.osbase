@@ -47,6 +47,7 @@ namespace NS_OSBASE::statemachineviewer {
         void onForwardTransition();
         void onPlayTransition();
         void onPauseTransition();
+        void onLogReceived(std::string &&log);
 
         void loadFile(const QString &fileName);
         void connectLog(const NS_OSBASE::data::Uri &uri, const std::string &realm);
@@ -55,7 +56,7 @@ namespace NS_OSBASE::statemachineviewer {
             const NS_OSBASE::data::LoggerProcess::Info &processInfo,
             const NS_OSBASE::statemachine::StateMachineRecord &record);
         NS_OSBASE::statemachine::AbstractStatePtr extractStateHierarchy(
-            NS_OSBASE::statemachine::StatePtr &pRoot, const std::string &fullName);
+            NS_OSBASE::statemachine::StatePtr &pRoot, const std::string &fullName) const;
 
         void updateToolbar(const KeyTransitionRecord &keyRecord);
 
@@ -86,7 +87,6 @@ namespace NS_OSBASE::statemachineviewer {
         QComboBox *m_pSMComboBox             = nullptr;
         QTreeWidget *m_pTransitionDetailTree = nullptr;
         QDockWidget *m_pTransitionDetailDock = nullptr;
-        NS_OSBASE::data::IDataExchangePtr m_pLogReceiver;
-        LogReceiverDelegatePtr m_pLogReceiverDelegate;
+        NS_OSBASE::data::AsyncData<std::string> m_logReceiver;
     };
 } // namespace NS_OSBASE::statemachineviewer

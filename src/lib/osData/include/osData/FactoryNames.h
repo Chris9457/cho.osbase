@@ -10,7 +10,8 @@ namespace NS_OSBASE::data {
     constexpr char LOGOUTPUT_NULL_FACTORY_NAME[]          = "osbase.data.logoutput.null";
     constexpr char LOGOUTPUT_FILE_FACTORY_NAME[]          = "osbase.data.logoutput.file";
     constexpr char LOGOUTPUT_DATAEXCHANGE_FACTORY_NAME[]  = "osbase.data.logoutput.dataexchange";
+    constexpr char LOGOUTPUT_ASYNCDATA_FACTORY_NAME[]     = "osbase.data.logoutput.asyncdata";
     constexpr char LOGOUTPUT_CONSOLE_FACTORY_NAME[]       = "osbase.data.logoutput.console";
     constexpr char LOGOUTPUT_DEBUG_FACTORY_NAME[]         = "osbase.data.logoutput.debug";
-    constexpr char NETWORK_FACTORY_NAME[]                 = "sb.shared.osbase.data.inetwork.network";
+    constexpr char NETWORK_FACTORY_NAME[]                 = "osbase.data.inetwork.network";
 } // namespace NS_OSBASE::data

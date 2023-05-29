@@ -193,7 +193,7 @@ namespace NS_OSBASE::logviewer {
         if (bConnected) {
             std::cout << "*** Connected ***" << std::endl;
             std::cout << std::endl;
-            m_asyncLog = data::AsyncData<std::string>(m_pLogService->getOutputLogUri());
+            m_asyncLog = m_pLogService->getOutputStream();
             m_asyncLog.get([this](std::string &&log) { onLog(std::move(log)); });
         } else {
             std::cout << "*** Disconnected ***" << std::endl;

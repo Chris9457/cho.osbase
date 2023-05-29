@@ -23,6 +23,14 @@ namespace NS_OSBASE::data {
         return nscore::TheFactoryManager.createInstance<ILogOutput>(LOGOUTPUT_DATAEXCHANGE_FACTORY_NAME, pDataExchange);
     }
 
+    ILogOutputPtr makeLogOutputAsyncData(const AsyncData<std::string> &asyncData) {
+        return nscore::TheFactoryManager.createInstance<ILogOutput>(LOGOUTPUT_DATAEXCHANGE_FACTORY_NAME, asyncData);
+    }
+
+    ILogOutputPtr makeLogOutputAsyncData(const Uri &uri) {
+        return makeLogOutputAsyncData(AsyncData<std::string>(uri));
+    }
+
     ILogOutputPtr makeLogOutputConsole() {
         return nscore::TheFactoryManager.createInstance<ILogOutput>(LOGOUTPUT_CONSOLE_FACTORY_NAME);
     }

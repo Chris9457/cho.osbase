@@ -11,6 +11,7 @@ target_link_libraries(${DATA}
 						${OSBASE}.core
 					 )
 target_include_directories(${DATA} PUBLIC ${INCLUDE_DIR})
+target_compile_definitions(${DATA} PUBLIC OSBASE="${OSBASE}")
 
 # deactivate CRT_SECURE for specific sources
 list(APPEND no_crt_secure_sources "${SRC_DIR}/LoggerMessage.cpp")

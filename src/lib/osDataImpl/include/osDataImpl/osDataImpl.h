@@ -50,6 +50,7 @@
         OS_LINK_FACTORY_N(ILogOutput, LogOutputDataExchange, 1);                                                                           \
         OS_LINK_FACTORY_N(ILogOutput, LogOutputConsole, 0);                                                                                \
         OS_LINK_FACTORY_N(ILogOutput, LogOutputDebug, 0);                                                                                  \
+        OS_LINK_FACTORY_N(ILogOutput, LogOutputAsyncData, 0);                                                                              \
     }
 
 #define OS_DATA_LINK_NETWORK()                                                                                                             \

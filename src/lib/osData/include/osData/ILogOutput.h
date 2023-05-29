@@ -2,6 +2,7 @@
 
 #pragma once
 #include "IDataExchange.h"
+#include "AsyncData.h"
 #include "osCore/Misc/NonCopyable.h"
 #include <memory>
 #include <string>
@@ -29,6 +30,8 @@ namespace NS_OSBASE::data {
     ILogOutputPtr makeLogOutputFile(const std::filesystem::path &path);
     ILogOutputPtr makeLogOutputDataExchange(const Uri &uri);
     ILogOutputPtr makeLogOutputDataExchange(IDataExchangePtr pDataExchange);
+    ILogOutputPtr makeLogOutputAsyncData(const AsyncData<std::string> &asyncData);
+    ILogOutputPtr makeLogOutputAsyncData(const Uri &uri);
     ILogOutputPtr makeLogOutputConsole();
     ILogOutputPtr makeLogOutputDebug();
 

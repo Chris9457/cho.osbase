@@ -20,24 +20,18 @@ namespace NS_OSBASE::log {
         friend Singleton<LogServiceImpl>;
 
     public:
-        data::Uri getInputLogUri() override;
-        data::Uri getOutputLogUri() override;
+        NS_OSBASE::data::AsyncData<std::string> getInputStream() override;
+        NS_OSBASE::data::AsyncData<std::string> getOutputStream() override;
 
     protected:
         void doDisconnect() override;
 
     private:
-        using DataExchangePtrs = std::unordered_map<data::IDataExchangePtr, data::IDataExchange::IDelegatePtr>;
-
-        class DataExchangeDelegate;
-        using DataExchangeDelegatePtr = std::shared_ptr<DataExchangeDelegate>;
-
         LogServiceImpl();
 
-        void onLogReceived(const std::string &logStream);
+        void onLogReceived(std::string &&logStream);
 
-        std::vector<data::IDataExchangePtr> m_pDataExchanges;
-        data::IDataExchange::IDelegatePtr m_pDataExchangeDelegate;
+        std::vector<data::AsyncData<std::string>> m_streams;
         data::LogOutputGroupPtr m_pLogOutputGroup;
         std::mutex m_mutex;
         LogSettings m_settings;

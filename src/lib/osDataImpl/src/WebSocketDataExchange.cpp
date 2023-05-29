@@ -1,12 +1,11 @@
 // \brief Declaration of the WebSocketDataExchangeImpl concrete methods
 
+#include "osData/Log.h"
 #include "WebSocketPPImports.h"
-
 #include "osData/FactoryNames.h"
 #include "WebSocketDataExchange.h"
 #include "osCore/DesignPattern/AbstractFactory.h"
 #include "osCore/Misc/TypeCast.h"
-#include "osData/Log.h"
 #include "osData/INetwork.h"
 
 #include <algorithm>
