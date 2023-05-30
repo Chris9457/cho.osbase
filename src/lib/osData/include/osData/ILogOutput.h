@@ -26,12 +26,14 @@ namespace NS_OSBASE::data {
         virtual void flush(std::ostream &os) = 0; //!< flush the unlogged messages to the output stream
     };
 
+    using AsyncString = AsyncData<std::string>;
+
     ILogOutputPtr makeLogOutputNull();
     ILogOutputPtr makeLogOutputFile(const std::filesystem::path &path);
     ILogOutputPtr makeLogOutputDataExchange(const Uri &uri);
     ILogOutputPtr makeLogOutputDataExchange(IDataExchangePtr pDataExchange);
-    ILogOutputPtr makeLogOutputAsyncData(const AsyncData<std::string> &asyncData);
-    ILogOutputPtr makeLogOutputAsyncData(const Uri &uri);
+    ILogOutputPtr makeLogOutputAsyncString(const AsyncString &asyncString);
+    ILogOutputPtr makeLogOutputAsyncString(const Uri &uri);
     ILogOutputPtr makeLogOutputConsole();
     ILogOutputPtr makeLogOutputDebug();
 

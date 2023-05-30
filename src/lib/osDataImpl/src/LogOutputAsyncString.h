@@ -9,9 +9,9 @@ namespace NS_OSBASE::data::impl {
     /**
      * \brief concrete implementation for asyncdata
      */
-    class LogOutputAsyncData : public ILogOutput {
+    class LogOutputAsyncString : public ILogOutput {
     public:
-        LogOutputAsyncData(const AsyncData<std::string> &asyncLog);
+        LogOutputAsyncString(const AsyncData<std::string> &asyncLog);
 
         void log(std::string &&msg) override;
         void flush(std::ostream &os) override;

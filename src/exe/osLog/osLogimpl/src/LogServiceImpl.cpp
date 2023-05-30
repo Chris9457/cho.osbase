@@ -48,7 +48,7 @@ namespace NS_OSBASE::log {
         data::AsyncData<std::string> asyncOutput;
         auto const guard = core::make_scope_exit([this, &asyncOutput] { m_streams.emplace_back(std::move(asyncOutput)); });
         asyncOutput.create();
-        m_pLogOutputGroup->add(data::makeLogOutputAsyncData(asyncOutput));
+        m_pLogOutputGroup->add(data::makeLogOutputAsyncString(asyncOutput));
         return asyncOutput;
     }
 

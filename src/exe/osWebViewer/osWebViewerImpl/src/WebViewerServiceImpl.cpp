@@ -62,7 +62,7 @@ namespace NS_OSBASE::webviewer {
         if (bConnected) {
             auto const pLogOutput = data::makeLogOutputGroup();
             pLogOutput->add(data::makeLogOutputConsole());
-            pLogOutput->add(data::makeLogOutputAsyncData(m_pLogService->getInputStream()));
+            pLogOutput->add(data::makeLogOutputAsyncString(m_pLogService->getInputStream()));
             data::TheLogger.setLogOutput(pLogOutput);
 
             oslog::info() << "WebViewerServiceImpl::onLogServiceConnected: " << bConnected << oslog::end();
