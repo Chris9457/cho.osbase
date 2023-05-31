@@ -12,7 +12,4 @@ target_link_libraries(${WEBENGINE}.${UNIT_TEST}
 					  )
 target_include_directories(${WEBENGINE}.${UNIT_TEST} PRIVATE ${INCLUDE_DIR})
 
-add_UT(
-	UT ${WEBENGINE}.${UNIT_TEST}
-	SRC_DIR ${CMAKE_SOURCE_DIR}/src/osWebEngine
-)
+add_UT(UT ${WEBENGINE}.${UNIT_TEST})

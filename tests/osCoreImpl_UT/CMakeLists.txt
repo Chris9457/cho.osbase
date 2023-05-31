@@ -21,9 +21,6 @@ target_include_directories(${CORE_IMPL}.${UNIT_TEST}
 add_custom_command(TARGET ${CORE_IMPL}.${UNIT_TEST} POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/${RESOURCES_DIR} $<TARGET_FILE_DIR:${CORE_IMPL}.${UNIT_TEST}>/${RESOURCES_DIR})
 
-add_UT(
-	UT ${CORE_IMPL}.${UNIT_TEST}
-	SRC_DIR ${CMAKE_SOURCE_DIR}/src/osCoreImpl
-)
+add_UT(UT ${CORE_IMPL}.${UNIT_TEST})
 
  

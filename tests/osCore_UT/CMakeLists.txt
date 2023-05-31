@@ -27,8 +27,5 @@ if (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Release")
 					   )
 endif()
 
-add_UT(
-	UT ${CORE}.${UNIT_TEST}
-	SRC_DIR ${CMAKE_SOURCE_DIR}/src/osCore ${CMAKE_SOURCE_DIR}/src/osCoreImpl
-)
+add_UT(UT ${CORE}.${UNIT_TEST})
  

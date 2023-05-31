@@ -5,7 +5,6 @@
 #include "osCore/DesignPattern/AbstractFactory.h"
 
 namespace NS_OSBASE::data::impl {
-    using AsyncString = AsyncData<std::string>;
     OS_REGISTER_FACTORY_N(ILogOutput, LogOutputAsyncString, 0, LOGOUTPUT_ASYNCSTRING_FACTORY_NAME, AsyncString);
 
     LogOutputAsyncString::LogOutputAsyncString(const AsyncData<std::string> &asyncLog) : m_asyncLog(asyncLog) {

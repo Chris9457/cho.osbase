@@ -6,12 +6,12 @@
 function(add_UT)
 	set(options "")
 	set(oneValueArgs UT)
-	set(multiValueArgs SRC_DIR)
+	set(multiValueArgs "")
 	cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 	
 	##########################################
 	# check mandatory params
-	foreach(arg UT SRC_DIR)
+	foreach(arg UT)
 		if (NOT ARG_${arg})
 			list(APPEND missing_params ${arg})
 		endif()
@@ -27,8 +27,6 @@ function(add_UT)
 
     set(XML_OUTDIR ${CMAKE_BINARY_DIR}/gtest)
 	file(MAKE_DIRECTORY ${XML_OUTDIR})
-	set(XML_LIST_OUTDIR ${CMAKE_BINARY_DIR}/gtest-list)
-    file(MAKE_DIRECTORY ${XML_LIST_OUTDIR})
 
 	add_test(NAME ${ARG_UT}
 				COMMAND ${ARG_UT} --gtest_output=xml:${XML_OUTDIR}/${ARG_UT}.xml

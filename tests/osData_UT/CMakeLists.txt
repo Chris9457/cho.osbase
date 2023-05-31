@@ -16,7 +16,4 @@ target_link_libraries(${DATA}.${UNIT_TEST}
 target_include_directories(${DATA}.${UNIT_TEST} PRIVATE ${INCLUDE_DIR})
 target_compile_definitions(${DATA}.${UNIT_TEST} PUBLIC TIMEOUT_FACTOR=1)
 
-add_UT(
-	UT ${DATA}.${UNIT_TEST}
-	SRC_DIR ${CMAKE_SOURCE_DIR}/src/osData ${CMAKE_SOURCE_DIR}/src/osDataImpl
-)
+add_UT(UT ${DATA}.${UNIT_TEST})

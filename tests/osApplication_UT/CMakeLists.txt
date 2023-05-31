@@ -21,10 +21,7 @@ target_link_libraries(${APPLICATION}.${UNIT_TEST} PRIVATE
 target_include_directories(${APPLICATION}.${UNIT_TEST} PRIVATE ${INCLUDE_DIR})
 target_compile_definitions(${APPLICATION}.${UNIT_TEST} PUBLIC TIMEOUT_FACTOR=1)
 
-add_UT(
-	UT ${APPLICATION}.${UNIT_TEST}
-	SRC_DIR ${CMAKE_SOURCE_DIR}/src/osApplication
-)
+add_UT(UT ${APPLICATION}.${UNIT_TEST})
 
 set(TESTDOMAINOBJECTS_API ${CMAKE_CURRENT_BINARY_DIR}/TestDomainObjects.yml)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${RESOURCES_DIR}/TestDomainObjects.yml.in ${TESTDOMAINOBJECTS_API})

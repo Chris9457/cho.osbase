@@ -15,7 +15,4 @@ target_link_libraries(${STATEMACHINE}.${UNIT_TEST}
 					  )
 target_include_directories(${STATEMACHINE}.${UNIT_TEST} PRIVATE ${INCLUDE_DIR})
 
-add_UT(
-	UT ${STATEMACHINE}.${UNIT_TEST}
-	SRC_DIR ${CMAKE_SOURCE_DIR}/src/osStateMachine
-)
+add_UT(UT ${STATEMACHINE}.${UNIT_TEST})
